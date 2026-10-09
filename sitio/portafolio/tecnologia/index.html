@@ -93,7 +93,7 @@
 </style>
 </head>
 <body>
-<div class="global"><div><span>Sitio de ejemplo creado por <a href="/#web">Agencia Tafurtfer</a></span><a href="/portafolio/">← Ver portafolio</a></div></div>
+<div class="global"><div><span>Sitio de ejemplo creado por <a href="/#web">Agencia Tafurtfer</a></span><a href="../">← Ver portafolio</a></div></div>
 <div class="mini"><div>
   <a class="nombre" href="#">Nova<span>Tech</span></a>
   <nav><a href="#servicios">Servicios</a><a href="#proceso">Proceso</a><a href="#contacto">Contacto</a><a class="pill llena chica" href="#" data-abrir-chat>Diagnóstico gratis</a></nav>
@@ -194,14 +194,14 @@
     <div><h4>Servicios</h4><ul><li>Diagnóstico</li><li>Mantenimiento</li><li>Formateo</li></ul></div>
     <div><h4>Empresas</h4><ul><li>Redes y wifi</li><li>Cámaras</li><li>Software a la medida</li></ul></div>
     <div><h4>Atención</h4><ul><li>Nova, asistente 24/7</li><li>Garantía de 30 días</li></ul></div>
-    <div><h4>Este sitio</h4><ul><li><a href="/">Agencia Tafurtfer</a></li><li><a href="/#web">¿Quieres uno así?</a></li><li><a href="/portafolio/">Portafolio</a></li></ul></div>
+    <div><h4>Este sitio</h4><ul><li><a href="/">Agencia Tafurtfer</a></li><li><a href="/#web">¿Quieres uno así?</a></li><li><a href="../">Portafolio</a></li></ul></div>
   </div>
   <div class="legal"><span>© NovaTech Soluciones · negocio de ejemplo</span><span>Página y asistente con IA por <a class="enlace" href="/">Agencia Tafurtfer</a></span></div>
 </footer>
 
 <script type="module">
-  import { montarChat } from "/portafolio/comun/chat.js";
-  import { montarAnimado } from "/portafolio/comun/animados.js";
+  import { montarChat } from "../comun/chat.js";
+  import { montarAnimado } from "../comun/animados.js";
   montarAnimado(document.getElementById("escena"), {
     tipo: "robot",
     colores: { cuerpo: "#1e1b4b", articulacion: "#15123a", ojos: "#5ef2e8", orejas: "#a78bfa", antena: "#d9f99d", anillo: "#2997ff" },
@@ -217,6 +217,6 @@
   montarChat({ slug: "tecnologia-demo", nombre: "Nova", color: "#0071e3", icono: "🤖",
     saludo: "¡Hola! 🤖 Soy Nova, el asistente de NovaTech. ¿Qué equipo o problema tienes? Te agendo un diagnóstico gratis." });
 </script>
-<script src="/portafolio/comun/efectos.js" defer></script>
+<script src="../comun/efectos.js" defer></script>
 </body>
 </html>

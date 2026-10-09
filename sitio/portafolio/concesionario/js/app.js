@@ -147,7 +147,7 @@ window.switchView = switchView;
 // API LAYER
 // ═══════════════════════════════════════════════════════════════════════════════
 // Datos del catálogo (sitio de muestra estático: sin servidor). Precios de referencia en dólares.
-const BASE = '/portafolio/concesionario';
+const BASE = '.';
 const CARS = [
   { id: 1, brand: 'Ferrari', model: '488 GTB', year: 2024, category: 'Supercar', price: 280000, rating: 4.9, reviews: 38,
     description: 'Motor V8 biturbo central, aerodinámica de competencia y un sonido inconfundible. Gíralo en la sala 3D (modelo de referencia) y cambia su color.',

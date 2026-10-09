@@ -11,19 +11,19 @@
   <link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
   <!-- Main stylesheet -->
-  <link rel="stylesheet" href="/portafolio/concesionario/css/style.css" />
+  <link rel="stylesheet" href="../concesionario/css/style.css" />
   <style>.editorial__nav-btn{display:none!important}</style>
 </head>
 
 <body>
   <div style="position:fixed;left:50%;bottom:14px;translate:-50% 0;z-index:9999;background:rgba(10,10,12,.92);color:#fff;font:500 12px/1.3 system-ui,sans-serif;padding:8px 14px;white-space:nowrap;border-radius:999px;box-shadow:0 6px 24px rgba(0,0,0,.4);max-width:calc(100% - 32px);text-align:center">
-    Muestra de <a href="/portafolio/" style="color:#c4b5fd">Agencia Tafurtfer</a> · <a href="https://wa.me/573123624819?text=Hola%2C%20quiero%20una%20p%C3%A1gina%20como%20la%20del%20concesionario%203D" style="color:#c4b5fd">Quiero una así</a>
+    Muestra de <a href="../" style="color:#c4b5fd">Agencia Tafurtfer</a> · <a href="https://wa.me/573123624819?text=Hola%2C%20quiero%20una%20p%C3%A1gina%20como%20la%20del%20concesionario%203D" style="color:#c4b5fd">Quiero una así</a>
   </div>
   <!-- ═══════════════════════ NAVIGATION ═══════════════════════ -->
   <header class="navbar" id="navbar">
     <div class="navbar__inner">
       <!-- Logo -->
-      <a href="/portafolio/concesionario/" class="navbar__logo">
+      <a href="../concesionario/" class="navbar__logo">
         <span class="logo-icon">⬡</span>
         <span class="logo-text">Auto<strong>Vision</strong> <span class="logo-badge">3D</span></span>
       </a>
@@ -64,8 +64,8 @@
   <section class="hero hero--video" id="hero">
     <!-- Video background container -->
     <div class="hero__video-container">
-      <video class="hero__video" id="heroVideo" autoplay loop muted playsinline poster="/portafolio/concesionario/img/ferrari-488.jpg">
-        <source src="/portafolio/concesionario/video/showroom.mp4" type="video/mp4" />
+      <video class="hero__video" id="heroVideo" autoplay loop muted playsinline poster="../concesionario/img/ferrari-488.jpg">
+        <source src="../concesionario/video/showroom.mp4" type="video/mp4" />
       </video>
       <div class="hero__overlay"></div>
     </div>
@@ -125,7 +125,7 @@
       <!-- Right side: High-Fashion Architectural Supercar Showcase -->
       <div class="editorial__media">
         <div class="editorial__img-frame">
-          <img id="editorialImg" src="/portafolio/concesionario/img/lamborghini-huracan.jpg" alt="Deportivo naranja en la sala de exhibición" />
+          <img id="editorialImg" src="../concesionario/img/lamborghini-huracan.jpg" alt="Deportivo naranja en la sala de exhibición" />
           <div class="editorial__img-overlay"></div>
         </div>
         <button class="editorial__nav-btn next" id="editorialNextBtn" title="Siguiente">›</button>
@@ -448,7 +448,7 @@
         <span class="logo-icon">⬡</span>
         <span>Auto<strong>Vision</strong> 3D</span>
       </div>
-      <p class="footer__copy">Sitio de muestra creado por <a href="/portafolio/" style="color:inherit">Agencia Tafurtfer</a>. AutoVision 3D es una marca ficticia; no es un concesionario real ni tiene relación con las marcas de autos mostradas. Imágenes creadas con IA. Modelo 3D «Ferrari 458 Italia» de vicent091036 (CC BY 4.0), vía three.js.</p>
+      <p class="footer__copy">Sitio de muestra creado por <a href="../" style="color:inherit">Agencia Tafurtfer</a>. AutoVision 3D es una marca ficticia; no es un concesionario real ni tiene relación con las marcas de autos mostradas. Imágenes creadas con IA. Modelo 3D «Ferrari 458 Italia» de vicent091036 (CC BY 4.0), vía three.js.</p>
       <div class="footer__links">
         <a href="#catalog" data-view="catalog">Catálogo</a>
         <a href="#compare" data-view="compare">Comparador</a>
@@ -465,14 +465,14 @@
   <script type="importmap">
   {
     "imports": {
-      "three": "/portafolio/concesionario/js/three/three.module.min.js",
-      "three/addons/": "/portafolio/concesionario/js/three/"
+      "three": "../concesionario/js/three/three.module.min.js",
+      "three/addons/": "../concesionario/js/three/"
     }
   }
   </script>
 
   <!-- App scripts (modules) -->
-  <script type="module" src="/portafolio/concesionario/js/app.js"></script>
+  <script type="module" src="../concesionario/js/app.js"></script>
   <!-- Asistente con IA de muestra ("Cars"): 14 mensajes de prueba -->
   <script src="/widget.js" data-negocio="concesionario-demo" data-asistente="Cars" data-color="#111111" data-saludo="¡Hola! 🏎️ Soy Cars, el asistente virtual de AutoVision 3D (concesionario de muestra). Pregúntame por los autos, precios, colores o financiación." defer></script>
 </body>

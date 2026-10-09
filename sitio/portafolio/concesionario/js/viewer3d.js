@@ -25,7 +25,7 @@ let isInitialized   = false;
 
 const gltfLoader  = new GLTFLoader();
 const dracoLoader = new DRACOLoader();
-dracoLoader.setDecoderPath('/portafolio/concesionario/js/three/libs/draco/gltf/');
+dracoLoader.setDecoderPath('./js/three/libs/draco/gltf/');
 gltfLoader.setDRACOLoader(dracoLoader);
 
 /**
@@ -199,7 +199,7 @@ function load(modelUrl, onProgress, onError) {
     }
 
     // Default to /models/ferrari_488.glb if specific file not available
-    const targetUrl = modelUrl || '/portafolio/concesionario/modelos/ferrari.glb';
+    const targetUrl = modelUrl || './modelos/ferrari.glb';
 
     gltfLoader.load(
       targetUrl,
@@ -285,8 +285,8 @@ function load(modelUrl, onProgress, onError) {
       (err) => {
         console.warn('[Viewer3D] Error loading primary GLB:', err);
         // Fallback retry with base ferrari_488.glb
-        if (targetUrl !== '/portafolio/concesionario/modelos/ferrari.glb') {
-          load('/portafolio/concesionario/modelos/ferrari.glb', onProgress, onError).then(resolve).catch(reject);
+        if (targetUrl !== './modelos/ferrari.glb') {
+          load('./modelos/ferrari.glb', onProgress, onError).then(resolve).catch(reject);
         } else {
           if (onError) onError(err);
           reject(err);

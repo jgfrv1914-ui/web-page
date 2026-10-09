@@ -105,7 +105,7 @@
 </style>
 </head>
 <body>
-<div class="cinta">Sitio de ejemplo creado por <a href="/#web">Agencia Tafurtfer</a> · <a href="/portafolio/">Ver portafolio</a></div>
+<div class="cinta">Sitio de ejemplo creado por <a href="/#web">Agencia Tafurtfer</a> · <a href="../">Ver portafolio</a></div>
 
 <header>
   <div class="contenedor">
@@ -212,8 +212,8 @@
 </footer>
 
 <script type="module">
-  import { montarAnimado } from "/portafolio/comun/animados.js";
-  import { montarChat } from "/portafolio/comun/chat.js";
+  import { montarAnimado } from "../comun/animados.js";
+  import { montarChat } from "../comun/chat.js";
   montarAnimado(document.getElementById("escena"), {
     tipo: "doctora",
     colores: { piel: "#e9b996", pelo: "#6b3a26", ropa: "#fbfbf8", camisa: "#97cde5", pantalon: "#3a3f4b", zapatos: "#28262a", detalle: "#3d8b7d", acento: "#97cde5", anillo: "#9cc27a" },
@@ -230,6 +230,6 @@
   montarChat({ slug: "consultorio-medico-demo", nombre: "Sofía", color: "#c8dfaa", texto: "#28262a", icono: "🩺",
     saludo: "Hola, soy Sofía, la asistente del Centro Médico Vida. ¿Con qué servicio le puedo ayudar y para cuándo necesita la cita?" });
 </script>
-<script src="/portafolio/comun/efectos.js" defer></script>
+<script src="../comun/efectos.js" defer></script>
 </body>
 </html>

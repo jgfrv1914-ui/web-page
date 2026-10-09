@@ -74,7 +74,7 @@
 </style>
 </head>
 <body>
-<div class="cinta">Sitio de ejemplo creado por <a href="/#web">Agencia Tafurtfer</a> · <a href="/portafolio/">← Ver portafolio</a></div>
+<div class="cinta">Sitio de ejemplo creado por <a href="/#web">Agencia Tafurtfer</a> · <a href="../">← Ver portafolio</a></div>
 <header>
   <a class="logo" href="#"><span class="poste"></span>EL CORTE FINO</a>
   <nav><a href="#servicios">Servicios</a><a href="#estilos">Estilos</a><a href="#opiniones">Opiniones</a><a href="#horario">Horario</a></nav>
@@ -163,8 +163,8 @@
 </footer>
 
 <script type="module">
-  import { montarAnimado } from "/portafolio/comun/animados.js";
-  import { montarChat } from "/portafolio/comun/chat.js";
+  import { montarAnimado } from "../comun/animados.js";
+  import { montarChat } from "../comun/chat.js";
   montarAnimado(document.getElementById("escena"), {
     tipo: "barbero",
     colores: { piel: "#e2ad85", pelo: "#1c1410", ropa: "#8e1d17", camisa: "#f3ead7", manga: "#f3ead7", pantalon: "#3a3531", zapatos: "#111111", detalle: "#c9a227", anillo: "#c9a227" },
@@ -181,6 +181,6 @@
   montarChat({ slug: "barberia-demo", nombre: "Leo", color: "#c9a227", texto: "#111", icono: "💈",
     saludo: "¡Hola! 💈 Soy Leo, el asistente de El Corte Fino. ¿Te agendo un corte? Dime qué servicio y a qué hora te queda bien." });
 </script>
-<script src="/portafolio/comun/efectos.js" defer></script>
+<script src="../comun/efectos.js" defer></script>
 </body>
 </html>

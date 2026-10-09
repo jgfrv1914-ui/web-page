@@ -118,7 +118,7 @@
 </style>
 </head>
 <body>
-<div class="anuncio">✨ Valoración gratis este mes · Sitio de ejemplo creado por <a href="/#web">Agencia Tafurtfer</a> · <a href="/portafolio/">Ver portafolio</a></div>
+<div class="anuncio">✨ Valoración gratis este mes · Sitio de ejemplo creado por <a href="/#web">Agencia Tafurtfer</a> · <a href="../">Ver portafolio</a></div>
 <header>
   <a class="marca" href="#"><i></i>SONRISA</a>
   <nav><a href="#tratamientos">Tratamientos</a><a href="#resultados">Resultados</a><a href="#opiniones">Opiniones</a></nav>
@@ -244,8 +244,8 @@
   });
 </script>
 <script type="module">
-  import { montarAnimado } from "/portafolio/comun/animados.js";
-  import { montarChat } from "/portafolio/comun/chat.js";
+  import { montarAnimado } from "../comun/animados.js";
+  import { montarChat } from "../comun/chat.js";
   montarAnimado(document.getElementById("escena"), {
     tipo: "diente",
     etiqueta: false,
@@ -263,6 +263,6 @@
   montarChat({ slug: "clinica-dental-demo", nombre: "la asistente", color: "#2ecea0", icono: "🦷",
     saludo: "¡Hola! 😁 Soy la asistente de Clínica Dental Sonrisa. ¿Quieres agendar una limpieza, una valoración o tienes alguna pregunta?" });
 </script>
-<script src="/portafolio/comun/efectos.js" defer></script>
+<script src="../comun/efectos.js" defer></script>
 </body>
 </html>
