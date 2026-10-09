@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Café Ruta · Cafetería de especialidad</title>
+  <meta name="description" content="Café de especialidad tostado en casa. Granos de productores pequeños, bebidas de temporada y un lugar para quedarte.">
+  <style>
+    :root {
+      --bg: #f6f1ea; --paper: #fbf8f3; --ink: #2b1d14; --muted: #6e5a4c;
+      --accent: #8a4b2a; --soft: #e6dace; --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font: 17px/1.65 Georgia, "Times New Roman", serif; background: var(--bg); color: var(--ink); }
+    a { color: inherit; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    .top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--soft); }
+    .top .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .brand { font-size: 1.25rem; text-decoration: none; letter-spacing: 0.02em; }
+    .top nav { display: flex; gap: 6px; align-items: center; }
+    .top nav a { text-decoration: none; padding: 10px 14px; border-radius: 999px; color: var(--muted); transition: color 300ms var(--ease), background 300ms var(--ease); }
+    .top nav a:hover, .top nav a:focus-visible { color: var(--ink); background: var(--paper); }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px; border-radius: 999px; border: 1px solid var(--ink); background: var(--ink); color: var(--bg); text-decoration: none; font: inherit; transition: transform 500ms var(--ease), background 400ms var(--ease), color 400ms var(--ease); }
+    .btn:hover, .btn:focus-visible { background: transparent; color: var(--ink); transform: translateY(-2px); }
+    .btn.ghost { background: transparent; color: var(--ink); }
+    .btn.ghost:hover { background: var(--ink); color: var(--bg); }
+
+    /* Photo slot: se reemplaza por la foto generada */
+    .ph { position: relative; border-radius: 18px; overflow: hidden; background: linear-gradient(140deg, #e9dccb, #d4bfa4); aspect-ratio: 4 / 5; display: flex; align-items: flex-end; padding: 20px; color: #5a4333; font: 0.85rem/1.4 system-ui, sans-serif; margin: 0; }
+    .ph::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.45), transparent 55%); }
+    .ph span { position: relative; z-index: 1; }
+
+    /* Hero */
+    .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; padding: 88px 24px 96px; }
+    .eyebrow { font: 0.8rem/1 system-ui, sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+    .hero h1 { font-weight: 400; font-size: clamp(2.6rem, 5.4vw, 4.4rem); line-height: 1.04; margin: 18px 0 22px; letter-spacing: -0.01em; }
+    .hero p { color: var(--muted); max-width: 46ch; }
+    .hero .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+    .hero .ph { aspect-ratio: 5 / 6; }
+    .reveal { opacity: 0; transform: translateY(18px); animation: in 900ms var(--ease) forwards; }
+    .reveal.d2 { animation-delay: 180ms; }
+    .reveal.d3 { animation-delay: 320ms; }
+    @keyframes in { to { opacity: 1; transform: none; } }
+
+    /* Sections */
+    section { padding: 96px 0; border-top: 1px solid var(--soft); }
+    .head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 44px; flex-wrap: wrap; }
+    .head h2 { font-weight: 400; font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1.1; }
+    .head p { color: var(--muted); max-width: 40ch; }
+
+    /* Bebidas */
+    .drinks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+    .drink { text-decoration: none; transition: transform 500ms var(--ease); }
+    .drink:hover { transform: translateY(-6px); }
+    .drink .ph { aspect-ratio: 3 / 4; }
+    .drink h3 { font-weight: 400; font-size: 1.2rem; margin: 16px 0 4px; }
+    .drink p { color: var(--muted); font-size: 0.95rem; }
+    .drink .precio { margin-top: 6px; font: 600 0.95rem system-ui, sans-serif; color: var(--accent); }
+
+    /* Historia */
+    .story { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .story .ph { aspect-ratio: 4 / 5; }
+    .story h2 { font-weight: 400; font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1.1; margin: 16px 0 22px; }
+    .story p + p { margin-top: 18px; }
+    .story p { color: var(--muted); }
+    .story blockquote { font-size: 1.5rem; line-height: 1.35; margin-top: 28px; padding-left: 20px; border-left: 2px solid var(--accent); }
+
+    /* Opiniones */
+    .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .quote { background: var(--paper); border: 1px solid var(--soft); border-radius: 18px; padding: 30px; margin: 0; }
+    .quote p { font-size: 1.05rem; color: var(--ink); }
+    .quote cite { display: block; margin-top: 18px; font: 0.88rem system-ui, sans-serif; color: var(--muted); font-style: normal; }
+
+    /* Visita */
+    .visit { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .card { background: var(--paper); border: 1px solid var(--soft); border-radius: 18px; padding: 34px; }
+    .card h3 { font-weight: 400; font-size: 1.4rem; margin-bottom: 14px; }
+    .card ul { list-style: none; }
+    .card li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--soft); color: var(--muted); }
+    .card li:last-child { border-bottom: 0; }
+    .card address { font-style: normal; color: var(--muted); margin-bottom: 22px; }
+    .map { min-height: 200px; border-radius: 12px; background: repeating-linear-gradient(45deg, #efe6d8 0 12px, #e6dace 12px 24px); display: grid; place-items: center; color: var(--muted); font: 0.85rem system-ui, sans-serif; }
+
+    footer { border-top: 1px solid var(--soft); padding: 36px 0; color: var(--muted); font: 0.9rem system-ui, sans-serif; }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+    @media (max-width: 900px) {
+      .hero, .story, .visit { grid-template-columns: 1fr; gap: 36px; }
+      .drinks { grid-template-columns: repeat(2, 1fr); }
+      .quotes { grid-template-columns: 1fr; }
+      .top nav a:not(.btn) { display: none; }
+    }
+    @media (max-width: 520px) {
+      .drinks { grid-template-columns: 1fr; }
+      .hero { padding: 56px 24px 64px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; }
+    }
+    /* Fotos generadas */
+    .ph.photo { padding: 0; }
+    .ph.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    /* Transiciones entre páginas */
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 450ms; }
+    @media (prefers-reduced-motion: reduce) { ::view-transition-old(root), ::view-transition-new(root) { animation: none; } }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#inicio">Café Ruta</a>
+      <nav>
+        <a href="#bebidas">Bebidas</a>
+        <a href="#historia">Historia</a>
+        <a href="#visita">Visita</a>
+        <a class="btn" href="#visita">Cómo llegar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero" id="inicio">
+      <div>
+        <p class="eyebrow reveal">Cafetería de especialidad</p>
+        <h1 class="reveal d2">Café tostado en casa, servido con calma.</h1>
+        <p class="reveal d2">Granos de productores pequeños, tueste lento y una carta que cambia con la temporada. Llega temprano y encuentra mesa.</p>
+        <div class="actions reveal d3">
+          <a class="btn" href="#bebidas">Ver la carta</a>
+          <a class="btn ghost" href="#visita">Horario y ubicación</a>
+        </div>
+      </div>
+      <figure class="ph reveal d2 photo" role="img" aria-label="taza de café recién servida en mesa de madera"><img src="fotos/hero.jpg" alt="taza de café recién servida en mesa de madera" loading="lazy"></figure>
+    </div>
+
+    <section id="bebidas">
+      <div class="wrap">
+        <div class="head">
+          <h2>Lo más pedido</h2>
+          <p>Espresso, filtrados y bebidas frías. La carta completa cambia cada semana con el café del día.</p>
+        </div>
+        <div class="drinks">
+          <a class="drink" href="#bebidas">
+            <figure class="ph photo" role="img" aria-label="espresso en taza de cerámica"><img src="fotos/espresso.jpg" alt="espresso en taza de cerámica" loading="lazy"></figure>
+            <h3>Espresso</h3><p>Doble shot, notas de cacao y caramelo.</p><div class="precio">$2.50</div>
+          </a>
+          <a class="drink" href="#bebidas">
+            <figure class="ph photo" role="img" aria-label="filtrado servido en vaso de vidrio"><img src="fotos/filtrado.jpg" alt="filtrado servido en vaso de vidrio" loading="lazy"></figure>
+            <h3>Filtrado del día</h3><p>Origen de temporada, método V60.</p><div class="precio">$3.50</div>
+          </a>
+          <a class="drink" href="#bebidas">
+            <figure class="ph photo" role="img" aria-label="flat white con arte de leche"><img src="fotos/flat-white.jpg" alt="flat white con arte de leche" loading="lazy"></figure>
+            <h3>Flat white</h3><p>Leche sedosa, doble ristretto.</p><div class="precio">$3.80</div>
+          </a>
+          <a class="drink" href="#bebidas">
+            <figure class="ph photo" role="img" aria-label="cold brew en vaso alto con hielo"><img src="fotos/cold-brew.jpg" alt="cold brew en vaso alto con hielo" loading="lazy"></figure>
+            <h3>Cold brew</h3><p>Infusión 18 horas, servido frío.</p><div class="precio">$4.20</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="historia">
+      <div class="wrap story">
+        <figure class="ph photo" role="img" aria-label="tostador de café en funcionamiento"><img src="fotos/tostador.jpg" alt="tostador de café en funcionamiento" loading="lazy"></figure>
+        <div>
+          <p class="eyebrow">Nuestro tueste</p>
+          <h2>Tostamos en el local, cada semana.</h2>
+          <p>Compramos a productores que conocemos por nombre. Tostamos en pequeños lotes para que cada origen se note en la taza.</p>
+          <p>Por eso la carta cambia: cuando se acaba un café, aparece otro.</p>
+          <blockquote>"Un buen café se nota en el primer sorbo y se recuerda al final."</blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="head">
+          <h2>Lo que dicen</h2>
+          <p>Reseñas de muestra. Reemplázalas por reseñas reales antes de publicar.</p>
+        </div>
+        <div class="quotes">
+          <figure class="quote"><p>"El flat white más sedoso de la zona. Siempre vuelvo."</p><cite>Cliente frecuente</cite></figure>
+          <figure class="quote"><p>"Buen lugar para trabajar, el wifi funciona y el café es excelente."</p><cite>Cliente</cite></figure>
+          <figure class="quote"><p>"El cold brew en verano es imprescindible."</p><cite>Cliente</cite></figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="visita">
+      <div class="wrap visit">
+        <div class="card">
+          <h3>Horario</h3>
+          <ul>
+            <li><span>Lunes a viernes</span><span>7:00 – 19:00</span></li>
+            <li><span>Sábado</span><span>8:00 – 18:00</span></li>
+            <li><span>Domingo</span><span>Cerrado</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Ubicación</h3>
+          <address>Calle 12 #45-08, Barrio Centro</address>
+          <div class="map" role="img" aria-label="Mapa pendiente de integrar">Mapa pendiente</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© Café Ruta · Sitio de muestra</span>
+      <span>Calle 12 #45-08 · Lunes a sábado</span>
+    </div>
+  </footer>
+</body>
+</html>

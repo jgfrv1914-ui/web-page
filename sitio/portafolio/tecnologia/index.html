@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="robots" content="noindex, follow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NovaTech Soluciones</title>
+<meta name="description" content="Reparación de computadores, redes, cámaras y software a la medida. Diagnóstico gratis y garantía de 30 días.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--azul:#0071e3;--azul-enlace:#0066cc;--azul-senal:#2997ff;--carbon:#1d1d1f;--frost:#f5f5f7;--ice:#f4f8fb;--humo:#333;--ceniza:#707070;--guijarro:#e2e2e5;--linea:#d2d2d7}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#fff;color:var(--carbon);font:400 17px/1.47 Inter,-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;letter-spacing:-.016em;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  /* Barra global oscura */
+  .global{background:var(--carbon);color:#f5f5f7;font-size:12px;border-bottom:1px solid var(--humo)}
+  .global div{max-width:1200px;margin:0 auto;padding:10px 16px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .global a{opacity:.8}.global a:hover{opacity:1}
+  /* Mini barra pegajosa */
+  .mini{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--linea)}
+  .mini div{max-width:1200px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .mini .nombre{font-size:21px;font-weight:600;letter-spacing:-.01em}
+  .mini .nombre span{color:var(--azul-senal)}
+  .mini nav{display:flex;align-items:center;gap:22px;font-size:12px;color:var(--carbon)}
+  .mini nav a:not(.pill):hover{color:var(--azul-enlace)}
+  .pill{display:inline-flex;align-items:center;justify-content:center;border-radius:980px;padding:11px 20px;font-family:inherit;font-size:17px;line-height:1;font-weight:400;border:1px solid transparent;cursor:pointer;transition:background .2s,color .2s}
+  .pill.llena{background:var(--azul);color:#fff}.pill.llena:hover{background:#0077ed}
+  .pill.borde{border-color:var(--azul-enlace);color:var(--azul-enlace);background:transparent}.pill.borde:hover{background:var(--azul-enlace);color:#fff}
+  .pill.chica{font-size:12px;padding:6px 12px}
+  .enlace{color:var(--azul-enlace)}.enlace:hover{text-decoration:underline}
+
+  /* Portada centrada */
+  .portada{background:var(--frost);text-align:center;padding:56px 16px 48px;overflow:hidden}
+  .portada .marca{font-size:21px;font-weight:600;color:var(--azul-senal);margin-bottom:8px}
+  h1{font-size:clamp(44px,5.4vw,72px);font-weight:600;line-height:1.05;letter-spacing:-.015em;max-width:900px;margin:0 auto}
+  .lema{font-size:clamp(21px,2.4vw,28px);font-weight:300;margin:14px auto 28px;max-width:720px}
+  .acciones{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .portada .rejilla{max-width:1200px;margin:0 auto}
+  .escena{position:relative;width:min(440px,92vw);height:460px;margin:28px auto 0;-webkit-tap-highlight-color:transparent;color:var(--ceniza)}
+  .globo{position:absolute;z-index:2;top:4%;left:66%;background:#fff;border:1px solid var(--linea);color:var(--carbon);padding:10px 16px;border-radius:980px;font-size:15px;white-space:nowrap;opacity:0;transform:translateY(8px) scale(.96);transition:.3s;pointer-events:none}
+  .globo.ver{opacity:1;transform:none}
+
+  @media (min-width:1000px){.portada{padding:56px 32px 64px}.portada .rejilla{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:40px;text-align:left}.portada h1,.portada .lema{margin-left:0}.portada .acciones{justify-content:flex-start}.escena{margin:0 auto;width:min(480px,100%);height:560px}}
+  section{padding:96px 16px}
+  .centro{max-width:980px;margin:0 auto;text-align:center}
+  h2{font-size:clamp(34px,5vw,56px);font-weight:600;line-height:1.07;letter-spacing:-.01em}
+  .sub{font-size:21px;font-weight:300;margin:12px auto 0;max-width:640px}
+
+  /* Mosaico de servicios con fondos de color */
+  .mosaico{max-width:1200px;margin:48px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .tile{border-radius:8px;padding:32px 28px;min-height:300px;display:flex;flex-direction:column;text-align:left;transition:transform .35s}
+  .tile:hover{transform:scale(1.015)}
+  .tile small{font-size:12px;letter-spacing:.02em;opacity:.7}
+  .tile h3{font-size:28px;font-weight:600;letter-spacing:-.005em;margin:6px 0 8px}
+  .tile p{font-size:17px;opacity:.85}
+  .tile .pie{margin-top:auto;padding-top:24px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .tile .pie b{font-weight:600}
+  .tile svg{width:44px;height:44px;margin-bottom:18px}
+  .t1{background:var(--ice)}.t2{background:#eef7f0}.t3{background:#fbf1ec}.t4{background:#f3effa}.t5{background:#fff6e5}
+  .t6{background:var(--carbon);color:#f5f5f7}.t6 .pill.borde{border-color:var(--azul-senal);color:var(--azul-senal)}.t6 .pill.borde:hover{background:var(--azul-senal);color:var(--carbon)}
+
+  /* Proceso */
+  .gris{background:var(--frost)}
+  .pasos{max-width:980px;margin:48px auto 0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--linea)}
+  .paso{padding:28px 20px 0;text-align:left;border-left:1px solid var(--linea)}.paso:first-child{border-left:0;padding-left:0}
+  .paso b{font-size:12px;color:var(--ceniza);font-weight:400}
+  .paso h3{font-size:21px;font-weight:600;margin:8px 0 6px}
+  .paso p{color:var(--ceniza);font-size:15px}
+
+  /* Cifras */
+  .cifras{max-width:980px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+  .cifras b{display:block;font-size:clamp(40px,5vw,56px);font-weight:600;letter-spacing:-.01em;line-height:1.07}
+  .cifras small{color:var(--ceniza);font-size:14px}
+
+  /* Llamado tipográfico */
+  .llamado{background:var(--ice);text-align:center}
+  .llamado h2 em{font-style:italic;font-weight:400;color:var(--azul-senal)}
+
+  footer{background:var(--frost);color:var(--ceniza);font-size:12px;padding:32px 16px}
+  footer .cols{max-width:980px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-bottom:20px;border-bottom:1px solid var(--linea)}
+  footer h4{color:var(--carbon);font-weight:600;font-size:12px;margin-bottom:8px}
+  footer li{list-style:none;margin:6px 0}
+  footer .legal{max-width:980px;margin:16px auto 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  footer a:hover{text-decoration:underline}
+  .revelar{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}.revelar.visto{opacity:1;transform:none}
+
+  @media (max-width:900px){.mosaico{grid-template-columns:1fr 1fr}.pasos{grid-template-columns:1fr 1fr;gap:24px 0}.paso:nth-child(3){border-left:0;padding-left:0}.cifras{grid-template-columns:1fr 1fr}footer .cols{grid-template-columns:1fr 1fr}}
+  @media (max-width:600px){.mini nav a:not(.pill){display:none}.mosaico{grid-template-columns:1fr}.tile{min-height:0}.pasos{grid-template-columns:1fr}.paso{border-left:0;padding-left:0}.globo{left:50%;top:-6%;transform:translateX(-50%)}.globo.ver{transform:translateX(-50%)}section{padding:72px 16px}}
+  @media (prefers-reduced-motion:reduce){.revelar{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<div class="global"><div><span>Sitio de ejemplo creado por <a href="/#web">Agencia Tafurtfer</a></span><a href="/portafolio/">← Ver portafolio</a></div></div>
+<div class="mini"><div>
+  <a class="nombre" href="#">Nova<span>Tech</span></a>
+  <nav><a href="#servicios">Servicios</a><a href="#proceso">Proceso</a><a href="#contacto">Contacto</a><a class="pill llena chica" href="#" data-abrir-chat>Diagnóstico gratis</a></nav>
+</div></div>
+
+<main>
+  <section class="portada"><div class="rejilla"><div>
+    <p class="marca">NovaTech</p>
+    <h1>Tecnología que simplemente funciona.</h1>
+    <p class="lema">Reparamos tu computador, montamos tu red y cámaras, y creamos el software que tu empresa necesita.</p>
+    <div class="acciones">
+      <a class="pill llena" href="#" data-abrir-chat>Hablar con Nova</a>
+      <a class="pill borde" href="#servicios">Ver servicios</a>
+    </div>
+    </div>
+
+    <div class="escena" id="escena" role="button" tabindex="0" aria-label="Nova, el robot asistente en 3D. Tócalo para que reaccione.">
+      <div class="globo" id="globo">¡Hola! Soy Nova 👋</div>
+    </div>
+  </div></section>
+
+  <section id="servicios">
+    <div class="centro revelar">
+      <h2>Todo lo que tu equipo necesita.</h2>
+      <p class="sub">Precios claros antes de empezar y 30 días de garantía en cada servicio.</p>
+    </div>
+    <div class="mosaico revelar">
+      <div class="tile t1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <small>Para empezar</small><h3>Diagnóstico</h3><p>Revisamos tu computador o celular y te damos el presupuesto.</p>
+        <div class="pie"><b>Gratis</b><a class="pill borde chica" href="#" data-abrir-chat>Agendar</a></div>
+      </div>
+      <div class="tile t2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.5"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+        <small>Computadores</small><h3>Mantenimiento</h3><p>Limpieza, pasta térmica y optimización para que vuele.</p>
+        <div class="pie"><b>$90.000</b><a class="pill borde chica" href="#" data-abrir-chat>Agendar</a></div>
+      </div>
+      <div class="tile t3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></svg>
+        <small>Sistema</small><h3>Formateo</h3><p>Sistema, programas y copia de seguridad de tus archivos.</p>
+        <div class="pie"><b>$80.000</b><a class="pill borde chica" href="#" data-abrir-chat>Agendar</a></div>
+      </div>
+      <div class="tile t4">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.5"><path d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1"/></svg>
+        <small>Casa y oficina</small><h3>Redes y wifi</h3><p>Internet estable en todos los rincones.</p>
+        <div class="pie"><b>Desde $250.000</b><a class="pill borde chica" href="#" data-abrir-chat>Agendar</a></div>
+      </div>
+      <div class="tile t5">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="1.5"><rect x="2" y="7" width="14" height="10" rx="2"/><path d="m16 11 6-3v8l-6-3"/></svg>
+        <small>Seguridad</small><h3>Cámaras</h3><p>Instalación y monitoreo desde tu celular.</p>
+        <div class="pie"><b>Desde $250.000</b><a class="pill borde chica" href="#" data-abrir-chat>Agendar</a></div>
+      </div>
+      <div class="tile t6">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#f5f5f7" stroke-width="1.5"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg>
+        <small>Empresas</small><h3>Software a la medida</h3><p>Apps y sistemas para automatizar tu negocio.</p>
+        <div class="pie"><b>Desde $2.500.000</b><a class="pill borde chica" href="#" data-abrir-chat>Cotizar</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gris" id="proceso">
+    <div class="centro revelar">
+      <h2>Así de fácil.</h2>
+      <p class="sub">De tu mensaje a tu equipo funcionando, sin enredos.</p>
+    </div>
+    <div class="pasos revelar">
+      <div class="paso"><b>01</b><h3>Escríbele a Nova</h3><p>Te atiende 24/7 y agenda tu diagnóstico.</p></div>
+      <div class="paso"><b>02</b><h3>Diagnóstico gratis</h3><p>En el local o a domicilio.</p></div>
+      <div class="paso"><b>03</b><h3>Solución</h3><p>Presupuesto claro antes de empezar.</p></div>
+      <div class="paso"><b>04</b><h3>Garantía</h3><p>30 días en todos los servicios.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="cifras revelar">
+      <div><b data-contar="3200">0</b><small>equipos reparados</small></div>
+      <div><b data-contar="180">0</b><small>empresas atendidas</small></div>
+      <div><b data-contar="24">0</b><small>horas para entregar</small></div>
+      <div><b data-contar="30">0</b><small>días de garantía</small></div>
+    </div>
+    <p class="centro" style="color:var(--ceniza);font-size:12px;margin-top:24px">Cifras de ejemplo para este sitio de muestra.</p>
+  </section>
+
+  <section class="llamado" id="contacto">
+    <div class="centro revelar">
+      <h2>¿Algo no funciona? <em>Nova</em> te ayuda.</h2>
+      <p class="sub" style="margin-bottom:28px">Cuéntale qué pasa y agenda tu diagnóstico gratis ahora mismo.</p>
+      <div class="acciones">
+        <a class="pill llena" href="#" data-abrir-chat>Agendar diagnóstico</a>
+        <a class="pill borde" href="#servicios">Ver precios</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="cols">
+    <div><h4>Servicios</h4><ul><li>Diagnóstico</li><li>Mantenimiento</li><li>Formateo</li></ul></div>
+    <div><h4>Empresas</h4><ul><li>Redes y wifi</li><li>Cámaras</li><li>Software a la medida</li></ul></div>
+    <div><h4>Atención</h4><ul><li>Nova, asistente 24/7</li><li>Garantía de 30 días</li></ul></div>
+    <div><h4>Este sitio</h4><ul><li><a href="/">Agencia Tafurtfer</a></li><li><a href="/#web">¿Quieres uno así?</a></li><li><a href="/portafolio/">Portafolio</a></li></ul></div>
+  </div>
+  <div class="legal"><span>© NovaTech Soluciones · negocio de ejemplo</span><span>Página y asistente con IA por <a class="enlace" href="/">Agencia Tafurtfer</a></span></div>
+</footer>
+
+<script type="module">
+  import { montarChat } from "/portafolio/comun/chat.js";
+  import { montarAnimado } from "/portafolio/comun/animados.js";
+  montarAnimado(document.getElementById("escena"), {
+    tipo: "robot",
+    colores: { cuerpo: "#1e1b4b", articulacion: "#15123a", ojos: "#5ef2e8", orejas: "#a78bfa", antena: "#d9f99d", anillo: "#2997ff" },
+    globo: document.getElementById("globo"),
+    frases: {
+      SALUDANDO: ["¡Hola! Soy Nova 👋", "¡Bienvenido a NovaTech!"],
+      PENSANDO: ["Mmm… ¿se te dañó algo?", "Déjame revisar…"],
+      FELIZ: ["¡El diagnóstico es gratis! 🎉", "30 días de garantía ✓"],
+      BAILANDO: ["¡Tu equipo como nuevo! 🕺"],
+      HABLANDO: ["¡Cuéntame qué pasa!", "Te agendo en un momento"],
+    },
+  });
+  montarChat({ slug: "tecnologia-demo", nombre: "Nova", color: "#0071e3", icono: "🤖",
+    saludo: "¡Hola! 🤖 Soy Nova, el asistente de NovaTech. ¿Qué equipo o problema tienes? Te agendo un diagnóstico gratis." });
+</script>
+<script src="/portafolio/comun/efectos.js" defer></script>
+</body>
+</html>

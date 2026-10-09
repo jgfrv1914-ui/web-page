@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="robots" content="noindex, follow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barbería El Corte Fino</title>
+<meta name="description" content="Cortes clásicos, fades y barba con toalla caliente . Agenda tu turno en segundos con Leo, nuestro asistente.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--fondo:#0e0c0a;--panel:#171411;--oro:#c9a227;--rojo:#b3261e;--crema:#f3ead7;--gris:#a39a8a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--fondo);color:var(--crema);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden}
+  a{color:inherit}
+  .cinta{background:var(--oro);color:#111;font-size:13px;text-align:center;padding:7px 16px}
+  .cinta a{font-weight:700}
+  header{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:16px clamp(16px,5vw,64px);
+    background:rgba(14,12,10,.85);backdrop-filter:blur(10px);border-bottom:1px solid #2a241d}
+  .logo{font:32px/1 "Bebas Neue";letter-spacing:2px;display:flex;align-items:center;gap:10px;text-decoration:none}
+  .poste{width:14px;height:34px;border-radius:7px;background:repeating-linear-gradient(45deg,var(--rojo) 0 6px,#fff 6px 12px,#1d4ed8 12px 18px,#fff 18px 24px);
+    background-size:100% 34px;animation:girar 1.2s linear infinite;box-shadow:0 0 0 3px #3a3128}
+  @keyframes girar{to{background-position:0 34px}}
+  nav{display:flex;gap:26px;font-size:14px;text-transform:uppercase;letter-spacing:1.5px}
+  nav a{text-decoration:none;color:var(--gris)} nav a:hover{color:var(--oro)}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--oro);color:#111;font-weight:700;text-decoration:none;padding:14px 26px;border-radius:4px;border:0;cursor:pointer;font-size:15px;transition:transform .2s,box-shadow .2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(201,162,39,.35)}
+  .btn.linea{background:none;color:var(--crema);border:1px solid #4a4035}
+  .hero{display:grid;grid-template-columns:1.1fr 1fr;align-items:center;min-height:calc(100vh - 110px);padding:40px clamp(16px,5vw,64px);gap:20px;position:relative}
+  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 75% 45%,rgba(201,162,39,.18),transparent 55%);pointer-events:none}
+  .etiqueta{color:var(--oro);letter-spacing:3px;text-transform:uppercase;font-size:13px}
+  h1{font:clamp(64px,10vw,150px)/.9 "Bebas Neue";letter-spacing:2px;margin:14px 0 20px}
+  h1 span{color:var(--oro)}
+  .hero p{color:var(--gris);max-width:480px;font-size:18px;margin-bottom:28px}
+  .acciones{display:flex;gap:14px;flex-wrap:wrap}
+  .escena{position:relative;height:min(620px,70vh);min-width:0}
+  .globo{position:absolute;top:6%;left:50%;transform:translate(-50%,10px);background:var(--crema);color:#111;padding:10px 16px;border-radius:14px;font-weight:600;
+    opacity:0;transition:.3s;white-space:nowrap;pointer-events:none;z-index:2}
+  .globo.visible{opacity:1;transform:translate(-50%,0)}
+  section{padding:100px clamp(16px,5vw,64px)}
+  h2{font:clamp(48px,7vw,88px)/.95 "Bebas Neue";letter-spacing:1px;margin-bottom:40px}
+  h2 span{color:var(--oro)}
+  .cifras{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #2a241d;border-bottom:1px solid #2a241d;padding:40px clamp(16px,5vw,64px)}
+  .cifras div{text-align:center}.cifras b{display:block;font:64px/1 "Bebas Neue";color:var(--oro)}.cifras small{color:var(--gris);text-transform:uppercase;letter-spacing:2px;font-size:12px}
+  .menu{display:grid;grid-template-columns:1fr 1fr;gap:10px 60px;max-width:1100px}
+  .item{display:flex;align-items:baseline;gap:10px;padding:18px 0;border-bottom:1px dashed #3a3128}
+  .item h3{font:28px/1 "Bebas Neue";letter-spacing:1px}.item p{color:var(--gris);font-size:14px}
+  .item .puntos{flex:1;border-bottom:2px dotted #4a4035;transform:translateY(-6px)}
+  .item .precio{font:30px/1 "Bebas Neue";color:var(--oro)}
+  .galeria{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .corte{aspect-ratio:3/4;border-radius:10px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:18px;cursor:pointer;transition:transform .4s}
+  .corte:hover{transform:translateY(-8px) rotate(-1deg)}
+  .corte .emoji{position:absolute;top:18%;left:50%;transform:translateX(-50%);font-size:84px;transition:transform .4s}
+  .corte:hover .emoji{transform:translateX(-50%) scale(1.2) rotate(8deg)}
+  .corte b{font:30px/1 "Bebas Neue";position:relative}
+  .opiniones{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .opinion{background:var(--panel);padding:28px;border-radius:10px;border:1px solid #2a241d}
+  .opinion .estrellas{color:var(--oro);letter-spacing:3px;margin-bottom:10px}.opinion cite{display:block;margin-top:14px;color:var(--gris);font-style:normal;font-size:14px}
+  .visita{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  .horario{list-style:none}.horario li{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #2a241d}
+  .cta{text-align:center;background:linear-gradient(135deg,#1c1712,#0e0c0a);border-top:1px solid #2a241d}
+  .cta p{color:var(--gris);margin:-20px 0 30px}
+  footer{padding:30px clamp(16px,5vw,64px);color:var(--gris);font-size:13px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid #2a241d}
+  .revelar{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s}.revelar.visto{opacity:1;transform:none}
+  @media (max-width:860px){
+    nav{display:none}.hero{grid-template-columns:1fr;text-align:center}.hero p{margin-inline:auto}.acciones{justify-content:center}
+    .escena{height:420px;order:-1}.cifras{grid-template-columns:repeat(2,1fr);gap:24px}.menu,.visita{grid-template-columns:1fr}
+    .galeria{grid-template-columns:repeat(2,1fr)}.opiniones{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){.poste{animation:none}.revelar{opacity:1;transform:none;transition:none}}
+  @media (max-width:600px){header{padding:12px 16px}header .btn{padding:10px 14px;font-size:13px;box-shadow:none}.logo{font-size:18px}}
+</style>
+</head>
+<body>
+<div class="cinta">Sitio de ejemplo creado por <a href="/#web">Agencia Tafurtfer</a> · <a href="/portafolio/">← Ver portafolio</a></div>
+<header>
+  <a class="logo" href="#"><span class="poste"></span>EL CORTE FINO</a>
+  <nav><a href="#servicios">Servicios</a><a href="#estilos">Estilos</a><a href="#opiniones">Opiniones</a><a href="#horario">Horario</a></nav>
+  <a class="btn" href="#" data-abrir-chat>Reservar</a>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="etiqueta">Barbería clásica · desde 2012</div>
+      <h1>Cortes con <span>estilo.</span><br>Barba con <span>oficio.</span></h1>
+      <p>Fades, pompadour y barba con toalla caliente y navaja. Reserva tu turno en 10 segundos con Leo, nuestro asistente, y llega sin esperar.</p>
+      <div class="acciones">
+        <a class="btn" href="#" data-abrir-chat>✂️ Reservar turno</a>
+        <a class="btn linea" href="#servicios">Ver precios</a>
+      </div>
+    </div>
+    <div class="escena" id="escena" tabindex="0" aria-label="Leo, el barbero en 3D. Tócalo para que reaccione.">
+      <div class="globo" id="globo"></div>
+    </div>
+  </section>
+
+  <div class="cifras revelar">
+    <div><b data-contar="12">0</b><small>Años de oficio</small></div>
+    <div><b data-contar="8400">0</b><small>Cortes al año</small></div>
+    <div><b data-contar="4.9" data-decimales="1">0</b><small>Calificación Google</small></div>
+    <div><b data-contar="2">0</b><small>Barberos expertos</small></div>
+  </div>
+
+  <section id="servicios">
+    <h2 class="revelar">Servicios y <span>precios</span></h2>
+    <div class="menu revelar">
+      <div class="item"><div><h3>Corte clásico</h3><p>Máquina y tijera, lavado y peinado</p></div><span class="puntos"></span><span class="precio">$25.000</span></div>
+      <div class="item"><div><h3>Corte + barba</h3><p>Toalla caliente y navaja</p></div><span class="puntos"></span><span class="precio">$35.000</span></div>
+      <div class="item"><div><h3>Arreglo de barba</h3><p>Perfilado y aceite</p></div><span class="puntos"></span><span class="precio">$15.000</span></div>
+      <div class="item"><div><h3>Corte niño</h3><p>Menores de 12 años</p></div><span class="puntos"></span><span class="precio">$20.000</span></div>
+      <div class="item"><div><h3>Cejas</h3><p>Perfilado con navaja</p></div><span class="puntos"></span><span class="precio">$8.000</span></div>
+      <div class="item"><div><h3>Combo novio</h3><p>Corte, barba, cejas y mascarilla</p></div><span class="puntos"></span><span class="precio">$55.000</span></div>
+    </div>
+  </section>
+
+  <section id="estilos" style="padding-top:0">
+    <h2 class="revelar">Estilos que <span>dominamos</span></h2>
+    <div class="galeria revelar">
+      <div class="corte" style="background:linear-gradient(160deg,#3b2f22,#0e0c0a)"><span class="emoji">💈</span><b>Low fade</b></div>
+      <div class="corte" style="background:linear-gradient(160deg,#5a1f1a,#0e0c0a)"><span class="emoji">🔥</span><b>Pompadour</b></div>
+      <div class="corte" style="background:linear-gradient(160deg,#27324a,#0e0c0a)"><span class="emoji">🧔</span><b>Barba completa</b></div>
+      <div class="corte" style="background:linear-gradient(160deg,#4a4020,#0e0c0a)"><span class="emoji">✂️</span><b>Crop francés</b></div>
+    </div>
+  </section>
+
+  <section id="opiniones" style="padding-top:0">
+    <h2 class="revelar">Lo que dicen <span>los clientes</span></h2>
+    <div class="opiniones revelar">
+      <div class="opinion"><div class="estrellas">★★★★★</div><p>“Reservé por WhatsApp a las 11 de la noche y Leo me dio turno al instante. Llegué y me atendieron sin esperar.”</p><cite>Andrés M. · cliente de ejemplo</cite></div>
+      <div class="opinion"><div class="estrellas">★★★★★</div><p>“El mejor fade de la ciudad. La barba con toalla caliente es otro nivel.”</p><cite>Julián R. · cliente de ejemplo</cite></div>
+      <div class="opinion"><div class="estrellas">★★★★★</div><p>“Me llegó el recordatorio una hora antes, súper práctico. Ya no se me olvida la cita.”</p><cite>Camilo S. · cliente de ejemplo</cite></div>
+    </div>
+  </section>
+
+  <section id="horario" style="padding-top:0">
+    <h2 class="revelar">Nuestro <span>horario</span></h2>
+    <div class="visita revelar">
+      <ul class="horario">
+        <li><span>Lunes a viernes</span><b>9:00 a. m. – 8:00 p. m.</b></li>
+        <li><span>Sábado</span><b>8:00 a. m. – 8:00 p. m.</b></li>
+        <li><span>Domingo</span><b>9:00 a. m. – 2:00 p. m.</b></li>
+      </ul>
+      <div>
+        <p style="margin-bottom:24px;color:var(--gris)">Con cita no esperas: Leo te muestra las horas libres y te recuerda el turno una hora antes.</p>
+        <a class="btn" href="#" data-abrir-chat>Reservar con Leo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2 class="revelar">¿Listo para tu <span>próximo corte?</span></h2>
+    <p class="revelar">Leo te agenda en segundos, a cualquier hora, y te recuerda la cita.</p>
+    <a class="btn revelar" href="#" data-abrir-chat>✂️ Reservar ahora</a>
+  </section>
+</main>
+
+<footer>
+  <span>© Barbería El Corte Fino · negocio de ejemplo</span>
+  <span>Página y asistente con IA por <a href="/">Agencia Tafurtfer</a> · ¿Quieres una así? <a href="/#web">Ver planes</a></span>
+</footer>
+
+<script type="module">
+  import { montarAnimado } from "/portafolio/comun/animados.js";
+  import { montarChat } from "/portafolio/comun/chat.js";
+  montarAnimado(document.getElementById("escena"), {
+    tipo: "barbero",
+    colores: { piel: "#e2ad85", pelo: "#1c1410", ropa: "#8e1d17", camisa: "#f3ead7", manga: "#f3ead7", pantalon: "#3a3531", zapatos: "#111111", detalle: "#c9a227", anillo: "#c9a227" },
+    globo: document.getElementById("globo"),
+    frases: {
+      SALUDANDO: ["¡Qué más, parce! 💈", "¡Bienvenido a El Corte Fino!"],
+      CORTANDO: ["¿Fade o clásico? ✂️", "Chas, chas… ¡quedó brutal!"],
+      FELIZ: ["¡Barba con toalla caliente! 🔥"],
+      PENSANDO: ["Mmm… ¿qué estilo te va?"],
+      BAILANDO: ["¡Sábado de corte! 🕺"],
+      HABLANDO: ["Dime a qué hora te agendo"],
+    },
+  });
+  montarChat({ slug: "barberia-demo", nombre: "Leo", color: "#c9a227", texto: "#111", icono: "💈",
+    saludo: "¡Hola! 💈 Soy Leo, el asistente de El Corte Fino. ¿Te agendo un corte? Dime qué servicio y a qué hora te queda bien." });
+</script>
+<script src="/portafolio/comun/efectos.js" defer></script>
+</body>
+</html>

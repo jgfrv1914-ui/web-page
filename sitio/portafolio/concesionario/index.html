@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoVision 3D · Concesionario (sitio de muestra) | Agencia Tafurtfer</title>
+  <meta name="description" content="Sitio de muestra de Agencia Tafurtfer: concesionario con catálogo, filtros, comparador y sala 3D interactiva." />
+  <meta name="robots" content="noindex, follow">
+
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="/portafolio/concesionario/css/style.css" />
+  <style>.editorial__nav-btn{display:none!important}</style>
+</head>
+
+<body>
+  <div style="position:fixed;left:50%;bottom:14px;translate:-50% 0;z-index:9999;background:rgba(10,10,12,.92);color:#fff;font:500 12px/1.3 system-ui,sans-serif;padding:8px 14px;white-space:nowrap;border-radius:999px;box-shadow:0 6px 24px rgba(0,0,0,.4);max-width:calc(100% - 32px);text-align:center">
+    Muestra de <a href="/portafolio/" style="color:#c4b5fd">Agencia Tafurtfer</a> · <a href="https://wa.me/573123624819?text=Hola%2C%20quiero%20una%20p%C3%A1gina%20como%20la%20del%20concesionario%203D" style="color:#c4b5fd">Quiero una así</a>
+  </div>
+  <!-- ═══════════════════════ NAVIGATION ═══════════════════════ -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <!-- Logo -->
+      <a href="/portafolio/concesionario/" class="navbar__logo">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">Auto<strong>Vision</strong> <span class="logo-badge">3D</span></span>
+      </a>
+
+      <!-- Desktop nav links (Luxury Ferrari Style - Image 2) -->
+      <nav class="navbar__links" id="navLinks">
+        <a href="#catalog" class="nav-link active" data-view="catalog">DEPORTIVOS</a>
+        <a href="#showroom" class="nav-link" data-view="catalog">SHOWROOM 3D</a>
+        <a href="#compare"  class="nav-link" data-view="compare">COMPARADOR</a>
+        <a href="#experiences" class="nav-link" data-view="contact">EXPERIENCIAS</a>
+        <a href="#contact"  class="nav-link" data-view="contact">CONTACTO</a>
+      </nav>
+
+      <!-- Right controls -->
+      <div class="navbar__actions">
+        <!-- Theme toggle -->
+        <button class="btn-icon" id="themeToggle" title="Modo claro" aria-label="Modo claro">
+          <span class="theme-icon">Modo claro</span>
+        </button>
+        <!-- Hamburger (mobile) -->
+        <button class="btn-icon hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile nav drawer -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#catalog" class="mobile-nav__link" data-view="catalog">DEPORTIVOS</a>
+    <a href="#catalog" class="mobile-nav__link" data-view="catalog">SHOWROOM 3D</a>
+    <a href="#compare"  class="mobile-nav__link" data-view="compare">COMPARADOR</a>
+    <a href="#contact"  class="mobile-nav__link" data-view="contact">EXPERIENCIAS</a>
+    <a href="#contact"  class="mobile-nav__link" data-view="contact">CONTACTO</a>
+  </div>
+
+  <!-- ═══════════════════════ HERO BANNER (INTERACTIVE 3D VIDEO) ═══════════════════════ -->
+  <section class="hero hero--video" id="hero">
+    <!-- Video background container -->
+    <div class="hero__video-container">
+      <video class="hero__video" id="heroVideo" autoplay loop muted playsinline poster="/portafolio/concesionario/img/ferrari-488.jpg">
+        <source src="/portafolio/concesionario/video/showroom.mp4" type="video/mp4" />
+      </video>
+      <div class="hero__overlay"></div>
+    </div>
+
+    <!-- Interactive Hero Content (Ferrari/Luxury Style) -->
+    <div class="hero__content hero__content--cinematic">
+      <div class="hero__badge" id="heroCategoryTag">Deportivos</div>
+      <h1 class="hero__headline" id="heroHeadline">ARRANCA EL MOTOR</h1>
+      <p class="hero__tagline">Experimenta la potencia, la ingeniería y el diseño en 3D interactivo</p>
+      
+      <div class="hero__cta">
+        <button class="hero__discover-btn" id="heroDiscoverBtn">
+          <span>DESCUBRE LA GAMA</span>
+          <span class="discover-arrow">›</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Video Carousel Dots (Matching Image 3) -->
+    <div class="hero__carousel-nav">
+      <button class="carousel-dot active" data-index="0" aria-label="Ferrari 488"></button>
+      <button class="carousel-dot" data-index="1" aria-label="Lamborghini Huracán"></button>
+      <button class="carousel-dot" data-index="2" aria-label="Porsche 911"></button>
+      <button class="carousel-dot" data-index="3" aria-label="Tesla Plaid"></button>
+    </div>
+
+    <!-- Bottom-Right Video Controls (Play/Pause & Sound) -->
+    <div class="hero__video-controls">
+      <button class="video-btn" id="soundToggleBtn" title="Sonido motor (Audio)">
+        <span class="icon" id="soundIcon">🔇</span>
+      </button>
+      <button class="video-btn" id="videoPlayPauseBtn" title="Pausar / Reproducir video">
+        <span class="icon" id="playPauseIcon">⏸</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ SEGUNDA SECCIÓN EDITORIAL BLANCA (MATCHING IMAGE 3) ═══════════════════════ -->
+  <section class="editorial-section" id="editorialSection">
+    <div class="editorial-container">
+      <!-- Left side: Editorial Typography & Micro-Interactions -->
+      <div class="editorial__content">
+        <button class="editorial__nav-btn prev" id="editorialPrevBtn" title="Anterior">‹</button>
+        <div class="editorial__text-wrap">
+          <span class="editorial__badge" id="editorialBadge">SALA 3D</span>
+          <h2 class="editorial__title" id="editorialTitle">CONOCE CADA DETALLE<br />ANTES DE VISITARNOS</h2>
+          <p class="editorial__desc" id="editorialDesc">
+            Gira el auto, acércate y cambia el color de la pintura en tiempo real, desde el celular o el computador.
+          </p>
+          <button class="editorial__btn" id="editorialActionBtn">
+            <span>ABRIR SALA 3D</span>
+            <span class="editorial__arrow">›</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right side: High-Fashion Architectural Supercar Showcase -->
+      <div class="editorial__media">
+        <div class="editorial__img-frame">
+          <img id="editorialImg" src="/portafolio/concesionario/img/lamborghini-huracan.jpg" alt="Deportivo naranja en la sala de exhibición" />
+          <div class="editorial__img-overlay"></div>
+        </div>
+        <button class="editorial__nav-btn next" id="editorialNextBtn" title="Siguiente">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ STATS BAR (MINIMALIST LUXURY) ═══════════════════════ -->
+  <div class="stats-bar">
+    <div class="stat"><span class="stat__num">5</span><span class="stat__label">Modelos de muestra</span></div>
+    <div class="stat"><span class="stat__num">4</span><span class="stat__label">Filtros de búsqueda</span></div>
+    <div class="stat"><span class="stat__num">3D</span><span class="stat__label">Vista interactiva</span></div>
+    <div class="stat"><span class="stat__num">1:1</span><span class="stat__label">Comparador de modelos</span></div>
+  </div>
+
+  <!-- ═══════════════════════ MAIN VIEWS ═══════════════════════ -->
+  <main class="main-content">
+
+    <!-- ────────── CATALOG VIEW ────────── -->
+    <section class="view" id="view-catalog">
+
+      <!-- Search + Filter Bar -->
+      <div class="filter-bar">
+        <div class="catalog-heading"><h2>Encuentra tu próximo auto</h2><p>Compara modelos y elige el que va contigo.</p></div>
+        <div class="filter-bar__search">
+          <span class="filter-bar__search-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></span>
+          <input
+            type="search"
+            id="searchInput"
+            class="filter-bar__input"
+            placeholder="Buscar por marca o modelo"
+            aria-label="Buscar vehículos"
+            autocomplete="off"
+          />
+          <button class="filter-bar__search-clear hidden" id="searchClear" aria-label="Borrar búsqueda" type="button">✕</button>
+        </div>
+
+        <div class="filter-bar__filters">
+          <div class="filter-select-wrap">
+            <label class="filter-label" for="filterBrand">Marca</label>
+            <select id="filterBrand" class="filter-select" aria-label="Filter by brand">
+              <option value="">Todas las marcas</option>
+            </select>
+          </div>
+
+          <div class="filter-select-wrap">
+            <label class="filter-label" for="filterCategory">Tipo de vehículo</label>
+            <select id="filterCategory" class="filter-select" aria-label="Filter by category">
+              <option value="">Todos los tipos</option>
+              <option value="Sports">Deportivo</option>
+              <option value="Supercar">Supercar</option>
+              <option value="Electric">Eléctrico</option>
+              <option value="Grand Tourer">Gran turismo</option>
+            </select>
+          </div>
+
+          <div class="filter-select-wrap">
+            <label class="filter-label" for="filterYear">Año</label>
+            <select id="filterYear" class="filter-select" aria-label="Filter by year">
+              <option value="">Cualquier año</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+            </select>
+          </div>
+
+          <div class="price-range">
+            <label class="price-label">
+              Precio hasta <span id="priceDisplay" class="price-value">$300,000</span>
+            </label>
+            <input
+              type="range"
+              id="filterPrice"
+              class="price-slider"
+              min="0"
+              max="300000"
+              step="5000"
+              value="300000"
+              aria-label="Maximum price filter"
+            />
+          </div>
+
+          <button class="btn btn--ghost btn--sm" id="clearFilters">
+            Limpiar filtros
+            <span class="filter-count-badge hidden" id="filterCountBadge">0</span>
+          </button>
+        </div>
+
+        <!-- Active filter chips -->
+        <div class="active-filters hidden" id="activeFilters"></div>
+      </div>
+
+      <!-- Results count -->
+      <div class="results-info">
+        <span id="resultsCount">Cargando vehículos…</span>
+        <div class="view-toggle">
+          <button class="view-toggle__btn active" id="gridViewBtn" title="Cuadrícula">⊞</button>
+          <button class="view-toggle__btn" id="listViewBtn" title="Lista">☰</button>
+        </div>
+      </div>
+
+      <!-- Car Grid -->
+      <div class="car-grid" id="carGrid">
+        <!-- Cards injected by JavaScript -->
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+
+      <!-- No results message -->
+      <div class="no-results hidden" id="noResults">
+        <div class="no-results__icon">🔍</div>
+        <h3>Ningún auto coincide con tus filtros</h3>
+        <p>Ajusta la búsqueda o <button class="btn-link" id="clearFilters2">limpia los filtros</button>.</p>
+      </div>
+    </section>
+
+    <!-- ────────── CAR DETAIL / 3D VIEWER VIEW ────────── -->
+    <section class="view hidden" id="view-detail">
+      <button class="btn btn--ghost back-btn" id="backToCatalog">← Volver al catálogo</button>
+
+      <div class="detail-layout">
+
+        <!-- Left: 3D Viewer -->
+        <div class="viewer-panel">
+          <div class="viewer-container" id="viewerContainer">
+            <!-- Three.js canvas injected here -->
+            <div class="viewer-loader" id="viewerLoader">
+              <div class="spinner"></div>
+              <p>Cargando modelo 3D…</p>
+              <div class="progress-bar"><div class="progress-bar__fill" id="loadProgress"></div></div>
+            </div>
+            <div class="viewer-placeholder" id="viewerPlaceholder">
+              <img id="viewerFoto" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:inherit" />
+            </div>
+          </div>
+
+          <!-- Viewer controls overlay -->
+          <div class="viewer-controls">
+            <div class="viewer-hint">
+              <span>🖱️ Arrastra para girar</span>
+              <span>📍 Rueda para acercar</span>
+            </div>
+            <button class="btn btn--sm btn--primary" id="resetCameraBtn">Centrar cámara</button>
+          </div>
+
+          <!-- Color Picker -->
+          <div class="color-picker" id="colorPicker">
+            <p class="color-picker__label">Color de la pintura:</p>
+            <div class="color-swatches" id="colorSwatches">
+              <!-- Swatches injected by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Car Info -->
+        <div class="info-panel">
+          <div class="info-panel__header">
+            <div class="info-brand" id="detailBrand">—</div>
+            <h2 class="info-model" id="detailModel">—</h2>
+            <div class="info-meta">
+              <span class="info-year" id="detailYear">—</span>
+              <span class="info-category" id="detailCategory">—</span>
+            </div>
+            <div class="info-rating" id="detailRating">—</div>
+          </div>
+
+          <div class="info-price" id="detailPrice">—</div>
+
+          <p class="info-description" id="detailDescription">—</p>
+
+          <!-- Features list -->
+          <div class="info-features">
+            <h4>Destacados</h4>
+            <ul class="features-list" id="featuresList"></ul>
+          </div>
+
+          <!-- Action buttons -->
+          <div class="info-actions">
+            <button class="btn btn--primary btn--full" id="requestQuoteBtn">Pedir cotización</button>
+            <button class="btn btn--secondary btn--full" id="testDriveBtn">Agendar prueba de manejo</button>
+            <button class="btn btn--ghost btn--full" id="addToCompareBtn">+ Agregar al comparador</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ────────── COMPARE VIEW ────────── -->
+    <section class="view hidden" id="view-compare">
+      <h2 class="section-title">Comparador lado a lado</h2>
+      <p class="section-subtitle">Elige dos autos del catálogo para compararlos.</p>
+
+      <div class="compare-selectors">
+        <div class="compare-slot" id="compareSlot1">
+          <div class="compare-slot__placeholder">
+            <span>➕</span>
+            <p>Select Car 1</p>
+            <button class="btn btn--primary btn--sm" onclick="window.switchView('catalog')">Browse Catalog</button>
+          </div>
+        </div>
+        <div class="compare-vs">VS</div>
+        <div class="compare-slot" id="compareSlot2">
+          <div class="compare-slot__placeholder">
+            <span>➕</span>
+            <p>Select Car 2</p>
+            <button class="btn btn--primary btn--sm" onclick="window.switchView('catalog')">Browse Catalog</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="compare-table" id="compareTable">
+        <!-- Injected by JS when two cars are selected -->
+      </div>
+    </section>
+
+    <!-- ────────── CONTACT VIEW ────────── -->
+    <section class="view hidden" id="view-contact">
+      <div class="contact-layout">
+
+        <div class="contact-info">
+          <h2 class="section-title">Hablemos</h2>
+          <p class="section-subtitle">Así se vería el contacto de tu concesionario: cotizaciones y pruebas de manejo en un solo formulario.</p>
+
+          <div class="contact-cards">
+            <div class="contact-card">
+              <span class="contact-card__icon">📍</span>
+              <div>
+                <strong>Sala de exhibición</strong>
+                <p>Dirección de tu negocio</p>
+              </div>
+            </div>
+            <div class="contact-card">
+              <span class="contact-card__icon">📞</span>
+              <div>
+                <strong>WhatsApp</strong>
+                <p>El número de tu negocio</p>
+              </div>
+            </div>
+            <div class="contact-card">
+              <span class="contact-card__icon">🕐</span>
+              <div>
+                <strong>Horario</strong>
+                <p>Lun–vie 8:00 a. m.–6:00 p. m. · Sáb 9:00 a. m.–1:00 p. m.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-wrapper">
+          <form class="contact-form" id="contactForm" novalidate>
+            <h3 class="form-title">Pide tu cotización</h3>
+
+            <div class="form-tabs">
+              <button type="button" class="form-tab active" data-type="quote">💰 Cotización</button>
+              <button type="button" class="form-tab" data-type="test_drive">🏎️ Prueba de manejo</button>
+              <button type="button" class="form-tab" data-type="general">✉️ General</button>
+            </div>
+            <input type="hidden" id="formType" value="quote" />
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="formName">Nombre completo *</label>
+                <input type="text" id="formName" name="name" placeholder="Tu nombre" required />
+                <span class="form-error" id="nameError"></span>
+              </div>
+              <div class="form-group">
+                <label for="formEmail">Correo *</label>
+                <input type="email" id="formEmail" name="email" placeholder="tu@correo.com" required />
+                <span class="form-error" id="emailError"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="formPhone">Celular</label>
+              <input type="tel" id="formPhone" name="phone" placeholder="300 000 0000" />
+            </div>
+
+            <div class="form-group" id="carSelectGroup">
+              <label for="formCar">Auto de interés</label>
+              <select id="formCar" name="carId">
+                <option value="">— Elige un auto —</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="formMessage">Mensaje *</label>
+              <textarea id="formMessage" name="message" rows="4" placeholder="Cuéntanos qué buscas, tu presupuesto o tus preguntas…" required></textarea>
+              <span class="form-error" id="messageError"></span>
+            </div>
+
+            <!-- Test Drive Date (shown conditionally) -->
+            <div class="form-group hidden" id="dateGroup">
+              <label for="formDate">Fecha preferida para la prueba</label>
+              <input type="date" id="formDate" name="date" />
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--full btn--lg" id="submitBtn">
+              <span class="btn-text">Enviar solicitud</span>
+              <span class="btn-spinner hidden">⏳</span>
+            </button>
+
+            <div class="form-success hidden" id="formSuccess">
+              <span>ℹ️</span> Este es un sitio de muestra: no enviamos ni guardamos tus datos. <a href="https://wa.me/573123624819?text=Hola%2C%20quiero%20una%20p%C3%A1gina%20como%20la%20del%20concesionario%203D" style="color:inherit;text-decoration:underline">¿Quieres una así para tu negocio?</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="logo-icon">⬡</span>
+        <span>Auto<strong>Vision</strong> 3D</span>
+      </div>
+      <p class="footer__copy">Sitio de muestra creado por <a href="/portafolio/" style="color:inherit">Agencia Tafurtfer</a>. AutoVision 3D es una marca ficticia; no es un concesionario real ni tiene relación con las marcas de autos mostradas. Imágenes creadas con IA. Modelo 3D «Ferrari 458 Italia» de vicent091036 (CC BY 4.0), vía three.js.</p>
+      <div class="footer__links">
+        <a href="#catalog" data-view="catalog">Catálogo</a>
+        <a href="#compare" data-view="compare">Comparador</a>
+        <a href="#contact" data-view="contact">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════ TOAST NOTIFICATION ═══════════════════════ -->
+  <div class="toast" id="toast" aria-live="polite"></div>
+
+  <!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
+  <!-- Three.js via CDN (ES module import map) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "/portafolio/concesionario/js/three/three.module.min.js",
+      "three/addons/": "/portafolio/concesionario/js/three/"
+    }
+  }
+  </script>
+
+  <!-- App scripts (modules) -->
+  <script type="module" src="/portafolio/concesionario/js/app.js"></script>
+  <!-- Asistente con IA de muestra ("Cars"): 14 mensajes de prueba -->
+  <script src="/widget.js" data-negocio="concesionario-demo" data-asistente="Cars" data-color="#111111" data-saludo="¡Hola! 🏎️ Soy Cars, el asistente virtual de AutoVision 3D (concesionario de muestra). Pregúntame por los autos, precios, colores o financiación." defer></script>
+</body>
+</html>

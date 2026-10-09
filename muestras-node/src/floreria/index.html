@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flor Lila · Floristería para bodas, eventos y regalos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Arreglos florales para bodas, eventos y regalos. Diseño a medida y entrega el mismo día en la ciudad.">
+  <style>
+    :root {
+      --bg: #fdf7f9; --paper: #ffffff; --ink: #3a2a35; --muted: #7a6674;
+      --pink: #c9587a; --pink-deep: #a53f60; --lilac: #f1e6ef; --line: #ecdfe7;
+      --ease: cubic-bezier(0.34, 1.2, 0.64, 1);
+      --display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      --body: Manrope, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font: 16px/1.6 var(--body); background: var(--bg); color: var(--ink); }
+    a { color: inherit; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    .top { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
+    .top .wrap { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+    .brand { font-weight: 800; font-size: 1.2rem; color: var(--pink); text-decoration: none; letter-spacing: -0.01em; }
+    .top nav { display: flex; gap: 6px; align-items: center; }
+    .top nav a { text-decoration: none; padding: 9px 14px; border-radius: 999px; font-size: 0.95rem; transition: background 300ms ease, color 300ms ease; }
+    .top nav a:not(.btn):hover, .top nav a:not(.btn):focus-visible { background: var(--lilac); }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px; border-radius: 14px; background: var(--pink); color: #fff; font-weight: 700; text-decoration: none; border: 0; transition: transform 350ms var(--ease), box-shadow 350ms ease, background 300ms ease; }
+    .btn:hover, .btn:focus-visible { background: var(--pink-deep); transform: translateY(-3px); box-shadow: 0 12px 24px rgba(201,88,122,0.28); }
+    .btn.soft { background: #fff; color: var(--pink-deep); border: 1px solid var(--line); }
+    .btn.soft:hover { background: var(--lilac); box-shadow: none; }
+
+    /* Photo slot: se reemplaza por la foto generada */
+    .ph { position: relative; margin: 0; border-radius: 22px; overflow: hidden; background: linear-gradient(150deg, #f6dfe8, #e7cfe0); display: flex; align-items: flex-end; padding: 18px; color: #7b4f67; font-size: 0.85rem; }
+    .ph span { position: relative; z-index: 1; }
+    .ph::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 70% 20%, rgba(255,255,255,0.5), transparent 50%); }
+
+    /* Hero */
+    .hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; padding: 72px 24px 88px; }
+    .tag { display: inline-block; background: #fff; border: 1px solid var(--line); padding: 6px 14px; border-radius: 999px; font-size: 0.85rem; color: var(--muted); }
+    .hero h1 { font-family: var(--display); font-size: clamp(2.9rem, 5.4vw, 4.6rem); line-height: 1; max-width: 13ch; font-weight: 500; letter-spacing: -0.015em; margin: 22px 0 22px; text-wrap: balance; }
+        .hero p { color: var(--muted); max-width: 44ch; font-size: 1.05rem; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+    .hero .ph { aspect-ratio: 4 / 5; }
+
+    .reveal { opacity: 0; transform: translateY(16px); animation: in 800ms var(--ease) forwards; }
+    .reveal.d2 { animation-delay: 150ms; }
+    .reveal.d3 { animation-delay: 280ms; }
+    @keyframes in { to { opacity: 1; transform: none; } }
+
+    /* Sections */
+    section { padding: 88px 0; }
+    .lilac { background: var(--lilac); }
+    .head { text-align: center; max-width: 620px; margin: 0 auto 44px; }
+    .head h2 { font-family: var(--display); font-size: clamp(2.6rem, 4.6vw, 3.4rem); font-weight: 600; letter-spacing: -0.01em; line-height: 1.05; text-wrap: balance; }
+    .head p { color: var(--muted); margin-top: 10px; }
+
+    /* Arreglos */
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .card { background: var(--paper); border: 1px solid var(--line); border-radius: 22px; padding: 14px 14px 24px; transition: transform 450ms var(--ease), box-shadow 450ms ease; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(90, 40, 70, 0.1); }
+    .card .ph { aspect-ratio: 4 / 3; border-radius: 16px; }
+    .card h3 { font-family: var(--display); font-size: 1.6rem; font-weight: 600; line-height: 1.1; margin: 18px 10px 4px; }
+    .card p { color: var(--muted); font-size: 0.95rem; margin: 0 10px; }
+    .card .row { display: flex; justify-content: space-between; align-items: center; margin: 16px 10px 0; }
+    .price { font-weight: 800; color: var(--pink); font-size: 1.1rem; }
+    .pill { font-size: 0.8rem; background: var(--lilac); color: var(--pink-deep); padding: 5px 10px; border-radius: 999px; }
+
+    /* Ocasiones */
+    .occasions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .occ { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 24px; }
+    .occ h3 { font-size: 1.05rem; margin-bottom: 6px; }
+    .occ p { color: var(--muted); font-size: 0.92rem; }
+
+    /* Pedidos */
+    .order { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .order h2 { font-family: var(--display); font-size: clamp(2.6rem, 4.6vw, 3.4rem); font-weight: 600; letter-spacing: -0.01em; line-height: 1.05; text-wrap: balance; }
+    .order ol { list-style: none; counter-reset: p; margin-top: 22px; }
+    .order li { counter-increment: p; display: flex; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); color: var(--muted); }
+    .order li::before { content: counter(p); flex: 0 0 28px; height: 28px; border-radius: 999px; background: var(--pink); color: #fff; font-weight: 700; font-size: 0.85rem; display: grid; place-items: center; }
+    .info { background: var(--paper); border: 1px solid var(--line); border-radius: 24px; padding: 34px; }
+    .info h3 { font-family: var(--display); font-size: 1.9rem; font-weight: 600; line-height: 1.1; margin-bottom: 14px; }
+    .info dl { display: grid; grid-template-columns: auto 1fr; gap: 12px 18px; color: var(--muted); }
+    .info dt { font-weight: 700; color: var(--ink); }
+    .info .actions { margin-top: 26px; }
+
+    footer { padding: 34px 24px; text-align: center; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--line); }
+
+    @media (max-width: 900px) {
+      .hero, .order { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .occasions { grid-template-columns: repeat(2, 1fr); }
+      .top nav a:not(.btn) { display: none; }
+    }
+    @media (max-width: 560px) {
+      .grid, .occasions { grid-template-columns: 1fr; }
+      .hero { padding: 48px 24px 60px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; }
+    }
+    /* Fotos generadas */
+    .ph.photo { padding: 0; }
+    .ph.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    /* Transiciones entre páginas */
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 450ms; }
+    @media (prefers-reduced-motion: reduce) { ::view-transition-old(root), ::view-transition-new(root) { animation: none; } }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#inicio">Flor Lila</a>
+      <nav>
+        <a href="#arreglos">Arreglos</a>
+        <a href="#ocasiones">Ocasiones</a>
+        <a href="#pedidos">Pedidos</a>
+        <a class="btn" href="#pedidos">Pedir ahora</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero" id="inicio">
+      <div>
+        <span class="tag reveal">Entrega el mismo día en la ciudad</span>
+        <h1 class="reveal d2">Flores para cada momento, hechas a tu medida.</h1>
+        <p class="reveal d2">Ramos, cajas de temporada y centros de mesa para bodas, cumpleaños y regalos que sí se recuerdan.</p>
+        <div class="actions reveal d3">
+          <a class="btn" href="#pedidos">Hacer un pedido</a>
+          <a class="btn soft" href="#arreglos">Ver arreglos</a>
+        </div>
+      </div>
+      <figure class="ph reveal d2 photo" role="img" aria-label="ramo de peonías y rosas en papel crema"><img src="fotos/hero.jpg" alt="ramo de peonías y rosas en papel crema" loading="lazy"></figure>
+    </div>
+
+    <section class="lilac" id="arreglos">
+      <div class="wrap">
+        <div class="head">
+          <h2>Arreglos de temporada</h2>
+          <p>Lo más pedido de la semana. Si buscas algo distinto, lo diseñamos contigo.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <figure class="ph photo" role="img" aria-label="ramo clásico de rosas en papel crema"><img src="fotos/ramo.jpg" alt="ramo clásico de rosas en papel crema" loading="lazy"></figure>
+            <h3>Ramo clásico</h3>
+            <p>Rosas y peonías envueltas en papel crema.</p>
+            <div class="row"><span class="price">$35</span><span class="pill">Hoy</span></div>
+          </article>
+          <article class="card">
+            <figure class="ph photo" role="img" aria-label="caja de madera con flores de temporada"><img src="fotos/caja.jpg" alt="caja de madera con flores de temporada" loading="lazy"></figure>
+            <h3>Caja de temporada</h3>
+            <p>Flores de la semana en caja de madera.</p>
+            <div class="row"><span class="price">$48</span><span class="pill">Más pedido</span></div>
+          </article>
+          <article class="card">
+            <figure class="ph photo" role="img" aria-label="centro de mesa con velas y flores blancas"><img src="fotos/centro.jpg" alt="centro de mesa con velas y flores blancas" loading="lazy"></figure>
+            <h3>Centro de mesa</h3>
+            <p>Para eventos, con base de cerámica.</p>
+            <div class="row"><span class="price">$90</span><span class="pill">Bajo pedido</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ocasiones">
+      <div class="wrap">
+        <div class="head">
+          <h2>Para cada ocasión</h2>
+          <p>Te ayudamos a elegir colores, tamaño y estilo según el evento.</p>
+        </div>
+        <div class="occasions">
+          <div class="occ"><h3>Bodas</h3><p>Ramos de novia, arcos y decoración completa.</p></div>
+          <div class="occ"><h3>Eventos</h3><p>Centros de mesa y arreglos para oficinas.</p></div>
+          <div class="occ"><h3>Cumpleaños</h3><p>Cajas y ramos con tarjeta personalizada.</p></div>
+          <div class="occ"><h3>Condolencias</h3><p>Coronas y arreglos sobrios, con entrega cuidada.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lilac" id="pedidos">
+      <div class="wrap order">
+        <div>
+          <h2>Pide en tres pasos.</h2>
+          <ol>
+            <li>Elige el arreglo o cuéntanos la ocasión.</li>
+            <li>Confirma fecha, dirección y mensaje para la tarjeta.</li>
+            <li>Recibe la foto del arreglo antes de la entrega.</li>
+          </ol>
+        </div>
+        <div class="info">
+          <h3>Pedidos y entregas</h3>
+          <dl>
+            <dt>WhatsApp</dt><dd>Pedidos y consultas</dd>
+            <dt>Horario</dt><dd>Lunes a sábado, 8:00 a 20:00</dd>
+            <dt>Entrega</dt><dd>Mismo día en la ciudad, pedidos antes de las 14:00</dd>
+          </dl>
+          <div class="actions">
+            <a class="btn" href="#pedidos">Escribir por WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© Flor Lila · Sitio de muestra</footer>
+</body>
+</html>

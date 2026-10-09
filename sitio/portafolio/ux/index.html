@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fernando Tafurt · Diseño UX/UI</title>
+  <meta name="description" content="Creación de páginas web y páginas web con bot de atención, a medida.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f4efe6;
+      --ink: #1c1a17;
+      --ink-soft: #4a463f;
+      --rule: #d8d0c0;
+      --signal: #1f4d3a;
+      --signal-ink: #f4efe6;
+      --serif: "Fraunces", Georgia, "Times New Roman", serif;
+      --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --ease: cubic-bezier(0.32, 0.72, 0, 1);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --paper: #141311;
+        --ink: #efe9dd;
+        --ink-soft: #b9b2a4;
+        --rule: #35322d;
+        --signal: #9cc7b0;
+        --signal-ink: #141311;
+      }
+    }
+    :root[data-theme="dark"] {
+      --paper: #141311;
+      --ink: #efe9dd;
+      --ink-soft: #b9b2a4;
+      --rule: #35322d;
+      --signal: #9cc7b0;
+      --signal-ink: #141311;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    a:hover { color: var(--signal); }
+    :focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 4px; }
+    .skip {
+      position: absolute; left: 16px; top: -48px; background: var(--ink); color: var(--paper);
+      padding: 10px 14px; border-radius: 6px; z-index: 100;
+    }
+    .skip:focus { top: 12px; }
+
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+    section { padding: 112px 0; border-top: 1px solid var(--rule); }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.015em; line-height: 1.1; }
+    h1 { font-size: clamp(2.6rem, 6.4vw, 5.2rem); font-variation-settings: "opsz" 144; }
+    h2 { font-size: clamp(2rem, 4vw, 3.1rem); font-variation-settings: "opsz" 96; margin-bottom: 20px; }
+    h3 { font-size: 1.35rem; margin-bottom: 8px; font-variation-settings: "opsz" 24; }
+    p { color: var(--ink-soft); max-width: 60ch; }
+    em { font-style: italic; }
+
+    /* Header */
+    header.top { position: relative; padding: 24px 0; }
+    .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .brand { font-family: var(--serif); font-size: 1.2rem; text-decoration: none; }
+    nav ul { list-style: none; display: flex; gap: 6px; flex-wrap: wrap; }
+    nav a {
+      display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px;
+      color: var(--ink-soft); text-decoration: none; border-radius: 999px;
+    }
+    nav a:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 6%, transparent); }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 48px;
+      padding: 0 24px; border-radius: 999px; font: 600 1rem var(--sans); text-decoration: none;
+      background: var(--ink); color: var(--paper); border: 1px solid var(--ink);
+      transition: transform 600ms var(--ease), background-color 300ms var(--ease), color 300ms var(--ease);
+    }
+    .btn:hover { background: var(--signal); border-color: var(--signal); color: var(--signal-ink); }
+    .btn:active { transform: scale(0.98); }
+    .btn.line { background: transparent; color: var(--ink); }
+    .btn.line:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+
+    /* Hero */
+    .hero { border-top: none; padding: 72px 0 96px; }
+    .hero .lede { font-size: clamp(1.15rem, 2vw, 1.35rem); margin-top: 32px; color: var(--ink-soft); }
+    .hero-grid { display: grid; gap: 48px; grid-template-columns: 1.4fr 1fr; align-items: end; }
+    .index { list-style: none; border-top: 1px solid var(--rule); }
+    .index li { border-bottom: 1px solid var(--rule); }
+    .index a {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+      min-height: 52px; padding: 14px 0; text-decoration: none; color: var(--ink);
+    }
+    .index a:hover span:first-child { color: var(--signal); }
+    .index small { color: var(--ink-soft); font-size: 0.9rem; }
+
+    /* Services */
+    .split { display: grid; gap: 48px; grid-template-columns: 1fr 1.3fr; }
+    .services { display: grid; gap: 0; margin-top: 8px; }
+    .service { padding: 28px 0; border-top: 1px solid var(--rule); }
+    .service:last-child { border-bottom: 1px solid var(--rule); }
+
+    /* Cases */
+    .case-list { display: grid; gap: 64px; margin-top: 56px; }
+    .case { display: grid; gap: 28px; grid-template-columns: 1.1fr 1fr; align-items: center; }
+    .case.flip { grid-template-columns: 1fr 1.1fr; }
+    .case.flip .case-visual { order: 2; }
+    .case-visual {
+      aspect-ratio: 4 / 3; border-radius: 6px; background: color-mix(in srgb, var(--ink) 5%, var(--paper));
+      border: 1px solid var(--rule); display: grid; place-items: center; color: var(--ink-soft); font-size: 0.9rem;
+    }
+    .meta { font-size: 0.92rem; color: var(--ink-soft); margin-bottom: 12px; }
+    .result { font-family: var(--serif); font-size: 1.6rem; color: var(--signal); margin-top: 16px; line-height: 1.25; }
+    .case a.more { display: inline-block; margin-top: 18px; min-height: 44px; line-height: 44px; font-weight: 600; }
+
+    /* Process */
+    .steps { list-style: none; counter-reset: s; display: grid; gap: 0; }
+    .steps li {
+      counter-increment: s; display: grid; grid-template-columns: 72px 1fr; gap: 16px;
+      padding: 28px 0; border-top: 1px solid var(--rule);
+    }
+    .steps li:last-child { border-bottom: 1px solid var(--rule); }
+    .steps li::before {
+      content: counter(s, decimal-leading-zero); font-family: var(--serif); font-size: 1.6rem; color: var(--signal);
+    }
+
+    /* Pricing */
+    .prices { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 48px; }
+    .price {
+      padding: 32px; border-radius: 6px; border: 1px solid var(--rule);
+      display: flex; flex-direction: column;
+    }
+    .price.featured { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .price.featured p, .price.featured li { color: color-mix(in srgb, var(--paper) 82%, transparent); }
+    .amount { font-family: var(--serif); font-size: 2.6rem; margin: 12px 0 16px; line-height: 1; }
+    .amount small { font-family: var(--sans); font-size: 0.95rem; opacity: 0.75; }
+    .price ul { list-style: none; margin: 20px 0 28px; flex: 1; }
+    .price li { padding: 8px 0; border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent); color: var(--ink-soft); }
+    .price .btn { margin-top: auto; }
+    .price.featured .btn { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+    .price.featured .btn:hover { background: var(--signal); color: var(--signal-ink); border-color: var(--signal); }
+
+    /* Quotes */
+    .quotes { display: grid; gap: 48px; grid-template-columns: 1fr 1fr; margin-top: 48px; }
+    blockquote { font-family: var(--serif); font-size: clamp(1.25rem, 2.2vw, 1.6rem); line-height: 1.35; color: var(--ink); }
+    cite { display: block; margin-top: 16px; font-style: normal; font-family: var(--sans); color: var(--ink-soft); font-size: 0.95rem; }
+
+    /* Contact */
+    .contact { border-top: 1px solid var(--rule); }
+    .contact-box { background: var(--signal); color: var(--signal-ink); border-radius: 8px; padding: clamp(40px, 6vw, 80px); }
+    .contact-box h2 { color: var(--signal-ink); max-width: 16ch; }
+    .contact-box p { color: color-mix(in srgb, var(--signal-ink) 85%, transparent); }
+    .contact-box .btn { background: var(--signal-ink); color: var(--signal); border-color: var(--signal-ink); }
+    .contact-box .btn:hover { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+    .contact-box .btn.line { background: transparent; color: var(--signal-ink); border-color: currentColor; }
+    .contact-box .btn.line:hover { background: var(--signal-ink); color: var(--signal); }
+
+    footer { padding: 40px 0 56px; color: var(--ink-soft); font-size: 0.95rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+    footer a { color: var(--ink-soft); }
+
+    /* One orchestrated entrance, only where motion is allowed */
+    @media (prefers-reduced-motion: no-preference) {
+      .rise { animation: rise 900ms var(--ease) both; }
+      .rise.d1 { animation-delay: 120ms; }
+      .rise.d2 { animation-delay: 240ms; }
+      @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+      .reveal { opacity: 0; transform: translateY(24px); transition: opacity 800ms var(--ease), transform 800ms var(--ease); }
+      .reveal.in { opacity: 1; transform: none; }
+    }
+    .sites { display: grid; gap: 28px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); margin-top: 48px; }
+    .site { border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; background: color-mix(in srgb, var(--ink) 3%, var(--paper)); }
+    .thumb { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 1px solid var(--rule); background: var(--paper); }
+    .thumb img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .site-body { padding: 20px 22px 24px; }
+    .site-body .meta { font-size: 0.88rem; margin-bottom: 4px; }
+    .site-body h3 { font-size: 1.25rem; margin: 0; }
+    .site-body h3 a { color: var(--ink); text-decoration: none; }
+    .site-body h3 a::after { content: ""; position: absolute; inset: 0; }
+    .site { position: relative; }
+    .site:hover h3 a { color: var(--signal); }
+    nav a[aria-current="true"] { color: var(--ink); background: color-mix(in srgb, var(--ink) 8%, transparent); }
+
+    /* Mobile */
+    /* Hero con video de fondo (Gemini). Texto claro sobre video oscuro. */
+    .hero.has-video { position: relative; overflow: hidden; background: #111; color-scheme: dark;
+      --ink: #f4efe6; --ink-soft: #cfc8bb; --rule: #3a3733; color: var(--ink); }
+    .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+    .hero-shade { position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(90deg, rgba(10,10,10,0.6), rgba(10,10,10,0.1)); }
+    .hero.has-video .wrap { position: relative; z-index: 2; }
+
+    /* Interacción: progreso, filtros, visor, tema */
+    .progress { position: fixed; left: 0; top: 0; height: 3px; width: 100%; background: var(--signal);
+      transform: scaleX(0); transform-origin: 0 50%; z-index: 60; }
+    @supports (animation-timeline: scroll()) {
+      @keyframes grow { to { transform: scaleX(1); } }
+      .progress { animation: grow linear both; animation-timeline: scroll(root); }
+    }
+    .theme { min-height: 44px; min-width: 44px; margin-left: 8px; border-radius: 999px; border: 1px solid var(--rule);
+      background: transparent; color: var(--ink); font-size: 1.1rem; cursor: pointer; transition: border-color 300ms var(--ease); }
+    .theme:hover { border-color: var(--ink); }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+    .chip { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--rule); background: transparent;
+      color: var(--ink); font: 500 0.95rem var(--sans); cursor: pointer;
+      transition: background 300ms var(--ease), color 300ms var(--ease), border-color 300ms var(--ease); }
+    .chip:hover { border-color: var(--ink); }
+    .chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .site[hidden] { display: none; }
+    .thumb { display: block; width: 100%; padding: 0; border: 0; cursor: zoom-in; z-index: 2; }
+    .thumb img { transition: transform 900ms var(--ease); }
+    .thumb:hover img, .thumb:focus-visible img { transform: scale(1.03); }
+    .zoom { border: 0; padding: 0; background: transparent; width: min(1200px, 94vw); max-width: 94vw; }
+    .zoom::backdrop { background: rgba(10, 10, 10, 0.84); }
+    .zoom img { display: block; width: 100%; height: auto; border-radius: 8px; }
+    .zoom-close { position: absolute; top: 8px; right: 8px; min-height: 44px; min-width: 44px; border: 0; border-radius: 999px;
+      background: rgba(20, 19, 17, 0.7); color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer; }
+    .zoom-bar { margin-top: 14px; text-align: right; }
+    .zoom-bar a { color: #fff; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center; }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    @media (prefers-reduced-motion: no-preference) {
+      .site { transition: transform 500ms var(--ease), box-shadow 500ms var(--ease); }
+      .site:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.35); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .progress { display: none; }
+    }
+
+    /* Secciones con carácter: acordeón de servicios, cabecera editorial, testimonios grandes, contacto */
+    .servicios, .testimonios { display: grid; gap: 64px; grid-template-columns: 0.9fr 1.4fr; align-items: start; }
+    .servicios-titulo, .testimonios-titulo { position: sticky; top: 110px; }
+    .servicios-titulo p, .testimonios-titulo p { margin-top: 16px; }
+    .acordeon details { border-top: 1px solid var(--rule); }
+    .acordeon details:last-child { border-bottom: 1px solid var(--rule); }
+    .acordeon summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 24px;
+      min-height: 72px; cursor: pointer; font-family: var(--serif); font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+      letter-spacing: -0.01em; transition: color 300ms var(--ease); }
+    .acordeon summary::-webkit-details-marker { display: none; }
+    .acordeon summary:hover { color: var(--signal); }
+    .signo { position: relative; flex: 0 0 18px; height: 18px; }
+    .signo::before, .signo::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px;
+      background: currentColor; transition: transform 500ms var(--ease); }
+    .signo::after { transform: rotate(90deg); }
+    .acordeon details[open] .signo::after { transform: rotate(0deg); }
+    .acordeon details p { padding: 0 48px 28px 0; max-width: 52ch; }
+    .acordeon details[open] p { animation: abrir 500ms var(--ease) both; }
+    @keyframes abrir { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+    .sitios-cabecera { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; }
+    .contador { font-size: 0.95rem; color: var(--ink-soft); justify-self: end; }
+    .contador strong { font-family: var(--serif); font-size: 2.2rem; font-weight: 400; color: var(--ink); margin: 0 4px; }
+
+    .testimonios .quote-grande { border-top: 1px solid var(--rule); padding: 36px 0 44px; }
+    .testimonios .quote-grande:first-child { border-top: 0; padding-top: 0; }
+    .testimonios blockquote { font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.22; letter-spacing: -0.01em; color: var(--ink); max-width: 30ch; }
+    .testimonios cite::before { content: ""; display: inline-block; width: 36px; height: 1px; background: var(--signal);
+      vertical-align: middle; margin-right: 14px; }
+
+    .contacto-grande .contact-box { position: relative; overflow: hidden; }
+    .contacto-grande .correo { display: inline-block; margin-top: 40px; font-family: var(--serif);
+      font-size: clamp(1.7rem, 4.6vw, 3.4rem); color: var(--signal-ink); text-decoration: none; letter-spacing: -0.01em;
+      background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat; transition: background-size 600ms var(--ease); }
+    .contacto-grande .correo:hover, .contacto-grande .correo:focus-visible { background-size: 100% 2px; color: var(--signal-ink); }
+    .contacto-grande .acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+
+    /* Transiciones entre páginas (View Transitions) y entrada suave */
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 450ms; animation-timing-function: var(--ease); }
+    @media (prefers-reduced-motion: no-preference) {
+      body { animation: entrar 600ms var(--ease) both; }
+      @keyframes entrar { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+      body.salir { opacity: 0; transition: opacity 320ms ease; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+    }
+
+    @media (max-width: 860px) {
+      .servicios, .testimonios, .sitios-cabecera { grid-template-columns: 1fr; gap: 40px; }
+      .servicios-titulo, .testimonios-titulo { position: static; }
+      .contador { justify-self: start; }
+      .acordeon details p { padding-right: 0; }
+      section { padding: 80px 0; }
+      .hero-grid, .split, .case, .case.flip, .quotes { grid-template-columns: 1fr; }
+      .case.flip .case-visual { order: 0; }
+      .case-list { gap: 48px; }
+    }
+    @media (max-width: 640px) {
+      .wrap { padding: 0 16px; }
+      nav ul { gap: 0; }
+      nav a { padding: 0 10px; font-size: 0.95rem; }
+      .hero { padding: 48px 0 72px; }
+      .steps li { grid-template-columns: 52px 1fr; }
+      .btn { width: 100%; }
+      .actions .btn { width: auto; flex: 1 1 auto; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"></div>
+
+<a href="#contenido" class="skip">Saltar al contenido</a>
+
+<header class="top">
+  <div class="wrap">
+    <a href="#inicio" class="brand">Fernando Tafurt</a>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#sitios">Sitios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <button class="theme" type="button" id="tema" aria-label="Cambiar tema claro u oscuro">◐</button>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="hero has-video" id="inicio" style="border-top:none">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="video/bg.mp4" type="video/mp4">
+    </video>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <h1 class="rise">Diseño que hace que la gente compre, se registre y vuelva.</h1>
+        <p class="lede rise d1">Creo páginas web que se ven bien y venden. Y les agrego un bot que atiende, responde y agenda a tus clientes.</p>
+        <div class="actions rise d2">
+          <a href="#contacto" class="btn">Agendar llamada</a>
+          <a href="#sitios" class="btn line">Ver sitios</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="wrap servicios">
+      <div class="servicios-titulo">
+        <h2>Lo que hago</h2>
+        <p>Páginas web a medida, con o sin bot de atención.</p>
+      </div>
+      <div class="acordeon">
+        <details open>
+          <summary><span>Creación de páginas web</span><span class="signo" aria-hidden="true"></span></summary>
+          <p>Diseño y desarrollo de páginas web a medida: portada, servicios, galería y contacto, pensadas para celular y buscadores.</p>
+        </details>
+        <details>
+          <summary><span>Páginas web con bot</span><span class="signo" aria-hidden="true"></span></summary>
+          <p>Tu web con un asistente que responde preguntas, muestra precios y horarios, y agenda citas o pedidos a cualquier hora.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="sitios">
+    <div class="wrap">
+      <div class="sitios-cabecera">
+        <h2>Sitios que he diseñado</h2>
+        <div>
+          <p>Cada tarjeta es una vista previa. Pulsa la imagen para ampliarla o abre el sitio completo.</p>
+          <p class="contador" aria-live="polite">Mostrando <strong id="cuenta">11</strong> de 11 sitios</p>
+        </div>
+      </div>
+      <div class="filters" role="group" aria-label="Filtrar por sector">
+        <button class="chip" type="button" data-filter="todos" aria-pressed="true">Todos</button>
+        <button class="chip" type="button" data-filter="salud" aria-pressed="false">Salud</button>
+        <button class="chip" type="button" data-filter="comida" aria-pressed="false">Comida</button>
+        <button class="chip" type="button" data-filter="servicios" aria-pressed="false">Servicios</button>
+        <button class="chip" type="button" data-filter="comercio" aria-pressed="false">Comercio</button>
+        <button class="chip" type="button" data-filter="tech" aria-pressed="false">Tecnología y estudio</button>
+      </div>
+      <div class="sites">
+        <article class="site" data-sector="servicios">
+          <a class="thumb" href="../barberia/" aria-label="Ver sitio: Vista previa: Barbería El Corte Fino"><img src="thumbs/barberia.png" alt="Vista previa: Barbería El Corte Fino" loading="lazy"></a>
+          <div class="site-body">
+            <p class="meta">Barbería</p>
+            <h3><a href="../barberia/">El Corte Fino</a></h3>
+          </div>
+        </article>
+        <article class="site" data-sector="comida">
+          <a class="thumb" href="../combo/" aria-label="Ver sitio: Vista previa: Forno Rosso"><img src="thumbs/combo.png" alt="Vista previa: Forno Rosso" loading="lazy"></a>
+          <div class="site-body">
+            <p class="meta">Pizzería</p>
+            <h3><a href="../combo/">Forno Rosso</a></h3>
+          </div>
+        </article>
+        <article class="site" data-sector="comercio">
+          <a class="thumb" href="../concesionario/" aria-label="Ver sitio: Vista previa: AutoVision 3D"><img src="thumbs/concesionario.png" alt="Vista previa: AutoVision 3D" loading="lazy"></a>
+          <div class="site-body">
+            <p class="meta">Concesionario</p>
+            <h3><a href="../concesionario/">AutoVision 3D</a></h3>
+          </div>
+        </article>
+        <article class="site" data-sector="servicios">
+          <a class="thumb" href="../express/" aria-label="Ver sitio: Vista previa: Studio Valentina"><img src="thumbs/express.png" alt="Vista previa: Studio Valentina" loading="lazy"></a>
+          <div class="site-body">
+            <p class="meta">Uñas y cejas</p>
+            <h3><a href="../express/">Studio Valentina</a></h3>
+          </div>
+        </article>
+        <article class="site" data-sector="salud">
+          <a class="thumb" href="../medico/" aria-label="Ver sitio: Vista previa: Centro Médico Vida"><img src="thumbs/medico.png" alt="Vista previa: Centro Médico Vida" loading="lazy"></a>
+          <div class="site-body">
+            <p class="meta">Salud</p>
+            <h3><a href="../medico/">Centro Médico Vida</a></h3>
+          </div>
+        </article>
+        <article class="site" data-sector="salud">
+          <a class="thumb" href="../odontologia/" aria-label="Ver sitio: Vista previa: Clínica Dental Sonrisa"><img src="thumbs/odontologia.png" alt="Vista previa: Clínica Dental Sonrisa" loading="lazy"></a>
+          <div class="site-body">
+            <p class="meta">Odontología</p>
+            <h3><a href="../odontologia/">Clínica Dental Sonrisa</a></h3>
+          </div>
+        </article>
+        <article class="site" data-sector="salud">
+          <a class="thumb" href="../negocio/" aria-label="Ver sitio: Vista previa: Kinesis"><img src="thumbs/negocio.png" alt="Vista previa: Kinesis" loading="lazy"></a>
+          <div class="site-body">
+            <p class="meta">Fisioterapia</p>
+            <h3><a href="../negocio/">Kinesis</a></h3>
+          </div>
+        </article>
+        <article class="site" data-sector="tech">
+          <a class="thumb" href="../tecnologia/" aria-label="Ver sitio: Vista previa: NovaTech Soluciones"><img src="thumbs/tecnologia.png" alt="Vista previa: NovaTech Soluciones" loading="lazy"></a>
+          <div class="site-body">
+            <p class="meta">Tecnología</p>
+            <h3><a href="../tecnologia/">NovaTech Soluciones</a></h3>
+          </div>
+        </article>
+        <article class="site" data-sector="comida">
+          <a class="thumb" href="../cafe/" aria-label="Ver sitio: Vista previa: Café Ruta"><img src="thumbs/cafe-v2.png" alt="Vista previa: Café Ruta" loading="lazy"></a>
+          <div class="site-body">
+            <p class="meta">Cafetería</p>
+            <h3><a href="../cafe/">Café Ruta</a></h3>
+          </div>
+        </article>
+        <article class="site" data-sector="tech">
+          <a class="thumb" href="../arquitectura/" aria-label="Ver sitio: Vista previa: Estudio Ámbar"><img src="thumbs/arquitectura-v2.png" alt="Vista previa: Estudio Ámbar" loading="lazy"></a>
+          <div class="site-body">
+            <p class="meta">Arquitectura</p>
+            <h3><a href="../arquitectura/">Estudio Ámbar</a></h3>
+          </div>
+        </article>
+        <article class="site" data-sector="comercio">
+          <a class="thumb" href="../floreria/" aria-label="Ver sitio: Vista previa: Flor Lila"><img src="thumbs/floreria-v2.png" alt="Vista previa: Flor Lila" loading="lazy"></a>
+          <div class="site-body">
+            <p class="meta">Floristería</p>
+            <h3><a href="../floreria/">Flor Lila</a></h3>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <section id="testimonios">
+    <div class="wrap testimonios">
+      <div class="testimonios-titulo">
+        <h2>Clientes</h2>
+        <p>Lo que dicen quienes trabajaron conmigo.</p>
+      </div>
+      <div>
+        <figure class="quote-grande">
+          <blockquote>Entendió nuestro negocio en la primera llamada. El prototipo quedó aprobado en dos rondas.</blockquote>
+          <cite>Nombre Apellido, CEO · Empresa</cite>
+        </figure>
+        <figure class="quote-grande">
+          <blockquote>La activación subió después del rediseño. Entrega clara, a tiempo y con documentación.</blockquote>
+          <cite>Nombre Apellido, Product Manager · Empresa</cite>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="contact contacto-grande">
+    <div class="wrap">
+      <div class="contact-box">
+        <h2>¿Qué producto quieres mejorar?</h2>
+        <p>Cuéntame el reto en una llamada de 20 minutos. Te digo qué haría y cuánto costaría, sin compromiso.</p>
+        <a class="correo" href="mailto:fernandotafurtpinto@gmail.com">fernandotafurtpinto@gmail.com</a>
+        <div class="acciones">
+          <button class="btn" type="button" id="copiar">Copiar email</button>
+          <a href="mailto:fernandotafurtpinto@gmail.com" class="btn line">Escribir por email</a>
+          <a href="https://www.linkedin.com/" class="btn line" target="_blank" rel="noopener">LinkedIn</a>
+          <span class="sr" id="estado" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Video de fondo: se reproduce en automático (muted y en loop).
+    var fondo = document.querySelector('.hero-video');
+    if (fondo) { fondo.muted = true; fondo.play().catch(function () {}); }
+
+
+    // Active nav link: observe sections, no scroll listeners
+    var links = document.querySelectorAll('nav a[href^="#"]');
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+
+    if ('IntersectionObserver' in window) {
+      var navObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          var link = byId[e.target.id];
+          if (!link) return;
+          if (e.isIntersecting) {
+            links.forEach(function (l) { l.removeAttribute('aria-current'); });
+            link.setAttribute('aria-current', 'true');
+          }
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+
+      document.querySelectorAll('main section[id]').forEach(function (s) { navObs.observe(s); });
+
+      // Reveal sections once on entry (skipped when motion is reduced)
+      if (!reduce) {
+        var revealObs = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              obs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('main .wrap > *').forEach(function (el) {
+          el.classList.add('reveal');
+          revealObs.observe(el);
+        });
+      }
+    }
+  })();
+</script>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Fernando Tafurt</span>
+    <span><a href="#">LinkedIn</a> · <a href="#">Behance</a></span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+
+    // Tema claro / oscuro, recordado en este navegador
+    var tema = document.getElementById('tema');
+    try { var guardado = localStorage.getItem('tema'); if (guardado) root.setAttribute('data-theme', guardado); } catch (e) {}
+    tema.addEventListener('click', function () {
+      var actual = root.getAttribute('data-theme') ||
+        (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var nuevo = actual === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', nuevo);
+      try { localStorage.setItem('tema', nuevo); } catch (e) {}
+    });
+
+    // Filtro de sitios por sector
+    var chips = document.querySelectorAll('.chip');
+    var tarjetas = document.querySelectorAll('.site');
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chips.forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
+        chip.setAttribute('aria-pressed', 'true');
+        var f = chip.getAttribute('data-filter');
+        tarjetas.forEach(function (card) {
+          card.hidden = !(f === 'todos' || card.getAttribute('data-sector') === f);
+        });
+        document.getElementById('cuenta').textContent = [].filter.call(tarjetas, function (c) { return !c.hidden; }).length;
+      });
+    });
+
+    // Navegación con transición: si el navegador no tiene View Transitions, se desvanece antes de abrir el sitio
+    if (!('onpageswap' in window) && !reduce) {
+      document.querySelectorAll('a.thumb').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+          e.preventDefault();
+          document.body.classList.add('salir');
+          setTimeout(function () { location.href = a.href; }, 320);
+        });
+      });
+    }
+
+    // Copiar email
+    var copiar = document.getElementById('copiar');
+    var estado = document.getElementById('estado');
+    copiar.addEventListener('click', function () {
+      var correo = 'fernandotafurtpinto@gmail.com';
+      var ok = function () { estado.textContent = 'Email copiado'; };
+      if (navigator.clipboard) navigator.clipboard.writeText(correo).then(ok, function () { estado.textContent = correo; });
+      else estado.textContent = correo;
+    });
+  })();
+</script>
+
+</body>
+</html>

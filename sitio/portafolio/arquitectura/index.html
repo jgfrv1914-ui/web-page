@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estudio Ámbar · Arquitectura y diseño de interiores</title>
+  <meta name="description" content="Estudio de arquitectura: viviendas, interiores y espacios comerciales. De la primera idea a la obra terminada.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0f0e; --ink: #f1ede6; --muted: #a39d93; --line: #2a2926;
+      --accent: #c9a46a; --ease: cubic-bezier(0.65, 0, 0.35, 1);
+      --serif: "Bodoni Moda", "Didot", Georgia, serif; --sans: Archivo, "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font: 16px/1.65 var(--sans); font-weight: 400; background: var(--bg); color: var(--ink); }
+    a { color: inherit; }
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 5vw; }
+
+    /* Header */
+    header.top { position: fixed; inset: 0 0 auto 0; z-index: 20; transition: background 500ms var(--ease), backdrop-filter 500ms; }
+    header.top.solid { background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+    header.top .wrap { display: flex; justify-content: space-between; align-items: center; height: 76px; }
+    .logo { text-decoration: none; font-family: var(--serif); font-size: 1.45rem; letter-spacing: 0.01em; }
+    .top nav { display: flex; gap: 28px; }
+    .top nav a { text-decoration: none; font-size: 0.98rem; letter-spacing: 0.01em; color: var(--muted); transition: color 300ms; }
+    .top nav a:hover, .top nav a:focus-visible { color: var(--ink); }
+
+    /* Photo slot: se reemplaza por la foto generada */
+    .ph { position: relative; margin: 0; overflow: hidden; background: linear-gradient(160deg, #22211f, #151413); display: flex; align-items: flex-end; padding: 22px; color: #6d675d; font-size: 0.8rem; }
+    .ph span { position: relative; z-index: 1; }
+    .ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5), transparent 60%); }
+
+    /* Cover */
+    .cover { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 0 9vh; position: relative; }
+    .cover .ph { position: absolute; inset: 0; }
+    .cover .content { position: relative; z-index: 2; }
+    .cover h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(3.4rem, 9vw, 8.6rem); letter-spacing: -0.02em; line-height: 0.92; }
+    .cover p { margin-top: 28px; max-width: 46ch; color: var(--muted); }
+    .reveal { opacity: 0; transform: translateY(40px); animation: up 1200ms var(--ease) forwards; }
+    .reveal.d2 { animation-delay: 220ms; }
+    @keyframes up { to { opacity: 1; transform: none; } }
+
+    /* Sections */
+    section { padding: 140px 0; }
+    .label { font-size: 0.9rem; font-weight: 500; letter-spacing: 0.01em; color: var(--accent); }
+    .title { font-family: var(--serif); font-weight: 400; font-size: clamp(2.4rem, 4.8vw, 4rem); line-height: 1.04; letter-spacing: -0.015em; margin: 18px 0 0; max-width: 18ch; }
+
+    /* Proyectos */
+    .projects { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; margin-top: 72px; }
+    .proj { text-decoration: none; display: block; }
+    .proj .ph { aspect-ratio: 4 / 3; transition: transform 900ms var(--ease); }
+    .proj:hover .ph { transform: scale(1.015); }
+    .proj.tall .ph { aspect-ratio: 3 / 4; }
+    .proj .meta { display: flex; justify-content: space-between; margin-top: 16px; font-size: 0.95rem; }
+    .proj .meta span:last-child { color: var(--muted); }
+    .proj.wide { grid-column: 1 / -1; }
+    .proj.wide .ph { aspect-ratio: 21 / 9; }
+    .proj.offset { margin-top: 120px; }
+
+    /* Estudio */
+    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .about p { color: var(--muted); }
+    .about p + p { margin-top: 18px; }
+    .services { list-style: none; margin-top: 40px; border-top: 1px solid var(--line); }
+    .services li { display: flex; justify-content: space-between; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); font-size: 1.05rem; }
+    .services li span:last-child { color: var(--muted); font-size: 0.9rem; text-align: right; }
+
+    /* Proceso */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 64px; border-top: 1px solid var(--line); }
+    .step { padding: 32px 28px 0 0; }
+    .step h3 { font-family: var(--serif); font-weight: 500; font-size: 1.6rem; line-height: 1.1; margin-bottom: 12px; }
+    .step p { color: var(--muted); font-size: 0.95rem; }
+
+    /* Contacto */
+    .contact .title { max-width: 16ch; }
+    .contact .row { display: flex; justify-content: space-between; align-items: end; gap: 40px; flex-wrap: wrap; margin-top: 48px; }
+    .contact a.big { font-family: var(--serif); font-size: clamp(1.9rem, 3.8vw, 3rem); letter-spacing: -0.01em; text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 6px; transition: color 300ms, border-color 300ms; }
+    .contact a.big:hover, .contact a.big:focus-visible { color: var(--accent); }
+    .contact p { color: var(--muted); margin-top: 14px; }
+    .contact .link { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 4px; transition: color 300ms, border-color 300ms; }
+    .contact .link:hover, .contact .link:focus-visible { color: var(--ink); border-color: var(--ink); }
+
+    footer { border-top: 1px solid var(--line); padding: 36px 0; color: var(--muted); font-size: 0.82rem; }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+    .proj .meta span:first-child { font-family: var(--serif); font-size: 1.45rem; color: var(--ink); transition: color 400ms var(--ease); }
+    .proj:hover .meta span:first-child { color: var(--accent); }
+    .services li span:first-child { font-family: var(--serif); font-size: 1.5rem; }
+    .cover p { font-size: 1.1rem; max-width: 42ch; }
+    .about > div:first-child .title { max-width: 14ch; }
+    .about > div:last-child > p:first-child { font-family: var(--serif); font-size: 1.45rem; line-height: 1.4; color: var(--ink); }
+    .cover p { color: #e9e3d7; text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55); }
+    .top nav a, .logo { text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5); }
+    .top nav a:hover, .top nav a:focus-visible { color: #fff; }
+    @media (max-width: 900px) {
+      .projects, .about { grid-template-columns: 1fr; }
+      .proj.offset { margin-top: 0; }
+      .steps { grid-template-columns: 1fr; }
+      .top nav a:not(.keep) { display: none; }
+      section { padding: 96px 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; }
+    }
+    /* Fotos generadas */
+    .ph.photo { padding: 0; }
+    .ph.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    /* Transiciones entre páginas */
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 450ms; }
+    @media (prefers-reduced-motion: reduce) { ::view-transition-old(root), ::view-transition-new(root) { animation: none; } }
+  </style>
+</head>
+<body>
+  <header class="top" id="top">
+    <div class="wrap">
+      <a class="logo" href="#inicio">Ámbar</a>
+      <nav>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#estudio">Estudio</a>
+        <a href="#proceso">Proceso</a>
+        <a class="keep" href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="cover" id="inicio">
+      <figure class="ph photo" role="img" aria-label="vista interior de una casa con luz natural y madera"><img src="fotos/portada.jpg" alt="vista interior de una casa con luz natural y madera" loading="lazy"></figure>
+      <div class="wrap content">
+        <p class="label reveal">Arquitectura · Interiores</p>
+        <h1 class="reveal d2">Espacios<br>con calma.</h1>
+        <p class="reveal d2">Viviendas, interiores y locales comerciales con materiales honestos y buena luz. Del primer boceto a la entrega de llaves.</p>
+      </div>
+    </div>
+
+    <section id="proyectos">
+      <div class="wrap">
+        <p class="label">Proyectos seleccionados</p>
+        <h2 class="title">Obra reciente</h2>
+        <div class="projects">
+          <a class="proj wide" href="#proyectos">
+            <figure class="ph photo" role="img" aria-label="Casa Lago, fachada de piedra y madera frente al agua"><img src="fotos/casa-lago.jpg" alt="Casa Lago, fachada de piedra y madera frente al agua" loading="lazy"></figure>
+            <div class="meta"><span>Casa Lago</span><span>Vivienda · 2025</span></div>
+          </a>
+          <a class="proj tall" href="#proyectos">
+            <figure class="ph photo" role="img" aria-label="Loft Centro, sala con doble altura"><img src="fotos/loft.jpg" alt="Loft Centro, sala con doble altura" loading="lazy"></figure>
+            <div class="meta"><span>Loft Centro</span><span>Interiores · 2024</span></div>
+          </a>
+          <a class="proj offset" href="#proyectos">
+            <figure class="ph photo" role="img" aria-label="Cafetería Norte, barra de madera y luz cálida"><img src="fotos/cafeteria.jpg" alt="Cafetería Norte, barra de madera y luz cálida" loading="lazy"></figure>
+            <div class="meta"><span>Cafetería Norte</span><span>Comercial · 2024</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="estudio">
+      <div class="wrap about">
+        <div>
+          <p class="label">Estudio</p>
+          <h2 class="title">Diseñamos desde el uso, no desde la forma.</h2>
+        </div>
+        <div>
+          <p>Trabajamos con pocas obras al mismo tiempo para cuidar cada detalle. Acompañamos al cliente en decisiones de distribución, materiales y presupuesto.</p>
+          <p>Cada proyecto se documenta con planos, renders y seguimiento de obra.</p>
+          <ul class="services">
+            <li><span>Viviendas</span><span>Nueva obra y ampliaciones</span></li>
+            <li><span>Interiores</span><span>Cocinas, baños y espacios completos</span></li>
+            <li><span>Comercial</span><span>Locales, oficinas y cafeterías</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="proceso">
+      <div class="wrap">
+        <p class="label">Proceso</p>
+        <h2 class="title">Tres etapas, sin sorpresas.</h2>
+        <div class="steps">
+          <div class="step"><h3>Diagnóstico</h3><p>Visitamos el lugar, escuchamos tus necesidades y definimos alcance y presupuesto.</p></div>
+          <div class="step"><h3>Diseño</h3><p>Anteproyecto, planos y renders. Dos rondas de revisión incluidas.</p></div>
+          <div class="step"><h3>Obra</h3><p>Seguimiento semanal, control de costos y entrega con documentación final.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contacto">
+      <div class="wrap">
+        <p class="label">Contacto</p>
+        <h2 class="title">¿Tienes un proyecto en mente?</h2>
+        <div class="row">
+          <div>
+            <a class="big" href="mailto:hola@ejemplo.com">hola@ejemplo.com</a>
+            <p>Respondemos en 24 horas. Primera visita sin costo en la ciudad.</p>
+          </div>
+          <a class="link" href="#proyectos">Ver proyectos</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© Estudio Ámbar · Sitio de muestra</span>
+      <span>Arquitectura · Interiores · Comercial</span>
+    </div>
+  </footer>
+
+  <script>
+    // El header cambia de fondo al salir de la portada. Usa IntersectionObserver, no listeners de scroll.
+    const header = document.getElementById("top");
+    const cover = document.getElementById("inicio");
+    const obs = new IntersectionObserver(([entry]) => {
+      header.classList.toggle("solid", !entry.isIntersecting);
+    }, { threshold: 0.6 });
+    obs.observe(cover);
+  </script>
+</body>
+</html>

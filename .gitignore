@@ -1,0 +1,18 @@
+# Secretos: nunca subir
+.env
+.env.*
+
+# Entorno local de Python y caches
+.venv/
+__pycache__/
+*.pyc
+.tmp/
+
+# Capturas de revisión (no son del sitio)
+preview-*.png
+**/preview-*.png
+
+# Herramientas
+node_modules/
+.DS_Store
+Thumbs.db

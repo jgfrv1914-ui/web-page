@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="robots" content="noindex, follow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clínica Dental Sonrisa</title>
+<meta name="description" content="Limpieza, blanqueamiento, ortodoncia e implantes. Agenda tu valoración 24/7 con nuestra asistente virtual.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--teal:#244d54;--teal-2:#1c3e44;--menta:#2ecea0;--menta-suave:#6dddbd;--hueso:#f0f1f2;--niebla:#e5e7eb;--tinta:#16292c;--gris:#5d6b6e;--blanco:#fff}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--blanco);color:var(--tinta);font:17px/1.55 "Inter Tight",Inter,system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .anuncio{background:var(--menta);color:var(--teal);font-size:13px;font-weight:600;text-align:center;padding:9px 16px;letter-spacing:.2px}
+  .anuncio a{text-decoration:underline;text-underline-offset:3px}
+  header{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px clamp(16px,4vw,48px);background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--niebla)}
+  .marca{font-weight:700;font-size:21px;letter-spacing:3px;text-decoration:none;color:var(--teal);display:flex;align-items:center;gap:10px}
+  .marca i{width:22px;height:22px;border-radius:50%;background:conic-gradient(var(--menta),var(--menta-suave),var(--teal),var(--menta));display:inline-block}
+  nav{display:flex;gap:30px;font-size:15px;font-weight:500;color:var(--gris)} nav a{text-decoration:none} nav a:hover{color:var(--teal)}
+  .pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 15px "Inter Tight",Inter,sans-serif;text-decoration:none;padding:13px 26px;border-radius:999px;border:1.5px solid var(--menta);cursor:pointer;transition:background .2s,color .2s,transform .2s}
+  .pill.llena{background:var(--menta);color:var(--teal)}.pill.llena:hover{background:var(--menta-suave)}
+  .pill.linea{background:transparent;color:var(--menta)}.pill.linea:hover{background:var(--menta);color:var(--teal)}
+  .pill.oscura{background:var(--teal);border-color:var(--teal);color:#fff}.pill.oscura:hover{background:var(--teal-2)}
+  .pill:active{transform:scale(.97)}
+
+  /* Portada dividida 50/50 */
+  .portada{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 110px)}
+  .oscura-l{background:var(--teal);color:#fff;padding:clamp(40px,7vw,96px) clamp(20px,5vw,72px);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+  .oscura-l::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(109,221,189,.14) 1.4px,transparent 1.4px);background-size:22px 22px;pointer-events:none}
+  .oscura-l>*{position:relative}
+  .etiqueta{font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--menta-suave)}
+  h1{font-weight:600;font-size:clamp(44px,5.6vw,82px);line-height:1.02;letter-spacing:-2px;margin:20px 0 22px}
+  h1 em{font-style:normal;background:linear-gradient(90deg,var(--menta),var(--menta-suave));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .oscura-l p{color:rgba(255,255,255,.78);font-size:19px;max-width:470px;margin-bottom:32px}
+  .acciones{display:flex;gap:12px;flex-wrap:wrap}
+  .insignias{display:flex;gap:10px;flex-wrap:wrap;margin-top:44px}
+  .insignias span{font-size:12px;font-weight:600;letter-spacing:1.4px;padding:8px 14px;border-radius:999px;border:1px solid rgba(109,221,189,.35);color:var(--menta-suave)}
+  .clara-l{background:var(--hueso);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .burbuja{position:absolute;border-radius:50%;background:radial-gradient(circle at 32% 30%,rgba(255,255,255,.95),rgba(109,221,189,.25) 60%,rgba(46,206,160,.12));border:1px solid rgba(46,206,160,.25);animation:subir linear infinite;pointer-events:none}
+  @keyframes subir{from{transform:translateY(105vh)}to{transform:translateY(-20vh)}}
+  .escena{position:relative;width:100%;height:min(640px,72vh);z-index:1}
+  .globo{position:absolute;top:6%;left:50%;transform:translate(-50%,10px);background:var(--teal);color:#fff;padding:10px 18px;border-radius:999px;font-weight:600;font-size:15px;opacity:0;transition:.3s;white-space:nowrap;z-index:2;pointer-events:none}
+  .globo.visible{opacity:1;transform:translate(-50%,0)}
+  .ficha{position:absolute;z-index:2;background:#fff;border:1px solid var(--niebla);border-radius:18px;padding:12px 16px;font-size:14px;display:flex;gap:10px;align-items:center}
+  .ficha b{display:block;font-size:15px}
+  .ficha small{color:var(--gris)}
+  .ficha .punto{width:34px;height:34px;border-radius:50%;background:var(--menta);display:grid;place-items:center;color:var(--teal);font-weight:700}
+  .ficha.a{left:6%;bottom:12%}.ficha.b{right:6%;top:18%}
+
+  section{padding:100px clamp(16px,5vw,72px)}
+  .cabeza{max-width:1120px;margin:0 auto 48px;display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+  h2{font-weight:600;font-size:clamp(36px,4.4vw,60px);line-height:1.05;letter-spacing:-1.5px;max-width:640px}
+  .cabeza p{color:var(--gris);max-width:380px}
+
+  /* Tratamientos como filas de "ingredientes" */
+  .filas{max-width:1120px;margin:0 auto;border-top:1px solid var(--niebla)}
+  .fila{display:grid;grid-template-columns:70px 1.2fr 2fr auto;gap:24px;align-items:center;padding:26px 8px;border-bottom:1px solid var(--niebla);transition:background .25s,padding .25s}
+  .fila:hover{background:var(--hueso);padding-inline:20px}
+  .fila .num{font-size:14px;font-weight:600;color:var(--menta)}
+  .fila h3{font-size:24px;font-weight:600;letter-spacing:-.5px}
+  .fila p{color:var(--gris);font-size:16px}
+  .precio{font-size:13px;font-weight:700;letter-spacing:1px;background:var(--menta);color:var(--teal);padding:8px 14px;border-radius:999px;white-space:nowrap}
+  .precio.gratis{background:var(--teal);color:var(--menta)}
+
+  /* Cifras */
+  .cifras{background:var(--teal);color:#fff}
+  .cifras .cabeza p{color:rgba(255,255,255,.7)}
+  .bloques{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .bloque{border:1px solid rgba(109,221,189,.25);border-radius:24px;padding:34px 30px}
+  .bloque strong{display:block;font-size:clamp(56px,7vw,96px);font-weight:600;line-height:1;letter-spacing:-3px;background:linear-gradient(180deg,#fff 10%,var(--menta-suave) 60%,var(--menta));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .bloque span{display:block;margin-top:14px;color:rgba(255,255,255,.78)}
+
+  /* Antes y después */
+  .panel{max-width:1120px;margin:0 auto;background:var(--hueso);border-radius:32px;padding:clamp(20px,4vw,48px);display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+  .comparador{position:relative;aspect-ratio:4/3;border-radius:24px;overflow:hidden;user-select:none}
+  .lado{position:absolute;inset:0;display:grid;place-items:center}
+  .lado svg{width:62%;height:auto}
+  .antes-l{background:#e9e3d0}.despues-l{background:#dff5ee;clip-path:inset(0 0 0 50%)}
+  .lado small{position:absolute;top:16px;font:600 12px "Inter Tight",Inter,sans-serif;letter-spacing:1.4px;text-transform:uppercase;background:#fff;padding:7px 12px;border-radius:999px}
+  .antes-l small{left:16px}.despues-l small{right:16px}
+  .comparador input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize}
+  .linea-c{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--teal);pointer-events:none}
+  .linea-c::after{content:"⇆";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:var(--teal);color:var(--menta);display:grid;place-items:center;font-weight:700}
+  .beneficios h3{font-size:30px;font-weight:600;letter-spacing:-.8px;margin-bottom:18px}
+  .beneficios li{list-style:none;display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid var(--niebla);font-weight:500}
+  .beneficios li span{font-size:12px;font-weight:700;letter-spacing:1px;color:var(--teal);background:var(--menta-suave);padding:4px 10px;border-radius:999px;white-space:nowrap;align-self:center}
+
+  /* Opiniones */
+  .carrusel{overflow:hidden;border-block:1px solid var(--niebla);padding:18px 0;margin-bottom:48px;white-space:nowrap}
+  .carrusel div{display:inline-block;animation:correr 32s linear infinite;font-size:clamp(24px,3vw,38px);font-weight:600;letter-spacing:-1px;color:var(--teal)}
+  .carrusel b{color:var(--menta);margin:0 22px}
+  @keyframes correr{to{transform:translateX(-50%)}}
+  .tarjetas{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .tarjeta{border:1px solid var(--niebla);border-radius:24px;padding:26px;display:flex;flex-direction:column;gap:14px;transition:border-color .2s,transform .2s}
+  .tarjeta:hover{border-color:var(--menta);transform:translateY(-4px)}
+  .tarjeta .e{color:var(--menta);letter-spacing:2px}
+  .tarjeta cite{margin-top:auto;font-style:normal;font-weight:600;font-size:15px}
+  .tarjeta cite small{display:block;color:var(--gris);font-weight:400}
+  .nota{text-align:center;color:var(--gris);font-size:14px;margin-top:22px}
+
+  /* Llamado final */
+  .final{margin:0 clamp(16px,4vw,48px) 60px;border-radius:36px;background:var(--teal);color:#fff;padding:clamp(56px,8vw,100px) 24px;text-align:center;position:relative;overflow:hidden}
+  .final::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(46,206,160,.35),transparent 65%);left:50%;top:-260px;transform:translateX(-50%)}
+  .final>*{position:relative}
+  .final h2{margin:0 auto 14px;text-align:center}
+  .final p{color:rgba(255,255,255,.75);margin-bottom:30px}
+  footer{padding:28px clamp(16px,5vw,72px);color:var(--gris);font-size:14px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--niebla)}
+  .revelar{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}.revelar.visto{opacity:1;transform:none}
+
+  @media (max-width:1000px){.tarjetas{grid-template-columns:1fr 1fr}.fila{grid-template-columns:50px 1fr auto}.fila p{grid-column:2/4;grid-row:2}}
+  @media (max-width:900px){nav{display:none}.portada,.panel{grid-template-columns:1fr}.clara-l{min-height:460px}.escena{height:440px}.bloques{grid-template-columns:1fr}}
+  @media (max-width:600px){header{padding:12px 16px}header .pill{padding:10px 16px;font-size:14px}.marca{font-size:17px;letter-spacing:2px}.tarjetas{grid-template-columns:1fr}.fila{grid-template-columns:1fr auto;gap:8px 16px}.fila .num{display:none}.fila p{grid-column:1/3}.ficha{display:none}section{padding:72px 16px}}
+  @media (prefers-reduced-motion:reduce){.revelar{opacity:1;transform:none;transition:none}.burbuja,.carrusel div{animation:none}}
+</style>
+</head>
+<body>
+<div class="anuncio">✨ Valoración gratis este mes · Sitio de ejemplo creado por <a href="/#web">Agencia Tafurtfer</a> · <a href="/portafolio/">Ver portafolio</a></div>
+<header>
+  <a class="marca" href="#"><i></i>SONRISA</a>
+  <nav><a href="#tratamientos">Tratamientos</a><a href="#resultados">Resultados</a><a href="#opiniones">Opiniones</a></nav>
+  <a class="pill llena" href="#" data-abrir-chat>Agendar</a>
+</header>
+
+<main>
+  <section class="portada" style="padding:0">
+    <div class="oscura-l">
+      <span class="etiqueta">Clínica dental · Odontología integral</span>
+      <h1>Un avance en el cuidado de tu <em>sonrisa.</em></h1>
+      <p>Limpieza, blanqueamiento, ortodoncia invisible e implantes, sin dolor y sin esperas. Agenda en segundos, a cualquier hora, con nuestra asistente.</p>
+      <div class="acciones">
+        <a class="pill llena" href="#" data-abrir-chat>Agendar valoración</a>
+        <a class="pill linea" href="#tratamientos">Ver tratamientos</a>
+      </div>
+      <div class="insignias"><span>VALORACIÓN GRATIS</span><span>12 CUOTAS</span><span>AGENDA 24/7</span></div>
+    </div>
+    <div class="clara-l" id="clara">
+      <div class="escena" id="escena" tabindex="0" aria-label="Dienti, el diente en 3D. Tócalo para que reaccione.">
+        <div class="globo" id="globo"></div>
+      </div>
+      <div class="ficha b"><div class="punto">✓</div><div><b>Cita confirmada</b><small>Mañana · 10:30 a. m.</small></div></div>
+      <div class="ficha a"><div class="punto">🔔</div><div><b>Recordatorio</b><small>Te avisamos 1 hora antes</small></div></div>
+    </div>
+  </section>
+
+  <section id="tratamientos">
+    <div class="cabeza revelar">
+      <h2>Tratamientos pensados para cada sonrisa.</h2>
+      <p>Precios de referencia. En la valoración te damos el plan exacto para ti, sin compromiso.</p>
+    </div>
+    <div class="filas revelar">
+      <div class="fila"><span class="num">01</span><h3>Limpieza dental</h3><p>Profilaxis y detartraje con ultrasonido. Sales con los dientes lisos y frescos.</p><span class="precio">$120.000</span></div>
+      <div class="fila"><span class="num">02</span><h3>Blanqueamiento</h3><p>Hasta 8 tonos más blanco en una sesión, con gel de baja sensibilidad.</p><span class="precio">$450.000</span></div>
+      <div class="fila"><span class="num">03</span><h3>Ortodoncia invisible</h3><p>Alineadores transparentes que casi nadie nota. Controles cada 6 semanas.</p><span class="precio">DESDE $4,5M</span></div>
+      <div class="fila"><span class="num">04</span><h3>Implantes</h3><p>Recupera piezas perdidas con implantes de titanio y coronas en porcelana.</p><span class="precio">DESDE $2,8M</span></div>
+      <div class="fila"><span class="num">05</span><h3>Valoración</h3><p>Revisión completa, radiografía panorámica y plan de tratamiento.</p><span class="precio gratis">GRATIS</span></div>
+    </div>
+  </section>
+
+  <section class="cifras">
+    <div class="cabeza revelar">
+      <h2>Resultados que se notan desde la primera cita.</h2>
+      <p>Cifras de ejemplo para este sitio de muestra.</p>
+    </div>
+    <div class="bloques revelar">
+      <div class="bloque"><strong data-contar="98">98%</strong><span>de pacientes recomiendan la clínica a su familia.</span></div>
+      <div class="bloque"><strong>0%</strong><span>de interés al financiar tu tratamiento hasta en 12 cuotas.</span></div>
+      <div class="bloque"><strong>24/7</strong><span>para agendar, cambiar o cancelar tu cita por WhatsApp o en esta página.</span></div>
+    </div>
+  </section>
+
+  <section id="resultados">
+    <div class="cabeza revelar">
+      <h2>Mira la diferencia.</h2>
+      <p>Desliza para comparar el antes y el después de un blanqueamiento.</p>
+    </div>
+    <div class="panel revelar">
+      <div class="comparador" id="comparador">
+        <div class="lado antes-l"><svg viewBox="0 0 200 120" aria-hidden="true"><path d="M20 40 Q100 110 180 40 Q100 70 20 40Z" fill="#c9616a"/><g fill="#e2cf8f" stroke="#b9a66a" stroke-width="1.5"><rect x="46" y="44" width="20" height="22" rx="5"/><rect x="68" y="47" width="20" height="24" rx="5"/><rect x="90" y="48" width="20" height="25" rx="5"/><rect x="112" y="47" width="20" height="24" rx="5"/><rect x="134" y="44" width="20" height="22" rx="5"/></g></svg><small>Antes</small></div>
+        <div class="lado despues-l" id="despues"><svg viewBox="0 0 200 120" aria-hidden="true"><path d="M20 40 Q100 110 180 40 Q100 70 20 40Z" fill="#e0727c"/><g fill="#ffffff" stroke="#cfe9e1" stroke-width="1.5"><rect x="46" y="44" width="20" height="22" rx="5"/><rect x="68" y="47" width="20" height="24" rx="5"/><rect x="90" y="48" width="20" height="25" rx="5"/><rect x="112" y="47" width="20" height="24" rx="5"/><rect x="134" y="44" width="20" height="22" rx="5"/></g></svg><small>Después</small></div>
+        <div class="linea-c" id="linea"></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Comparar antes y después">
+      </div>
+      <div class="beneficios">
+        <h3>Todo lo que incluye tu tratamiento</h3>
+        <ul>
+          <li>Atención sin dolor con anestesia computarizada <span>INCLUIDO</span></li>
+          <li>Recordatorio automático de cada cita <span>WHATSAPP</span></li>
+          <li>Financiación sin interés <span>12 CUOTAS</span></li>
+          <li>Planes de mantenimiento <span>−20%</span></li>
+          <li>Agenda abierta con nuestra asistente <span>24/7</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="opiniones" style="padding-top:0">
+    <div class="carrusel" aria-hidden="true"><div>
+      Sin dolor<b>✦</b>Sin esperas<b>✦</b>Agenda 24/7<b>✦</b>Valoración gratis<b>✦</b>12 cuotas<b>✦</b>Sin dolor<b>✦</b>Sin esperas<b>✦</b>Agenda 24/7<b>✦</b>Valoración gratis<b>✦</b>12 cuotas<b>✦</b>
+    </div></div>
+    <div class="cabeza revelar">
+      <h2>Pacientes que ya sonríen.</h2>
+      <p>Testimonios de ejemplo para este sitio de muestra.</p>
+    </div>
+    <div class="tarjetas revelar">
+      <div class="tarjeta"><div class="e">★★★★★</div><p>“Agendé un domingo en la noche por WhatsApp y el lunes ya estaba en mi limpieza.”</p><cite>María P.<small>Limpieza dental</small></cite></div>
+      <div class="tarjeta"><div class="e">★★★★★</div><p>“El blanqueamiento quedó increíble y no sentí nada de sensibilidad.”</p><cite>Daniela R.<small>Blanqueamiento</small></cite></div>
+      <div class="tarjeta"><div class="e">★★★★★</div><p>“Me recordaron la cita una hora antes. Súper organizados.”</p><cite>Jorge L.<small>Valoración</small></cite></div>
+      <div class="tarjeta"><div class="e">★★★★★</div><p>“Pagué mis alineadores en cuotas y nadie nota que los tengo.”</p><cite>Camila S.<small>Ortodoncia invisible</small></cite></div>
+    </div>
+  </section>
+
+  <div class="final revelar">
+    <span class="etiqueta">Valoración gratis este mes</span>
+    <h2>Tu próxima sonrisa empieza con una conversación.</h2>
+    <p>Nuestra asistente te agenda la valoración ahora mismo, sin filas ni llamadas.</p>
+    <a class="pill llena" href="#" data-abrir-chat>Agendar valoración gratis</a>
+  </div>
+</main>
+
+<footer>
+  <span>© Clínica Dental Sonrisa · negocio de ejemplo</span>
+  <span>Página y asistente con IA por <a href="/">Agencia Tafurtfer</a> · ¿Quieres una así? <a href="/#web">Ver planes</a></span>
+</footer>
+
+<script>
+  // Burbujas tipo sérum en la mitad clara
+  const clara = document.getElementById("clara");
+  for (let i = 0; i < 12; i++) {
+    const b = document.createElement("span");
+    const t = 18 + Math.random() * 60;
+    b.className = "burbuja";
+    b.style.cssText = `width:${t}px;height:${t}px;left:${Math.random() * 100}%;animation-duration:${12 + Math.random() * 16}s;animation-delay:${-Math.random() * 24}s`;
+    clara.appendChild(b);
+  }
+  // Comparador antes/después
+  const rango = document.querySelector("#comparador input");
+  rango.addEventListener("input", () => {
+    document.getElementById("despues").style.clipPath = `inset(0 0 0 ${rango.value}%)`;
+    document.getElementById("linea").style.left = `${rango.value}%`;
+  });
+</script>
+<script type="module">
+  import { montarAnimado } from "/portafolio/comun/animados.js";
+  import { montarChat } from "/portafolio/comun/chat.js";
+  montarAnimado(document.getElementById("escena"), {
+    tipo: "diente",
+    etiqueta: false,
+    colores: { ropa: "#244d54", acento: "#2ecea0", detalle: "#6dddbd", anillo: "#2ecea0" },
+    globo: document.getElementById("globo"),
+    frases: {
+      SALUDANDO: ["¡Hola! Soy Dienti 🦷", "¡Bienvenido a Sonrisa!"],
+      CEPILLANDO: ["Cepíllate 3 veces al día 🪥", "¡Brillante! ✨"],
+      FELIZ: ["¡Valoración gratis este mes! 🎉", "Sonríe 😁"],
+      PENSANDO: ["¿Limpieza o blanqueamiento?"],
+      BAILANDO: ["¡Sonrisa lista! 🕺"],
+      HABLANDO: ["¿Agendamos tu valoración?"],
+    },
+  });
+  montarChat({ slug: "clinica-dental-demo", nombre: "la asistente", color: "#2ecea0", icono: "🦷",
+    saludo: "¡Hola! 😁 Soy la asistente de Clínica Dental Sonrisa. ¿Quieres agendar una limpieza, una valoración o tienes alguna pregunta?" });
+</script>
+<script src="/portafolio/comun/efectos.js" defer></script>
+</body>
+</html>

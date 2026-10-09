@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="robots" content="noindex, follow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kinesis · Fisioterapia y movimiento</title>
+<meta name="description" content="Fisioterapia deportiva, rehabilitación y pilates clínico. Agenda tu valoración. Sitio de muestra de una Web Negocio.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--tinta:#10233a;--tinta-2:#1d3a5c;--coral:#ff6a3d;--coral-osc:#e5522a;--arena:#f5efe6;--arena-2:#ebe2d4;--salvia:#cfe0d6;--gris:#5d6b7a;--linea:#e2d8c8;--blanco:#fff}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--arena);color:var(--tinta);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden}
+  a{color:inherit}
+  img,svg{display:block}
+  .aviso{background:var(--tinta);color:#c9d6e4;font-size:12px;text-align:center;padding:7px 16px;letter-spacing:.3px}
+  .aviso a{color:#fff}
+  .envoltura{max-width:1160px;margin:0 auto;padding:0 20px}
+
+  /* Cabecera */
+  header{position:sticky;top:0;z-index:20;background:rgba(245,239,230,.9);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+  header.fija{border-color:var(--linea)}
+  .barra{display:flex;justify-content:space-between;align-items:center;height:72px}
+  .marca{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 22px/1 "Bricolage Grotesque",sans-serif;letter-spacing:-.5px}
+  .marca svg{width:34px;height:34px}
+  nav{display:flex;gap:28px;font-size:15px;font-weight:500}
+  nav a{text-decoration:none;opacity:.8}
+  nav a:hover{opacity:1;color:var(--coral-osc)}
+  .boton{display:inline-flex;align-items:center;gap:9px;background:var(--coral);color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:13px 22px;border-radius:12px;border:0;cursor:pointer;transition:background .2s,transform .2s}
+  .boton:hover{background:var(--coral-osc);transform:translateY(-1px)}
+  .boton.oscuro{background:var(--tinta)}
+  .boton.oscuro:hover{background:var(--tinta-2)}
+  .boton.linea{background:transparent;color:var(--tinta);border:1.5px solid var(--tinta)}
+  .boton svg{width:18px;height:18px}
+  .menu{display:none;background:none;border:0;cursor:pointer;padding:8px}
+  .menu svg{width:26px;height:26px}
+
+  /* Portada */
+  .portada{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:64px 0 88px}
+  .etiqueta{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.4px;color:var(--tinta-2);background:var(--salvia);padding:6px 12px;border-radius:999px}
+  .etiqueta i{width:8px;height:8px;border-radius:50%;background:#2f8f5b}
+  h1{font:800 clamp(42px,6.2vw,78px)/.98 "Bricolage Grotesque",sans-serif;letter-spacing:-2.5px;margin:20px 0 22px}
+  h1 em{font-style:normal;color:var(--coral)}
+  .portada p{font-size:19px;color:var(--gris);max-width:500px;margin-bottom:32px}
+  .acciones{display:flex;gap:12px;flex-wrap:wrap}
+  .cifras{display:flex;gap:34px;margin-top:44px;flex-wrap:wrap}
+  .cifras b{display:block;font:800 30px/1 "Bricolage Grotesque",sans-serif;letter-spacing:-1px}
+  .cifras span{font-size:13px;color:var(--gris)}
+  .visual{position:relative;aspect-ratio:1/1.05;border-radius:32px;background:var(--tinta);overflow:hidden}
+  .visual svg.escena{position:absolute;inset:0;width:100%;height:100%}
+  .ficha{position:absolute;background:#fff;border-radius:16px;padding:12px 16px;box-shadow:0 14px 40px rgba(16,35,58,.18);font-size:13px;color:var(--gris);animation:flotar 6s ease-in-out infinite}
+  .ficha b{display:block;color:var(--tinta);font-size:15px}
+  .ficha.f1{left:18px;bottom:14%}
+  .ficha.f2{right:18px;top:8%;animation-delay:-3s}
+  @keyframes flotar{50%{transform:translateY(-8px)}}
+  .ficha{z-index:3;pointer-events:none}
+  .escena3d{position:absolute;inset:0;z-index:2;color:#cfe0d6}
+  .globo{position:absolute;top:22%;left:50%;transform:translate(-50%,8px);background:#fff;color:var(--tinta);padding:9px 16px;border-radius:999px;font-size:14px;font-weight:600;opacity:0;transition:.3s;white-space:nowrap;z-index:4;pointer-events:none;box-shadow:0 10px 30px rgba(16,35,58,.25)}
+  .globo.visible{opacity:1;transform:translate(-50%,0)}
+  .pista{position:absolute;right:18px;bottom:16px;z-index:3;font-size:12px;font-weight:600;color:#cfe0d6;opacity:.8;pointer-events:none}
+  .ficha.f1{bottom:16px}
+
+  section{padding:88px 0}
+  .cabeza{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:40px;flex-wrap:wrap}
+  .cabeza small{font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--coral-osc)}
+  h2{font:800 clamp(32px,4.4vw,52px)/1.02 "Bricolage Grotesque",sans-serif;letter-spacing:-1.5px;margin-top:10px;max-width:640px}
+  .cabeza p{color:var(--gris);max-width:380px}
+
+  /* Servicios */
+  .servicios{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .servicio{background:#fff;border:1px solid var(--linea);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:12px;transition:transform .25s,box-shadow .25s}
+  .servicio:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(16,35,58,.08)}
+  .icono{width:52px;height:52px;border-radius:14px;background:var(--arena);display:grid;place-items:center;color:var(--coral-osc)}
+  .icono svg{width:28px;height:28px}
+  .servicio h3{font:700 21px/1.2 "Bricolage Grotesque",sans-serif;letter-spacing:-.4px}
+  .servicio p{color:var(--gris);font-size:15px;flex:1}
+  .precio{display:flex;justify-content:space-between;align-items:center;border-top:1px dashed var(--linea);padding-top:14px;font-size:14px;color:var(--gris)}
+  .precio b{font:700 20px "Bricolage Grotesque",sans-serif;color:var(--tinta)}
+  .servicio.destacado{background:var(--tinta);color:#fff;border-color:var(--tinta)}
+  .servicio.destacado p,.servicio.destacado .precio{color:#b9c7d6}
+  .servicio.destacado .precio b{color:#fff}
+  .servicio.destacado .icono{background:var(--tinta-2);color:var(--coral)}
+  .servicio.destacado .precio{border-color:#2f4c6d}
+
+  /* Galería */
+  .oscura{background:var(--tinta);color:#fff}
+  .oscura .cabeza p{color:#b9c7d6}
+  .oscura .cabeza small{color:var(--coral)}
+  .galeria{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px}
+  .foto{position:relative;border-radius:20px;overflow:hidden;background:var(--tinta-2)}
+  .foto svg{position:absolute;inset:0;width:100%;height:100%;transition:transform .6s}
+  .foto:hover svg{transform:scale(1.05)}
+  .foto span{position:absolute;left:14px;bottom:12px;font-size:13px;font-weight:600;background:rgba(16,35,58,.72);backdrop-filter:blur(6px);padding:5px 10px;border-radius:8px}
+  .g1{grid-column:span 2;grid-row:span 2}
+  .g4{grid-column:span 2}
+
+  /* Equipo */
+  .equipo{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .persona{background:#fff;border:1px solid var(--linea);border-radius:22px;overflow:hidden}
+  .retrato{aspect-ratio:4/3;position:relative}
+  .retrato svg{position:absolute;inset:0;width:100%;height:100%}
+  .persona div.datos{padding:22px 24px}
+  .persona h3{font:700 20px "Bricolage Grotesque",sans-serif;letter-spacing:-.3px}
+  .persona .cargo{color:var(--coral-osc);font-weight:600;font-size:14px}
+  .persona p{color:var(--gris);font-size:14px;margin-top:8px}
+
+  /* Reseñas */
+  .resenas{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .resena{background:#fff;border:1px solid var(--linea);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:16px}
+  .estrellas{color:var(--coral);letter-spacing:3px;font-size:18px}
+  .resena blockquote{font-size:17px;line-height:1.55}
+  .autor{display:flex;align-items:center;gap:12px;margin-top:auto;font-size:14px;color:var(--gris)}
+  .autor b{color:var(--tinta);display:block}
+  .inicial{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff}
+  .resumen{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--linea);border-radius:16px;padding:12px 18px}
+  .resumen b{font:800 34px/1 "Bricolage Grotesque",sans-serif}
+  .resumen span{font-size:13px;color:var(--gris)}
+
+  /* Contacto */
+  .contacto{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px}
+  .datos-contacto{background:var(--tinta);color:#fff;border-radius:26px;padding:36px;display:flex;flex-direction:column;gap:22px}
+  .datos-contacto h3{font:800 30px/1.05 "Bricolage Grotesque",sans-serif;letter-spacing:-.8px}
+  .dato{display:flex;gap:14px;align-items:flex-start;color:#c9d6e4;font-size:15px}
+  .dato svg{width:22px;height:22px;flex:none;color:var(--coral);margin-top:2px}
+  .dato b{display:block;color:#fff}
+  .mapa{margin-top:auto;border-radius:16px;overflow:hidden;height:150px;background:var(--tinta-2)}
+  .mapa svg{width:100%;height:100%}
+  form{background:#fff;border:1px solid var(--linea);border-radius:26px;padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  form .ancho{grid-column:1/-1}
+  label{display:flex;flex-direction:column;gap:7px;font-size:14px;font-weight:600}
+  input,select,textarea{font:inherit;font-weight:400;border:1.5px solid var(--linea);border-radius:12px;padding:12px 14px;background:var(--arena);color:var(--tinta);outline:none;transition:border-color .2s}
+  input:focus,select:focus,textarea:focus{border-color:var(--coral)}
+  textarea{min-height:110px;resize:vertical}
+  .legal{font-size:12px;color:var(--gris);font-weight:400}
+  .gracias{display:none;grid-column:1/-1;background:var(--salvia);border-radius:12px;padding:14px 16px;font-size:14px}
+  .gracias.si{display:block}
+
+  footer{border-top:1px solid var(--linea);padding:34px 0 90px;font-size:14px;color:var(--gris)}
+  footer .envoltura{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+  .whatsapp{position:fixed;right:18px;bottom:18px;z-index:30;width:60px;height:60px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 28px rgba(0,0,0,.22);transition:transform .2s}
+  .whatsapp:hover{transform:scale(1.07)}
+  .whatsapp svg{width:32px;height:32px}
+
+  .revelar{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+  .revelar.visto{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.revelar{opacity:1;transform:none;transition:none}.ficha{animation:none}}
+
+  @media (max-width:900px){
+    nav{display:none;position:absolute;top:72px;left:0;right:0;background:var(--arena);flex-direction:column;gap:0;padding:8px 20px 18px;border-bottom:1px solid var(--linea)}
+    nav.abierto{display:flex}
+    nav a{padding:12px 0;border-bottom:1px solid var(--linea)}
+    .menu{display:block}
+    .barra .boton{display:none}
+    .portada{grid-template-columns:1fr;padding:36px 0 64px;gap:40px}
+    .ficha.f1{left:12px}.ficha.f2{right:12px}.pista{display:none}
+    .servicios,.equipo,.resenas{grid-template-columns:1fr}
+    .galeria{grid-template-columns:1fr 1fr;grid-auto-rows:150px}
+    .g1{grid-column:span 2}
+    .contacto{grid-template-columns:1fr}
+    form{grid-template-columns:1fr;padding:24px}
+    .datos-contacto{padding:26px}
+    section{padding:64px 0}
+  }
+</style>
+</head>
+<body>
+<div class="aviso" data-ext="Sitio de muestra del paquete <b>Web + IA Negocio</b> (US$780, pago único el primer año) hecho por Agencia Tafurtfer. Kinesis es un negocio ficticio. <a href='/web-con-ia/#paquetes'>Quiero una así →</a>">Sitio de muestra de una <b>Web Negocio</b> hecha por <a href="/portafolio/">Agencia Tafurtfer</a>. Kinesis es un negocio ficticio. <a href="/#web">Quiero una así →</a></div>
+
+<header id="cabecera">
+  <div class="envoltura barra">
+    <a class="marca" href="#inicio" aria-label="Kinesis, inicio">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#10233a"/><path d="M13 10v20M13 21l11-11M17 18l9 12" stroke="#ff6a3d" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Kinesis
+    </a>
+    <nav id="nav" aria-label="Secciones">
+      <a href="#servicios">Servicios</a><a href="#galeria">Galería</a><a href="#equipo">Equipo</a><a href="#resenas">Reseñas</a><a href="#contacto">Contacto</a>
+    </nav>
+    <a class="boton" href="#contacto">Agenda tu valoración</a>
+    <button class="menu" id="menu" aria-label="Abrir menú" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="envoltura portada">
+    <div>
+      <span class="etiqueta"><i></i>Citas disponibles esta semana</span>
+      <h1>Vuelve a moverte <em>sin dolor.</em></h1>
+      <p>Fisioterapia deportiva, rehabilitación y pilates clínico con un plan hecho para ti. Te valoramos, te explicamos qué pasa y avanzamos juntos, sesión a sesión.</p>
+      <div class="acciones">
+        <a class="boton" href="#contacto">Agenda tu valoración</a>
+        <a class="boton linea" href="#servicios">Ver servicios y precios</a>
+      </div>
+      <div class="cifras">
+        <div><b>+2.400</b><span>pacientes atendidos</span></div>
+        <div><b>4,9 ★</b><span>calificación promedio</span></div>
+        <div><b>12 años</b><span>de experiencia</span></div>
+      </div>
+    </div>
+    <div class="visual">
+      <svg class="escena" viewBox="0 0 400 420" preserveAspectRatio="xMidYMid slice">
+        <defs><radialGradient id="luz" cx=".7" cy=".25" r=".8"><stop offset="0" stop-color="#1d3a5c"/><stop offset="1" stop-color="#10233a"/></radialGradient></defs>
+        <rect width="400" height="420" fill="url(#luz)"/>
+        <circle cx="290" cy="120" r="120" fill="#ff6a3d" opacity=".95"/>
+        <circle cx="290" cy="120" r="160" fill="none" stroke="#ff6a3d" stroke-opacity=".25" stroke-width="2"/>
+        <circle cx="290" cy="120" r="200" fill="none" stroke="#ff6a3d" stroke-opacity=".12" stroke-width="2"/>
+
+        <g fill="#cfe0d6" opacity=".5"><circle cx="70" cy="80" r="3"/><circle cx="96" cy="60" r="2"/><circle cx="120" cy="96" r="2.5"/><circle cx="60" cy="130" r="2"/></g>
+      </svg>
+      <div class="escena3d" id="escena" tabindex="0" role="img" aria-label="Laura, la fisioterapeuta en 3D. Tócala para que reaccione."><div class="globo" id="globo"></div></div>
+      <span class="pista" aria-hidden="true">Tócala 👆</span>
+      <div class="ficha f1"><b>Rodilla al 100 %</b>Alta médica · semana 8</div>
+      <div class="ficha f2"><b>Próxima cita</b>Hoy · 5:30 p. m.</div>
+    </div>
+  </div>
+
+  <!-- Servicios -->
+  <section id="servicios">
+    <div class="envoltura">
+      <div class="cabeza revelar">
+        <div><small>Servicios</small><h2>Un plan claro para cada etapa de tu recuperación.</h2></div>
+        <p>Precios de referencia por sesión. El número de sesiones se define en la valoración inicial.</p>
+      </div>
+      <div class="servicios">
+        <article class="servicio revelar">
+          <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <h3>Valoración inicial</h3>
+          <p>Evaluación completa, diagnóstico funcional y plan de tratamiento por escrito.</p>
+          <div class="precio"><span>45 min</span><b>$70.000</b></div>
+        </article>
+        <article class="servicio destacado revelar">
+          <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4" r="2"/><path d="M4 21l4-7 3 2 3-5 5 3"/><path d="M8 14l1-4 4-1"/></svg></div>
+          <h3>Fisioterapia deportiva</h3>
+          <p>Lesiones de rodilla, tobillo, hombro y espalda. Vuelve a entrenar con seguridad.</p>
+          <div class="precio"><span>60 min</span><b>$85.000</b></div>
+        </article>
+        <article class="servicio revelar">
+          <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M8 5h8M7 9h10M8 13h8M9 17h6"/></svg></div>
+          <h3>Rehabilitación de columna</h3>
+          <p>Dolor lumbar y cervical, hernias y mala postura por trabajo de oficina.</p>
+          <div class="precio"><span>60 min</span><b>$85.000</b></div>
+        </article>
+        <article class="servicio revelar">
+          <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v6l-4 8M12 13l4 8M6 10h12"/></svg></div>
+          <h3>Pilates clínico</h3>
+          <p>Grupos de máximo 4 personas para fortalecer el core y prevenir lesiones.</p>
+          <div class="precio"><span>Mes · 8 clases</span><b>$320.000</b></div>
+        </article>
+        <article class="servicio revelar">
+          <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-4 0v5M14 10V4a2 2 0 0 0-4 0v6M10 10.5V6a2 2 0 0 0-4 0v8a8 8 0 0 0 16 0v-2a2 2 0 0 0-4 0"/></svg></div>
+          <h3>Terapia manual</h3>
+          <p>Liberación miofascial, movilizaciones y masaje terapéutico para aliviar tensión.</p>
+          <div class="precio"><span>50 min</span><b>$80.000</b></div>
+        </article>
+        <article class="servicio revelar">
+          <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+          <h3>Rehabilitación posquirúrgica</h3>
+          <p>Ligamentos, meniscos y prótesis, en coordinación con tu ortopedista.</p>
+          <div class="precio"><span>60 min</span><b>$90.000</b></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galería -->
+  <section id="galeria" class="oscura">
+    <div class="envoltura">
+      <div class="cabeza revelar">
+        <div><small>Galería</small><h2>Un espacio pensado para que te recuperes.</h2></div>
+        <p>Sala de rehabilitación, estudio de pilates y cabinas privadas. En tu página van las fotos reales de tu negocio.</p>
+      </div>
+      <div class="galeria">
+        <div class="foto g1 revelar"><svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice"><rect width="400" height="400" fill="#1d3a5c"/><rect x="0" y="290" width="400" height="110" fill="#16304d"/><rect x="40" y="60" width="140" height="190" rx="8" fill="#cfe0d6" opacity=".18"/><rect x="220" y="60" width="140" height="190" rx="8" fill="#cfe0d6" opacity=".18"/><rect x="70" y="250" width="260" height="22" rx="11" fill="#ff6a3d"/><rect x="90" y="272" width="12" height="40" fill="#0c1b2d"/><rect x="298" y="272" width="12" height="40" fill="#0c1b2d"/><circle cx="330" cy="330" r="34" fill="#cfe0d6" opacity=".9"/></svg><span>Sala de rehabilitación</span></div>
+        <div class="foto revelar"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice"><rect width="200" height="200" fill="#ff6a3d"/><g stroke="#10233a" stroke-width="10" stroke-linecap="round"><path d="M50 100h100"/><path d="M40 80v40M160 80v40"/><path d="M28 88v24M172 88v24"/></g></svg><span>Fuerza</span></div>
+        <div class="foto revelar"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice"><rect width="200" height="200" fill="#cfe0d6"/><circle cx="100" cy="100" r="52" fill="none" stroke="#10233a" stroke-width="10"/><circle cx="100" cy="100" r="20" fill="#ff6a3d"/></svg><span>Balance</span></div>
+        <div class="foto g4 revelar"><svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice"><rect width="400" height="200" fill="#f5efe6"/><g fill="#10233a"><rect x="30" y="120" width="100" height="10" rx="5"/><rect x="150" y="120" width="100" height="10" rx="5"/><rect x="270" y="120" width="100" height="10" rx="5"/></g><g stroke="#ff6a3d" stroke-width="8" stroke-linecap="round" fill="none"><path d="M50 116q30-60 60 0"/><path d="M170 116q30-60 60 0"/><path d="M290 116q30-60 60 0"/></g></svg><span>Estudio de pilates</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipo -->
+  <section id="equipo">
+    <div class="envoltura">
+      <div class="cabeza revelar">
+        <div><small>Equipo</small><h2>Fisioterapeutas que te escuchan.</h2></div>
+        <p>Profesionales con tarjeta profesional vigente y formación continua en deporte y columna.</p>
+      </div>
+      <div class="equipo">
+        <article class="persona revelar">
+          <div class="retrato"><svg viewBox="0 0 300 225" preserveAspectRatio="xMidYMid slice"><rect width="300" height="225" fill="#ff6a3d"/><circle cx="150" cy="95" r="42" fill="#10233a"/><path d="M70 225q0-80 80-80t80 80Z" fill="#10233a"/><circle cx="240" cy="40" r="18" fill="#f5efe6" opacity=".5"/></svg></div>
+          <div class="datos"><h3>Laura Méndez</h3><span class="cargo">Fisioterapeuta deportiva · Directora</span><p>Especialista en lesiones de rodilla y retorno al deporte.</p></div>
+        </article>
+        <article class="persona revelar">
+          <div class="retrato"><svg viewBox="0 0 300 225" preserveAspectRatio="xMidYMid slice"><rect width="300" height="225" fill="#cfe0d6"/><circle cx="150" cy="95" r="42" fill="#1d3a5c"/><path d="M70 225q0-80 80-80t80 80Z" fill="#1d3a5c"/><rect x="30" y="30" width="30" height="30" rx="8" fill="#ff6a3d" opacity=".6"/></svg></div>
+          <div class="datos"><h3>Andrés Rojas</h3><span class="cargo">Fisioterapeuta · Columna</span><p>Rehabilitación de espalda y ergonomía para oficinas.</p></div>
+        </article>
+        <article class="persona revelar">
+          <div class="retrato"><svg viewBox="0 0 300 225" preserveAspectRatio="xMidYMid slice"><rect width="300" height="225" fill="#10233a"/><circle cx="150" cy="95" r="42" fill="#f5efe6"/><path d="M70 225q0-80 80-80t80 80Z" fill="#f5efe6"/><circle cx="250" cy="180" r="26" fill="#ff6a3d" opacity=".7"/></svg></div>
+          <div class="datos"><h3>Camila Torres</h3><span class="cargo">Instructora de pilates clínico</span><p>Clases pequeñas para fortalecer y prevenir lesiones.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reseñas -->
+  <section id="resenas" style="padding-top:0">
+    <div class="envoltura">
+      <div class="cabeza revelar">
+        <div><small>Reseñas</small><h2>Lo que dicen nuestros pacientes.</h2></div>
+        <div class="resumen"><b>4,9</b><div><div class="estrellas">★★★★★</div><span>Reseñas de ejemplo</span></div></div>
+      </div>
+      <div class="resenas">
+        <figure class="resena revelar">
+          <div class="estrellas">★★★★★</div>
+          <blockquote>“Llegué con dolor de rodilla y sin poder correr. En dos meses volví a mis entrenos. Siempre me explicaron cada ejercicio.”</blockquote>
+          <figcaption class="autor"><span class="inicial" style="background:#ff6a3d">J</span><span><b>Juliana P.</b>Fisioterapia deportiva</span></figcaption>
+        </figure>
+        <figure class="resena revelar">
+          <div class="estrellas">★★★★★</div>
+          <blockquote>“Trabajo 8 horas sentado y la espalda me estaba matando. Me enseñaron a cuidarme en la oficina y el dolor desapareció.”</blockquote>
+          <figcaption class="autor"><span class="inicial" style="background:#1d3a5c">M</span><span><b>Mauricio G.</b>Rehabilitación de columna</span></figcaption>
+        </figure>
+        <figure class="resena revelar">
+          <div class="estrellas">★★★★★</div>
+          <blockquote>“Las clases de pilates son pequeñas y muy personalizadas. Puntuales, amables y el lugar es impecable.”</blockquote>
+          <figcaption class="autor"><span class="inicial" style="background:#2f8f5b">D</span><span><b>Diana R.</b>Pilates clínico</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" style="padding-top:0">
+    <div class="envoltura contacto">
+      <div class="datos-contacto revelar">
+        <h3>Agenda tu valoración inicial</h3>
+        <div class="dato"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-6.5 8-13a8 8 0 0 0-16 0c0 6.5 8 13 8 13Z"/><circle cx="12" cy="9" r="3"/></svg><span><b>Dirección</b>Aquí va la dirección de tu negocio</span></div>
+        <div class="dato"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>Horario</b>Lunes a viernes 6:00 a. m. – 8:00 p. m. · Sábado 8:00 a. m. – 1:00 p. m.</span></div>
+        <div class="dato"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg><span><b>WhatsApp</b>El número de tu negocio</span></div>
+        <div class="mapa" aria-hidden="true"><svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMid slice"><rect width="400" height="150" fill="#1d3a5c"/><g stroke="#2f4c6d" stroke-width="10"><path d="M0 40h400M0 110h400M90 0v150M250 0v150M330 0v150"/></g><path d="M0 75 C120 60 200 100 400 70" stroke="#cfe0d6" stroke-opacity=".35" stroke-width="14" fill="none"/><path d="M170 50a20 20 0 0 1 40 0c0 16-20 34-20 34s-20-18-20-34Z" fill="#ff6a3d"/><circle cx="190" cy="50" r="7" fill="#10233a"/></svg></div>
+      </div>
+      <form id="formulario" class="revelar" novalidate>
+        <label>Nombre<input name="nombre" required autocomplete="name" placeholder="Tu nombre"></label>
+        <label>Celular<input name="celular" required inputmode="tel" autocomplete="tel" placeholder="300 000 0000"></label>
+        <label class="ancho">Servicio
+          <select name="servicio"><option>Valoración inicial</option><option>Fisioterapia deportiva</option><option>Rehabilitación de columna</option><option>Pilates clínico</option><option>Terapia manual</option><option>Rehabilitación posquirúrgica</option></select>
+        </label>
+        <label class="ancho">¿Qué te molesta?<textarea name="mensaje" placeholder="Cuéntanos brevemente (sin datos de historia clínica)"></textarea></label>
+        <label class="ancho legal" style="flex-direction:row;align-items:flex-start;gap:10px"><input type="checkbox" required style="margin-top:3px"> Autorizo el tratamiento de mis datos para que me contacten sobre mi cita (Ley 1581 de 2012).</label>
+        <div class="ancho"><button class="boton oscuro" type="submit">Solicitar cita</button></div>
+        <p class="gracias" id="gracias" role="status">¡Listo! Este es un sitio de muestra, así que no se envió nada. En tu página real, la solicitud te llega al correo y al WhatsApp.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="envoltura">
+    <span>© Kinesis · Fisioterapia y movimiento (negocio ficticio)</span>
+    <span data-ext="Ejemplo de Web + IA Negocio · <a href='/web-con-ia/#paquetes'>US$780, pago único el primer año</a>">Ejemplo de Web Negocio · <a href="/#web">Desde $1.490.000, pago único</a></span>
+  </div>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/573123624819?text=Hola%2C%20quiero%20una%20Web%20Negocio%20como%20la%20de%20Kinesis" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 32 32" fill="#fff" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3Zm0 23.6a10.6 10.6 0 0 1-5.4-1.5l-.4-.2-3.9 1 1-3.8-.2-.4A10.6 10.6 0 1 1 16 26.6Zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7a.6.6 0 0 0 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.8.8a3.3 3.3 0 0 0 2.2-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.6-.4Z"/></svg>
+</a>
+
+<script type="module">
+  import { montarAnimado } from "/portafolio/comun/animados.js";
+  montarAnimado(document.getElementById("escena"), {
+    tipo: "fisio",
+    etiqueta: false,
+    colores: { piel: "#e2ab86", pelo: "#3b2418", ropa: "#10233a", camisa: "#10233a", manga: "#10233a", pantalon: "#1d3a5c", zapatos: "#ff6a3d", acento: "#ff6a3d", detalle: "#1d3a5c", anillo: "#ff6a3d" },
+    globo: document.getElementById("globo"),
+    frases: {
+      SALUDANDO: ["¡Hola! Soy Laura 👋", "Bienvenido a Kinesis"],
+      ESTIRANDO: ["¡Pausa activa! Estírate conmigo", "Arriba los brazos… y respira"],
+      FELIZ: ["¡Alta médica! 🎉", "¡Volviste a correr!"],
+      PENSANDO: ["¿Rodilla, espalda u hombro?"],
+      BAILANDO: ["¡Moverse es salud! 💪"],
+      HABLANDO: ["Cuéntame qué te molesta"],
+    },
+  });
+</script>
+<script>
+  (function(){
+    var cab=document.getElementById("cabecera"),nav=document.getElementById("nav"),menu=document.getElementById("menu");
+    addEventListener("scroll",function(){cab.classList.toggle("fija",scrollY>10)},{passive:true});
+    menu.addEventListener("click",function(){var a=nav.classList.toggle("abierto");menu.setAttribute("aria-expanded",a)});
+    nav.addEventListener("click",function(e){if(e.target.tagName==="A"){nav.classList.remove("abierto");menu.setAttribute("aria-expanded","false")}});
+    var els=document.querySelectorAll(".revelar");
+    if("IntersectionObserver" in window){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("visto");io.unobserve(e.target)}})},{threshold:.12});
+      els.forEach(function(el){io.observe(el)});
+    } else els.forEach(function(el){el.classList.add("visto")});
+    var f=document.getElementById("formulario");
+    f.addEventListener("submit",function(e){e.preventDefault();if(!f.checkValidity()){f.reportValidity();return}document.getElementById("gracias").classList.add("si");f.querySelector("button").disabled=true});
+  })();
+</script>
+<script src="/portafolio/comun/exterior.js"></script>
+</body>
+</html>

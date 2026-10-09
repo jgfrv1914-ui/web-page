@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="robots" content="noindex, follow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio Valentina · Uñas y cejas</title>
+<meta name="description" content="Manicure, pedicure, uñas en gel y diseño de cejas. Agenda tu cita por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--crema:#fbf5f1;--rubor:#f3dfd8;--rosa:#c9807a;--rosa-osc:#a9625d;--ciruela:#3b1f2b;--gris:#7a6a6f;--linea:#ead8d1}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--crema);color:var(--ciruela);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden}
+  a{color:inherit}
+  .aviso{background:var(--ciruela);color:#f3dfd8;font-size:12px;text-align:center;padding:7px 16px;letter-spacing:.3px}
+  .aviso a{color:#fff}
+  header{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:22px 20px}
+  .marca{font:600 22px/1 Fraunces,Georgia,serif;text-decoration:none;letter-spacing:.2px}
+  .marca small{display:block;font:500 10px Inter,sans-serif;letter-spacing:3px;text-transform:uppercase;color:var(--rosa);margin-top:5px}
+  .boton{display:inline-flex;align-items:center;gap:9px;background:var(--ciruela);color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:13px 22px;border-radius:999px;transition:background .2s,transform .2s}
+  .boton:hover{background:#56303f;transform:translateY(-1px)}
+  .boton.claro{background:transparent;color:var(--ciruela);border:1.5px solid var(--ciruela)}
+  .boton svg{width:18px;height:18px}
+
+  main{max-width:1120px;margin:0 auto;padding:0 20px}
+  .portada{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:30px 0 70px}
+  .etiqueta{font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--rosa)}
+  h1{font:400 clamp(44px,6vw,76px)/1.02 Fraunces,Georgia,serif;letter-spacing:-1.5px;margin:16px 0 20px}
+  h1 em{color:var(--rosa)}
+  .portada p{font-size:18px;color:var(--gris);max-width:460px;margin-bottom:30px}
+  .acciones{display:flex;gap:12px;flex-wrap:wrap}
+  .confianza{display:flex;gap:26px;margin-top:38px;flex-wrap:wrap}
+  .confianza b{display:block;font:600 26px/1 Fraunces,serif}
+  .confianza span{font-size:13px;color:var(--gris)}
+
+  /* Arco decorativo en lugar de foto */
+  .arco{position:relative;aspect-ratio:4/5;border-radius:999px 999px 28px 28px;background:linear-gradient(160deg,#f7e4dc,#e8b9ad 55%,#c9807a);overflow:hidden}
+  .arco::before{content:"";position:absolute;width:70%;aspect-ratio:1;border-radius:50%;left:-18%;bottom:-12%;background:radial-gradient(circle,rgba(255,255,255,.55),transparent 65%)}
+  .arco::after{content:"";position:absolute;width:48%;aspect-ratio:1;border-radius:50%;right:-10%;top:14%;background:radial-gradient(circle,rgba(59,31,43,.18),transparent 70%)}
+  .mano{position:absolute;inset:0;display:grid;place-items:center}
+  .mano svg{width:46%;filter:drop-shadow(0 18px 30px rgba(59,31,43,.22))}
+  .visual{position:relative}
+  .tarjeta{position:absolute;z-index:2;background:#fff;border-radius:16px;padding:12px 16px;font-size:13px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(59,31,43,.12)}
+  .tarjeta b{display:block;font-size:14px}
+  .tarjeta i{width:34px;height:34px;border-radius:50%;background:var(--rubor);display:grid;place-items:center;font-style:normal;color:var(--rosa-osc);font-weight:700}
+  .t1{left:-26px;bottom:18%}.t2{right:-18px;top:12%}
+
+  /* Servicios y precios */
+  .bloque{background:#fff;border:1px solid var(--linea);border-radius:28px;padding:clamp(24px,4vw,48px);display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;margin-bottom:28px}
+  h2{font:400 clamp(32px,4vw,46px)/1.05 Fraunces,Georgia,serif;letter-spacing:-.8px}
+  .bloque .intro p{color:var(--gris);margin-top:12px}
+  .lista li{list-style:none;display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:16px 0;border-bottom:1px dashed var(--linea)}
+  .lista li:last-child{border-bottom:0}
+  .lista b{font-weight:600}
+  .lista span{color:var(--gris);font-size:14px;grid-column:1}
+  .lista em{font:600 18px Fraunces,serif;font-style:normal;grid-row:1/3;grid-column:2;align-self:center}
+
+  .fila{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:70px}
+  .caja{background:var(--rubor);border-radius:28px;padding:32px}
+  .caja h3{font:400 26px/1.1 Fraunces,serif;margin-bottom:14px}
+  .horario li{list-style:none;display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid rgba(59,31,43,.1);font-size:15px}
+  .caja.oscura{background:var(--ciruela);color:#fff;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+  .caja.oscura p{color:#e6cfc8}
+  .caja.oscura .boton{background:#fff;color:var(--ciruela);align-self:flex-start}
+  footer{max-width:1120px;margin:0 auto;padding:26px 20px 90px;border-top:1px solid var(--linea);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--gris)}
+  .flotante{position:fixed;right:18px;bottom:18px;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 26px rgba(0,0,0,.2);z-index:9}
+  .flotante svg{width:30px;height:30px;fill:#fff}
+  @media (max-width:860px){.portada,.bloque,.fila{grid-template-columns:1fr}.visual{max-width:380px;width:100%;margin:0 auto}.t1{bottom:5%}.horario b{white-space:nowrap;font-size:14px}.t1{left:4px}.t2{right:4px}header .boton{padding:10px 16px;font-size:14px}}
+</style>
+</head>
+<body>
+<div class="aviso">Ejemplo de <b>Web Express</b> (página de una sección) por <a href="/#web">Agencia Tafurtfer</a> · <a href="/portafolio/">Ver portafolio</a></div>
+<header>
+  <a class="marca" href="#">Studio Valentina<small>Uñas · Cejas · Pestañas</small></a>
+  <a class="boton" href="#" data-wa>Agendar cita</a>
+</header>
+
+<main>
+  <section class="portada">
+    <div>
+      <span class="etiqueta">Salón de belleza</span>
+      <h1>Manos bonitas, <em>sin</em> esperas.</h1>
+      <p>Manicure, uñas en gel, pedicure spa y diseño de cejas con productos de calidad. Escríbenos y te damos cita el mismo día.</p>
+      <div class="acciones">
+        <a class="boton" href="#" data-wa><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8a11 11 0 0 1-4.3-3.9c-.3-.5-1-1.5-1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.5-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>Escribir por WhatsApp</a>
+        <a class="boton claro" href="#precios">Ver precios</a>
+      </div>
+      <div class="confianza">
+        <div><b>4,9 ★</b><span>reseñas de ejemplo</span></div>
+        <div><b>+1.200</b><span>clientas atendidas</span></div>
+        <div><b>Mismo día</b><span>citas disponibles</span></div>
+      </div>
+    </div>
+    <div class="visual">
+    <div class="arco" aria-hidden="true">
+      <div class="mano">
+        <svg viewBox="0 0 200 260"><defs>
+          <linearGradient id="vidrio" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6d2138"/><stop offset=".55" stop-color="#9b3553"/><stop offset="1" stop-color="#5a1a2d"/></linearGradient>
+          <linearGradient id="tapa" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b8925a"/><stop offset=".5" stop-color="#f1d9a8"/><stop offset="1" stop-color="#9c7743"/></linearGradient></defs>
+          <rect x="78" y="10" width="44" height="92" rx="10" fill="url(#tapa)"/>
+          <rect x="70" y="96" width="60" height="16" rx="5" fill="#2b1520"/>
+          <path d="M52 132q0-20 20-20h56q20 0 20 20v96q0 22-22 22H74q-22 0-22-22Z" fill="url(#vidrio)"/>
+          <path d="M64 136q0-12 12-12h8v112h-6q-14 0-14-14Z" fill="#fff" opacity=".22"/>
+          <text x="100" y="196" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="17" fill="#f7e4dc" letter-spacing="2">VALENTINA</text>
+          <text x="100" y="214" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#f7e4dc" opacity=".8" letter-spacing="3">GEL · Nº 12</text>
+        </svg>
+      </div>
+    </div>
+      <div class="tarjeta t2"><i>✓</i><div><b>Cita confirmada</b>Hoy · 4:30 p. m.</div></div>
+      <div class="tarjeta t1"><i>♡</i><div><b>Gel semipermanente</b>Dura hasta 3 semanas</div></div>
+    </div>
+  </section>
+
+  <section class="bloque" id="precios">
+    <div class="intro">
+      <span class="etiqueta">Servicios</span>
+      <h2>Precios claros, sin sorpresas.</h2>
+      <p>Todos los servicios incluyen limado, cutícula e hidratación. Precios de ejemplo.</p>
+    </div>
+    <ul class="lista">
+      <li><b>Manicure tradicional</b><span>Esmalte a elección · 40 min</span><em>$25.000</em></li>
+      <li><b>Uñas en gel semipermanente</b><span>Brillo que dura hasta 3 semanas · 60 min</span><em>$45.000</em></li>
+      <li><b>Pedicure spa</b><span>Exfoliación y masaje · 60 min</span><em>$40.000</em></li>
+      <li><b>Uñas acrílicas</b><span>Largo y diseño a tu gusto · 90 min</span><em>$80.000</em></li>
+      <li><b>Diseño de cejas con henna</b><span>Perfilado y tinte · 30 min</span><em>$30.000</em></li>
+    </ul>
+  </section>
+
+  <section class="fila">
+    <div class="caja">
+      <h3>Horario</h3>
+      <ul class="horario">
+        <li><span>Lunes a viernes</span><b>9:00 a. m. – 7:00 p. m.</b></li>
+        <li><span>Sábado</span><b>8:00 a. m. – 6:00 p. m.</b></li>
+        <li><span>Domingo</span><b>Solo con cita</b></li>
+      </ul>
+    </div>
+    <div class="caja oscura">
+      <div>
+        <h3>¿Te agendamos hoy?</h3>
+        <p>Escríbenos por WhatsApp con el servicio y la hora que te sirve. Respondemos en minutos.</p>
+      </div>
+      <a class="boton" href="#" data-wa>Agendar por WhatsApp</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© Studio Valentina · negocio de ejemplo</span>
+  <span>Página hecha por <a href="/">Agencia Tafurtfer</a> · Web Express desde $690.000 · <a href="/#web">Quiero una así</a></span>
+</footer>
+<a class="flotante" href="#" data-wa aria-label="Escribir por WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8a11 11 0 0 1-4.3-3.9c-.3-.5-1-1.5-1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.5-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg></a>
+<script>
+  // Es un ejemplo: el WhatsApp lleva a la agencia con un mensaje sobre la Web Express
+  const wa = "https://wa.me/573123624819?text=" + encodeURIComponent("Hola, vi el ejemplo de Web Express (Studio Valentina) y quiero una página así para mi negocio");
+  document.querySelectorAll("[data-wa]").forEach((a) => { a.href = wa; a.target = "_blank"; a.rel = "noopener"; });
+</script>
+</body>
+</html>

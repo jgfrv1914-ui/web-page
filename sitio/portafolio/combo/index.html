@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="robots" content="noindex, follow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forno Rosso · Pizzería a la leña</title>
+<meta name="description" content="Pizza artesanal a la leña con domicilio. Mira la carta, pregúntale a Rossa y pide por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--tomate:#c8361e;--tomate-osc:#a42a16;--crema:#fff6ea;--harina:#fbeedd;--carbon:#1f1a17;--albahaca:#3f7d3a;--gris:#6f625a;--linea:#eadcc8}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--crema);color:var(--carbon);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden}
+  a{color:inherit}
+  .aviso{background:var(--carbon);color:#f3e6d4;font-size:12px;text-align:center;padding:8px 16px}
+  .aviso a{color:#fff}
+  header{position:sticky;top:0;z-index:20;background:rgba(255,246,234,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
+  header .dentro{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 20px}
+  .marca{font:400 26px/1 "DM Serif Display",Georgia,serif;text-decoration:none;display:flex;align-items:center;gap:10px}
+  .marca i{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f0b04a 0 30%,var(--tomate) 31% 62%,#e8c07a 63%);display:inline-block}
+  nav{display:flex;gap:26px;font-size:14px;font-weight:500}
+  nav a{text-decoration:none;opacity:.8}nav a:hover{opacity:1;color:var(--tomate)}
+  .boton{display:inline-flex;align-items:center;gap:8px;background:var(--tomate);color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:13px 22px;border-radius:999px;border:0;cursor:pointer;transition:background .2s,transform .2s}
+  .boton:hover{background:var(--tomate-osc);transform:translateY(-1px)}
+  .boton.linea{background:transparent;color:var(--carbon);border:1.5px solid var(--carbon)}
+  .boton.linea:hover{background:var(--carbon);color:#fff}
+  section{padding:90px 20px}
+  .ancho{max-width:1180px;margin:0 auto}
+  .etiqueta{font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--tomate)}
+  h1,h2,h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400}
+  h2{font-size:clamp(36px,4.6vw,58px);line-height:1.03;margin:10px 0 14px}
+  .sub{color:var(--gris);max-width:560px}
+
+  /* 1. Inicio */
+  .inicio{padding-top:50px;position:relative;overflow:hidden}
+  .inicio .ancho{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  h1{font-size:clamp(50px,7vw,94px);line-height:.98;letter-spacing:-1px;margin:14px 0 20px}
+  h1 em{color:var(--tomate)}
+  .inicio p{font-size:18px;color:var(--gris);max-width:470px;margin-bottom:28px}
+  .acciones{display:flex;gap:12px;flex-wrap:wrap}
+  .sellos{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+  .sellos span{font-size:13px;font-weight:600;background:#fff;border:1px solid var(--linea);padding:8px 14px;border-radius:999px}
+  .plato{position:relative;aspect-ratio:1;max-width:540px;justify-self:center;width:100%}
+  .plato .fondo{position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle,#f7dcc0,#efc59d 70%);}
+  .plato svg{position:absolute;inset:10%;width:80%;animation:girar 60s linear infinite;filter:drop-shadow(0 26px 30px rgba(31,26,23,.28))}
+  @keyframes girar{to{transform:rotate(360deg)}}
+  .burbuja{position:absolute;background:#fff;color:var(--carbon);border-radius:18px;padding:12px 16px;font-size:13px;box-shadow:0 12px 30px rgba(31,26,23,.14);z-index:2;max-width:230px}
+  .burbuja b{display:block;font-size:14px}
+  .b1{left:-2%;top:12%}.b2{right:0;bottom:12%}
+
+  /* 2. Carta */
+  .carta{background:#fff}
+  .rejilla-carta{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+  .plato-carta{border:1px solid var(--linea);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:10px;transition:transform .25s,border-color .25s}
+  .plato-carta:hover{transform:translateY(-4px);border-color:var(--tomate)}
+  .plato-carta svg{width:92px;height:92px}
+  .plato-carta h3{font-size:24px}
+  .plato-carta p{color:var(--gris);font-size:14px}
+  .plato-carta .precio{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-weight:700}
+  .plato-carta .precio small{font-weight:500;color:var(--albahaca);font-size:12px;letter-spacing:1px;text-transform:uppercase}
+  .destacada{background:var(--carbon);color:#fff;border-color:var(--carbon)}
+  .destacada p{color:#cdbfb1}
+
+  /* 3. Galería */
+  .galeria .fotos{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:220px 220px;gap:14px;margin-top:36px}
+  .foto{border-radius:22px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:18px;color:#fff;font-weight:600}
+  .foto::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(0,0,0,.45))}
+  .foto span{position:relative;z-index:1}
+  .f1{grid-row:1/3;background:radial-gradient(circle at 30% 70%,#ff9a3c 0 12%,transparent 30%),radial-gradient(circle at 70% 60%,#ffb347 0 8%,transparent 25%),linear-gradient(160deg,#3a1d12,#1f120c 60%,#7a2e12)}
+  .f2{background:radial-gradient(circle at 50% 55%,#f3d3a3 0 26%,#c8361e 27% 34%,#e9c089 35% 44%,transparent 45%),#2b211c}
+  .f3{background:repeating-linear-gradient(45deg,#fbeedd 0 14px,#f3dfc5 14px 28px)}
+  .f3 span,.f3::after{color:var(--carbon)}.f3::after{background:none}
+  .f4{grid-column:2/4;background:radial-gradient(circle at 20% 40%,#6aa85f 0 6%,transparent 7%),radial-gradient(circle at 75% 60%,#6aa85f 0 5%,transparent 6%),linear-gradient(120deg,#c8361e,#e35a2c)}
+  .f1 .llama{position:absolute;left:28%;bottom:22%;width:44%;aspect-ratio:1;border-radius:50% 50% 45% 45%;background:radial-gradient(circle at 50% 70%,#ffe28a,#ff8a2b 45%,transparent 70%);filter:blur(6px);animation:llama 2.4s ease-in-out infinite}
+  @keyframes llama{50%{transform:scale(1.08) translateY(-6px);opacity:.85}}
+
+  /* 4. Nosotros */
+  .nosotros{background:var(--harina)}
+  .nosotros .ancho{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .equipo{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .persona{background:#fff;border-radius:20px;padding:18px;text-align:center;border:1px solid var(--linea)}
+  .persona .cara{width:70px;height:70px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;font:400 28px "DM Serif Display",serif;color:#fff}
+  .persona b{display:block}.persona small{color:var(--gris)}
+  .datos{display:flex;gap:28px;margin-top:26px}
+  .datos b{display:block;font:400 38px/1 "DM Serif Display",serif;color:var(--tomate)}
+  .datos span{font-size:13px;color:var(--gris)}
+
+  /* 5. Reseñas */
+  .resenas .lista{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+  .resena{background:#fff;border-radius:22px;padding:24px;border:1px solid var(--linea)}
+  .resena .e{color:#e7a321;letter-spacing:2px}
+  .resena p{margin:10px 0 14px}
+  .resena cite{font-style:normal;font-weight:600;font-size:14px}
+
+  /* Asistente */
+  .asistente{background:var(--carbon);color:#fff}
+  .asistente .ancho{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .asistente .sub{color:#cdbfb1}
+  .puede li{list-style:none;padding:10px 0 10px 30px;position:relative;border-bottom:1px solid rgba(255,255,255,.1)}
+  .puede li::before{content:"✓";position:absolute;left:0;color:#7fd07a;font-weight:700}
+  .telefono{background:#0b141a;border-radius:28px;padding:16px;max-width:360px;justify-self:center;width:100%;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+  .telefono .top{display:flex;align-items:center;gap:10px;padding:6px 6px 12px;border-bottom:1px solid #1f2c33;font-size:14px}
+  .telefono .top i{width:34px;height:34px;border-radius:50%;background:var(--tomate);display:grid;place-items:center;font-style:normal}
+  .telefono .top small{display:block;color:#8aa0ab;font-size:11px}
+  .msgs{display:flex;flex-direction:column;gap:8px;padding:14px 4px 4px;font-size:14px}
+  .m{max-width:82%;padding:8px 11px;border-radius:12px;line-height:1.4}
+  .m.c{align-self:flex-end;background:#005c4b}.m.r{align-self:flex-start;background:#1f2c33}
+
+  /* Contacto */
+  .contacto .ancho{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .caja{border-radius:24px;padding:30px;background:#fff;border:1px solid var(--linea)}
+  .caja h3{font-size:28px;margin-bottom:12px}
+  .horario li{list-style:none;display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--linea)}
+  .caja.roja{background:var(--tomate);color:#fff;border-color:var(--tomate);display:flex;flex-direction:column;justify-content:space-between;gap:18px}
+  .caja.roja p{color:#ffe1d8}
+  .caja.roja .boton{background:#fff;color:var(--tomate);align-self:flex-start}
+  footer{padding:26px 20px 100px;text-align:center;color:var(--gris);font-size:13px;border-top:1px solid var(--linea)}
+  .revelar{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}.revelar.visto{opacity:1;transform:none}
+
+
+  /* ===== Video de fondo en toda la página (creado con Hugging Face) ===== */
+  body{background:#140a06;color:#f6ebdd}
+  .fondo-video{position:fixed;inset:0;z-index:-1;background:#140a06 url(horno.jpg) center/cover no-repeat;overflow:hidden}
+  .fondo-video video{width:100%;height:100%;object-fit:cover;display:block}
+  .fondo-video::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,10,6,.86) 0%,rgba(20,10,6,.55) 50%,rgba(20,10,6,.3) 100%)}
+  :root{--gris:#d4c2ae;--linea:rgba(255,255,255,.14)}
+  .aviso{background:rgba(10,6,4,.85)}
+  header{background:rgba(20,12,8,.62);border-bottom-color:rgba(255,255,255,.1)}
+  nav a{opacity:.85}nav a:hover{color:#ff8a5c}
+  .etiqueta{color:#ff9a6e}
+  h1{text-shadow:0 4px 30px rgba(0,0,0,.4)}
+  h1 em{color:#ff8a5c}
+  .boton.linea{color:#fff;border-color:#fff}
+  .boton.linea:hover{background:#fff;color:var(--carbon)}
+  .inicio{min-height:calc(100vh - 110px);display:flex;align-items:center}
+  .inicio .ancho{width:100%}
+  .inicio p{color:#f1e1d2}
+  .sellos span{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22);color:#fff;backdrop-filter:blur(6px)}
+  .inicio .plato .fondo,.inicio .plato svg{display:none}
+  .inicio .plato{align-self:stretch;min-height:320px}
+  .inicio .plato .escena3d{position:absolute;inset:0;z-index:1}
+  .globo{position:absolute;top:4%;left:50%;transform:translate(-50%,8px);background:#fffaf4;color:#1f1a17;padding:9px 16px;border-radius:999px;font-size:14px;font-weight:600;opacity:0;transition:.3s;white-space:nowrap;z-index:3;pointer-events:none;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+  .globo.visible{opacity:1;transform:translate(-50%,0)}
+  .burbuja{background:rgba(255,250,244,.95)}
+  /* Secciones como vidrio oscuro: el fuego se sigue viendo detrás */
+  .carta{background:rgba(18,10,6,.66)}
+  .nosotros{background:rgba(18,10,6,.5)}
+  .resenas{background:rgba(18,10,6,.66)}
+  .asistente{background:rgba(10,7,5,.8)}
+  .contacto{background:rgba(18,10,6,.45)}
+  .plato-carta,.persona,.resena,.caja{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14);backdrop-filter:blur(10px)}
+  .plato-carta p{color:#d4c2ae}
+  .plato-carta .precio small{color:#8fd48a}
+  .destacada{background:rgba(200,54,30,.88);border-color:#e35a2c}
+  .destacada p{color:#ffe1d8}
+  .destacada .precio small{color:#fff}
+  .datos b{color:#ff8a5c}
+  .f3{background:repeating-linear-gradient(45deg,rgba(251,238,221,.9) 0 14px,rgba(243,223,197,.9) 14px 28px)}
+  .caja.roja{background:rgba(200,54,30,.92);border-color:#e35a2c}
+  footer{color:#bba893;background:rgba(10,6,4,.85);border-top-color:rgba(255,255,255,.1)}
+  @media (max-width:900px){.inicio .plato{min-height:0;height:360px;aspect-ratio:auto;width:100%;max-width:420px;margin:8px auto 0;min-width:0}.inicio .plato .burbuja{display:none}.fondo-video::after{background:rgba(20,10,6,.7)}}
+
+  @media (max-width:900px){nav{display:none}.inicio .ancho,.nosotros .ancho,.asistente .ancho,.contacto .ancho{grid-template-columns:1fr}.rejilla-carta,.resenas .lista{grid-template-columns:1fr}
+    .galeria .fotos{grid-template-columns:1fr 1fr;grid-template-rows:200px 160px 160px}.f1{grid-row:auto;grid-column:1/3}.f4{grid-column:1/3}.b1{left:0}.b2{right:0}}
+  @media (max-width:600px){header .boton{padding:10px 14px;font-size:13px;white-space:nowrap}.marca{font-size:21px;white-space:nowrap}}
+  @media (prefers-reduced-motion:reduce){.plato svg,.f1 .llama{animation:none}.revelar{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="fondo-video" aria-hidden="true">
+  <video autoplay muted loop playsinline preload="auto" poster="horno.jpg" disablepictureinpicture disableremoteplayback>
+    <source src="horno.webm" type="video/webm">
+    <source src="horno.mp4" type="video/mp4">
+  </video>
+</div>
+<div class="aviso" data-ext="Ejemplo del paquete <b>Web + IA Negocio</b> (US$780, pago único el primer año) por Agencia Tafurtfer · <a href='/web-con-ia/#ejemplos'>Ver más ejemplos</a>">Ejemplo de <b>Combo Web + Asistente</b> (Web Negocio de 5 secciones + asistente Esencial) por <a href="/#web">Agencia Tafurtfer</a> · <a href="/portafolio/">Ver portafolio</a></div>
+<header><div class="dentro">
+  <a class="marca" href="#"><i></i>Forno Rosso</a>
+  <nav><a href="#carta">Carta</a><a href="#galeria">Galería</a><a href="#nosotros">Nosotros</a><a href="#resenas">Reseñas</a><a href="#contacto">Contacto</a></nav>
+  <a class="boton" href="#" data-abrir-chat>Pregúntale a Rossa</a>
+</div></header>
+
+<main>
+  <!-- 1. Inicio -->
+  <section class="inicio" id="inicio">
+    <div class="ancho">
+      <div>
+        <span class="etiqueta">Pizzería a la leña</span>
+        <h1>Pizza de verdad, <em>hecha</em> con fuego.</h1>
+        <p>Masa madre de 48 horas, horno de leña y domicilio caliente a tu puerta. Mira la carta o pregúntale a Rossa, nuestra asistente, lo que quieras.</p>
+        <div class="acciones">
+          <a class="boton" href="#carta">Ver la carta</a>
+          <a class="boton linea" href="#" data-abrir-chat>Hablar con Rossa</a>
+        </div>
+        <div class="sellos"><span>🔥 Horno de leña</span><span>🛵 Domicilio 30–45 min</span><span>🌱 Opciones vegetarianas</span></div>
+      </div>
+      <div class="plato" aria-hidden="true">
+        <div class="fondo"></div>
+        <svg viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="96" fill="#e7b36f"/><circle cx="100" cy="100" r="86" fill="#d9492c"/><circle cx="100" cy="100" r="84" fill="#c8361e"/>
+          <g fill="#fbe7b8"><circle cx="70" cy="62" r="17"/><circle cx="128" cy="70" r="15"/><circle cx="100" cy="112" r="19"/><circle cx="58" cy="122" r="14"/><circle cx="140" cy="128" r="16"/><circle cx="96" cy="160" r="13"/><circle cx="104" cy="40" r="11"/></g>
+          <g fill="#8e1d12"><circle cx="92" cy="74" r="9"/><circle cx="132" cy="100" r="9"/><circle cx="72" cy="98" r="8"/><circle cx="118" cy="148" r="8"/><circle cx="68" cy="146" r="7"/><circle cx="150" cy="70" r="7"/></g>
+          <g fill="#3f7d3a"><ellipse cx="112" cy="60" rx="9" ry="5" transform="rotate(-30 112 60)"/><ellipse cx="82" cy="128" rx="9" ry="5" transform="rotate(40 82 128)"/><ellipse cx="150" cy="112" rx="8" ry="4.5" transform="rotate(10 150 112)"/><ellipse cx="54" cy="80" rx="8" ry="4.5" transform="rotate(-60 54 80)"/></g>
+          <g stroke="#b77c3c" stroke-width="1.4" opacity=".6"><line x1="100" y1="14" x2="100" y2="186"/><line x1="14" y1="100" x2="186" y2="100"/><line x1="39" y1="39" x2="161" y2="161"/><line x1="161" y1="39" x2="39" y2="161"/></g>
+        </svg>
+        <div class="escena3d" id="escena" tabindex="0" role="img" aria-label="Rossa, la pizza en 3D. Tócala para que reaccione."><div class="globo" id="globo"></div></div>
+        <div class="burbuja b1"><b>¿Tienen domicilio?</b>Sí, gratis desde $60.000 🛵</div>
+        <div class="burbuja b2"><b>Rossa · asistente</b>Te recomiendo la de la casa 🍕</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Carta -->
+  <section class="carta" id="carta">
+    <div class="ancho revelar">
+      <span class="etiqueta">Carta</span>
+      <h2>Lo más pedido</h2>
+      <p class="sub">Pizzas medianas de 8 porciones. Precios de ejemplo.</p>
+      <div class="rejilla-carta">
+        <div class="plato-carta destacada">
+          <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#e7b36f"/><circle cx="50" cy="50" r="40" fill="#c8361e"/><g fill="#8e1d12"><circle cx="38" cy="36" r="6"/><circle cx="62" cy="44" r="6"/><circle cx="44" cy="64" r="6"/><circle cx="66" cy="66" r="5"/></g><g fill="#f7c35f"><circle cx="54" cy="30" r="4"/><circle cx="30" cy="56" r="4"/></g></svg>
+          <h3>Forno Rosso</h3><p>Pepperoni, champiñones, cebolla caramelizada y miel picante. La de la casa.</p>
+          <div class="precio"><span>$42.000</span><small>★ Favorita</small></div>
+        </div>
+        <div class="plato-carta">
+          <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#e7b36f"/><circle cx="50" cy="50" r="40" fill="#d9492c"/><g fill="#fbe7b8"><circle cx="38" cy="38" r="9"/><circle cx="62" cy="46" r="9"/><circle cx="46" cy="64" r="9"/></g><g fill="#3f7d3a"><ellipse cx="56" cy="30" rx="6" ry="3.5"/><ellipse cx="30" cy="56" rx="6" ry="3.5" transform="rotate(50 30 56)"/><ellipse cx="68" cy="64" rx="6" ry="3.5"/></g></svg>
+          <h3>Margarita</h3><p>Salsa de la casa, mozzarella y albahaca fresca.</p>
+          <div class="precio"><span>$32.000</span><small>🌱 Vegetariana</small></div>
+        </div>
+        <div class="plato-carta">
+          <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#e7b36f"/><circle cx="50" cy="50" r="40" fill="#f6d890"/><g fill="#fff4d6"><circle cx="38" cy="38" r="8"/><circle cx="62" cy="44" r="7"/><circle cx="46" cy="64" r="8"/></g><g fill="#7c9bb5"><circle cx="60" cy="62" r="4"/><circle cx="34" cy="54" r="3"/></g></svg>
+          <h3>Cuatro Quesos</h3><p>Mozzarella, parmesano, azul y queso campesino.</p>
+          <div class="precio"><span>$39.000</span><small>🌱 Vegetariana</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Galería -->
+  <section class="galeria" id="galeria">
+    <div class="ancho revelar">
+      <span class="etiqueta">Galería</span>
+      <h2>Del horno a tu mesa</h2>
+      <p class="sub">Aquí van las fotos reales del negocio: el horno, los platos y el equipo.</p>
+      <div class="fotos">
+        <div class="foto f1"><span class="llama"></span><span>Nuestro horno de leña a 450 °C</span></div>
+        <div class="foto f2"><span>Recién salida</span></div>
+        <div class="foto f3"><span>Masa madre de 48 horas</span></div>
+        <div class="foto f4"><span>Ingredientes frescos cada mañana</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Nosotros -->
+  <section class="nosotros" id="nosotros">
+    <div class="ancho revelar">
+      <div>
+        <span class="etiqueta">Nosotros</span>
+        <h2>Una familia que ama la pizza</h2>
+        <p class="sub">Empezamos con un horno pequeño en el garaje y hoy horneamos más de 300 pizzas por semana, con la misma receta de la nonna.</p>
+        <div class="datos"><div><b>2016</b><span>desde</span></div><div><b>+300</b><span>pizzas por semana</span></div><div><b>4,8 ★</b><span>calificación</span></div></div>
+      </div>
+      <div class="equipo">
+        <div class="persona"><div class="cara" style="background:#c8361e">T</div><b>Tano</b><small>Pizzaiolo</small></div>
+        <div class="persona"><div class="cara" style="background:#3f7d3a">L</div><b>Lucía</b><small>Cocina</small></div>
+        <div class="persona"><div class="cara" style="background:#e0a23a">M</div><b>Mateo</b><small>Domicilios</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Reseñas -->
+  <section class="resenas" id="resenas">
+    <div class="ancho revelar">
+      <span class="etiqueta">Reseñas</span>
+      <h2>Lo que dicen nuestros clientes</h2>
+      <p class="sub">Reseñas de ejemplo para este sitio de muestra.</p>
+      <div class="lista">
+        <div class="resena"><div class="e">★★★★★</div><p>“La Forno Rosso con miel picante es otro nivel. Llegó caliente en 30 minutos.”</p><cite>Andrea M.</cite></div>
+        <div class="resena"><div class="e">★★★★★</div><p>“Le pregunté a Rossa a medianoche si tenían opciones sin carne y me respondió al instante.”</p><cite>Julián P.</cite></div>
+        <div class="resena"><div class="e">★★★★★</div><p>“La masa es delgada y crocante, como en Italia. Ya somos clientes fijos.”</p><cite>Familia Rojas</cite></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Asistente Esencial -->
+  <section class="asistente">
+    <div class="ancho revelar">
+      <div>
+        <span class="etiqueta" style="color:#ff8a6b">Asistente con IA</span>
+        <h2>Rossa responde por ti, 24/7</h2>
+        <p class="sub" data-ext="Está en esta página: el botón rojo de abajo.">Está en esta página (el botón rojo de abajo) y en el WhatsApp del negocio.</p>
+        <ul class="puede">
+          <li>Responde la carta, precios, horarios y domicilios al instante</li>
+          <li>Entiende notas de voz</li>
+          <li>Recomienda qué pedir</li>
+          <li>Cuando alguien quiere pedir o reservar, avisa al dueño para que lo atienda</li>
+        </ul>
+        <div class="acciones" style="margin-top:24px"><a class="boton" href="#" data-abrir-chat>Probar a Rossa ahora</a></div>
+      </div>
+      <div class="telefono" aria-hidden="true">
+        <div class="top"><i>🍕</i><div>Forno Rosso<small>en línea</small></div></div>
+        <div class="msgs">
+          <div class="m c">Hola, ¿qué pizzas vegetarianas tienen?</div>
+          <div class="m r">¡Hola! 😊 Tenemos la Margarita ($32.000) y la Cuatro Quesos ($39.000). También hacemos cualquier pizza sin carne.</div>
+          <div class="m c">¿Hasta qué hora hay domicilio hoy?</div>
+          <div class="m r">Hoy viernes hasta las 11:00 p. m. 🛵 Es gratis desde $60.000.</div>
+          <div class="m c">Quiero pedir una Margarita</div>
+          <div class="m r">¡Buena elección! ¿Me dices tu nombre? Le paso tu pedido a Tano y te escribe en un momento. 🙌</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section class="contacto" id="contacto">
+    <div class="ancho revelar">
+      <div class="caja">
+        <h3>Horario</h3>
+        <ul class="horario">
+          <li><span>Lunes</span><b>Cerrado</b></li>
+          <li><span>Martes a jueves</span><b>12:00 m. – 10:00 p. m.</b></li>
+          <li><span>Viernes y sábado</span><b>12:00 m. – 11:00 p. m.</b></li>
+          <li><span>Domingo</span><b>12:00 m. – 9:00 p. m.</b></li>
+        </ul>
+      </div>
+      <div class="caja roja">
+        <div><h3>¿Antojo de pizza?</h3><p>Pregúntale a Rossa por la carta o pide por WhatsApp. Te respondemos en minutos.</p></div>
+        <a class="boton" href="#" data-abrir-chat>Hablar con Rossa</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer data-ext="© Forno Rosso Pizzería · negocio de ejemplo · Página y asistente por Agencia Tafurtfer · <a href='/web-con-ia/#paquetes'>Quiero una así</a>">© Forno Rosso Pizzería · negocio de ejemplo · Página y asistente por <a href="/">Agencia Tafurtfer</a> · <a href="/#web">Quiero un combo así</a></footer>
+
+<script>
+  // Video de fondo de toda la página: arranca solo (sin sonido) y, si el navegador lo frena, con el primer toque o desplazamiento
+  (() => {
+    const video = document.querySelector(".fondo-video video");
+    const arrancar = () => { if (video.paused) { const p = video.play(); if (p) p.catch(() => {}); } };
+    arrancar();
+    video.addEventListener("canplay", arrancar);
+    ["pointerdown", "touchstart", "scroll", "keydown", "mousemove"].forEach((e) => addEventListener(e, arrancar, { passive: true }));
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) arrancar(); });
+    video.addEventListener("error", () => video.remove(), true);
+  })();
+</script>
+<script type="module">
+  import { montarChat } from "/portafolio/comun/chat.js";
+  import { montarAnimado } from "/portafolio/comun/animados.js";
+  montarAnimado(document.getElementById("escena"), {
+    tipo: "pizza",
+    etiqueta: false,
+    colores: { queso: "#f5a524", masa: "#d99a5b", corteza: "#a8662c", salsa: "#b82a14", pepperoni: "#8f1d12", albahaca: "#3f7d3a", zapatos: "#1f1a17", acento: "#c8361e", anillo: "#ff8a4c" },
+    globo: document.getElementById("globo"),
+    frases: {
+      SALUDANDO: ["¡Ciao! Soy Rossa 🍕", "¡Bienvenido a Forno Rosso!"],
+      LANZANDO: ["¡Masa madre de 48 horas!", "¡Directo al horno de leña! 🔥"],
+      FELIZ: ["¡Domicilio gratis desde $60.000! 🛵", "¡Recién salida del horno!"],
+      PENSANDO: ["¿Margarita o pepperoni? 🤔"],
+      BAILANDO: ["¡Mamma mia! 🎶"],
+      HABLANDO: ["¿Qué se te antoja hoy?"],
+    },
+  });
+  montarChat({ slug: "pizzeria-demo", nombre: "Rossa", color: "#c8361e", icono: "🍕",
+    saludo: "¡Hola! 🍕 Soy Rossa, la asistente de Forno Rosso. ¿Quieres ver la carta, saber si hay domicilio o que te recomiende una pizza?" });
+</script>
+<script src="/portafolio/comun/efectos.js" defer></script>
+<script src="/portafolio/comun/exterior.js"></script>
+</body>
+</html>
