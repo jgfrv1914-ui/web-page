@@ -16,3 +16,6 @@ preview-*.png
 node_modules/
 .DS_Store
 Thumbs.db
+
+# Video de origen (la copia web está en sitio/portafolio/ux/video)
+gemini_generated_video_*.mp4
